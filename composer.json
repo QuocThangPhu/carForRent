@@ -1,0 +1,15 @@
+{
+    "name": "thangphu/car-for-rent",
+    "autoload": {
+        "psr-4": {
+            "Thangphu\\CarForRent\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "ThangPhu-nfq",
+            "email": "thang.phu@nfq.asia"
+        }
+    ],
+    "require": {}
+}
