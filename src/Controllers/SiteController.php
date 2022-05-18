@@ -1,10 +1,10 @@
 <?php
 
-namespace Thangphu\UnLock\Controllers;
+namespace Thangphu\CarForRent\Controllers;
 
-use Thangphu\UnLock\core\Application;
-use Thangphu\UnLock\core\Controller;
-use Thangphu\UnLock\core\Request;
+use Thangphu\CarForRent\bootstrap\Application;
+use Thangphu\CarForRent\bootstrap\Controller;
+use Thangphu\CarForRent\bootstrap\Request;
 
 class SiteController extends Controller
 {

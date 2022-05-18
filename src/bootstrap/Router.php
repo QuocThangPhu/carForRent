@@ -1,6 +1,6 @@
 <?php
     
-namespace Thangphu\UnLock\core;
+namespace Thangphu\CarForRent\bootstrap;
 
 class Router
 {
@@ -88,7 +88,7 @@ class Router
     {
         $layout = Application::$app->controller->layout;
         ob_start();
-        include_once Application::$ROOT_DIR . "/UnLock/src/views/layouts/$layout.php";
+        include_once Application::$ROOT_DIR . "/src/views/layouts/$layout.php";
         return ob_get_clean();
     }
 
@@ -103,7 +103,7 @@ class Router
             $$key = $value;
         }
         ob_start();
-        include_once Application::$ROOT_DIR . "/UnLock/src/views/$view.php";
+        include_once Application::$ROOT_DIR . "/src/views/$view.php";
         return ob_get_clean();
     }
 }

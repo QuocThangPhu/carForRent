@@ -1,6 +1,6 @@
 <?php
 
-namespace Thangphu\UnLock\core;
+namespace Thangphu\CarForRent\bootstrap;
 
 class Controller
 {

@@ -1,11 +1,11 @@
 <?php
 
-namespace Thangphu\UnLock\core;
+namespace Thangphu\CarForRent\bootstrap;
 
-use Thangphu\UnLock\core\Request;
-use Thangphu\UnLock\core\Router;
-use Thangphu\UnLock\core\Response;
-use Thangphu\UnLock\core\Controller;
+use Thangphu\CarForRent\bootstrap\Request;
+use Thangphu\CarForRent\bootstrap\Router;
+use Thangphu\CarForRent\bootstrap\Response;
+use Thangphu\CarForRent\bootstrap\Controller;
 
 class Application
 {

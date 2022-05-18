@@ -1,8 +1,8 @@
 <?php
 
-namespace Thangphu\UnLock\Model;
+namespace Thangphu\CarForRent\Model;
 
-use Thangphu\UnLock\core\Model;
+use Thangphu\CarForRent\bootstrap\Model;
 
 class RegisterModel extends Model
 {

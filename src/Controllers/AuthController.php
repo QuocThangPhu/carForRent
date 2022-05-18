@@ -1,10 +1,10 @@
 <?php
 
-namespace Thangphu\UnLock\Controllers;
+namespace Thangphu\CarForRent\Controllers;
 
-use Thangphu\UnLock\core\Controller;
-use Thangphu\UnLock\core\Request;
-use Thangphu\UnLock\Model\RegisterModel;
+use Thangphu\CarForRent\bootstrap\Controller;
+use Thangphu\CarForRent\bootstrap\Request;
+use Thangphu\CarForRent\Model\RegisterModel;
 
 class AuthController extends Controller
 {
