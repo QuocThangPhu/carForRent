@@ -15,13 +15,12 @@ class DatabaseConnect
         $username = "root";
         $password = "Qt@05100809";
         $dbname = "carforrent";
-        if(!self::$connection)
-        {
+        if (!self::$connection) {
             try {
                 self::$connection = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
                 self::$connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 echo "Connected successfully";
-            } catch(PDOException $e) {
+            } catch (PDOException $e) {
                 echo "Connection failed: " . $e->getMessage();
             }
         }
