@@ -11,5 +11,7 @@
             "email": "thang.phu@nfq.asia"
         }
     ],
-    "require": {}
+    "require": {
+        "ext-pdo": "*"
+    }
 }

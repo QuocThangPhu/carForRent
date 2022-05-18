@@ -5,6 +5,7 @@ namespace Thangphu\CarForRent\Controllers;
 use Thangphu\CarForRent\bootstrap\Application;
 use Thangphu\CarForRent\bootstrap\Controller;
 use Thangphu\CarForRent\bootstrap\Request;
+use Thangphu\CarForRent\Database\DatabaseConnect;
 
 class SiteController extends Controller
 {
@@ -38,9 +39,4 @@ class SiteController extends Controller
      * @param $number2
      * @return string
      */
-//    public function sum($number1, $number2)
-//    {
-//        $finalnumber = $number1 + $number2;
-//        return $finalnumber;
-//    }
 }
