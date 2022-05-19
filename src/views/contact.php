@@ -3,6 +3,5 @@
 <form action="" method="post">
     <label for="content"> Content: </label>
     <input type="text" name="content">
-
     <button>submit</button>
 </form>

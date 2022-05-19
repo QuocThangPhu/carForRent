@@ -2,14 +2,14 @@
 
 namespace Thangphu\CarForRent\form;
 
-use Thangphu\CarForRent\bootstrap\Model;
+use Thangphu\CarForRent\bootstrap\Validation;
 
 class Field
 {
-    public Model $model;
+    public Validation $model;
     public string $attribute;
 
-    public function __construct( Model $model, string $attribute)
+    public function __construct(Validation $model, string $attribute)
     {
         $this->model = $model;
         $this->attribute = $attribute;

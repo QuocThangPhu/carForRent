@@ -5,6 +5,10 @@ namespace Thangphu\CarForRent\bootstrap;
 class Router
 {
     /**
+     * @var array
+     */
+    protected static array $routes = [];
+    /**
      * @var Request
      */
     public Request $request;
@@ -12,10 +16,6 @@ class Router
      * @var Response
      */
     public Response $response;
-    /**
-     * @var array
-     */
-    protected array $routes = [];
 
     /**
      * @param Request $request
@@ -32,14 +32,14 @@ class Router
      * @param $callback
      * @return void
      */
-    public function get($path, $callback): void
+    public static function get($path, $callback): void
     {
-        $this->routes['GET'][$path] = $callback;
+        self::$routes['GET'][$path] = $callback;
     }
 
-    public function post($path, $callback): void
+    public static function post($path, $callback): void
     {
-        $this->routes['POST'][$path] = $callback;
+        self::$routes['POST'][$path] = $callback;
     }
 
     /**
