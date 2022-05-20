@@ -35,12 +35,11 @@ class UserRepository
 
     public function findUserByName($username)
     {
-        $userWasFound = $this->connection->prepare("SELECT * FROM users WHERE username = '$username' ");
+        $userWasFound = $this->connection->prepare("SELECT * FROM USER WHERE username = '$username' ");
         $userWasFound->execute();
-
         $user = new UserModel();
         if ($row = $userWasFound->fetch()) {
-            $user->setId($row['id']);
+            $user->setId($row['idUSER']);
             $user->setUsername($row['username']);
             $user->setPassword($row['password']);
             return $user;

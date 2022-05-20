@@ -2,20 +2,22 @@
     
 namespace Thangphu\CarForRent\bootstrap;
 
+use Thangphu\CarForRent\App\View;
+
 class Router
 {
     /**
      * @var array
      */
-    protected static array $routes = [];
+    protected static $routes = [];
     /**
      * @var Request
      */
-    public Request $request;
+    public static Request $request;
     /**
      * @var Response
      */
-    public Response $response;
+    public static Response $response;
 
     /**
      * @param Request $request
@@ -23,8 +25,8 @@ class Router
      */
     public function __construct(Request $request, Response $response)
     {
-        $this->request = $request;
-        $this->response = $response;
+        static::$request = $request;
+        static::$response = $response;
     }
 
     /**
@@ -34,76 +36,29 @@ class Router
      */
     public static function get($path, $callback): void
     {
-        self::$routes['GET'][$path] = $callback;
+        static::$routes['GET'][$path] = $callback;
     }
 
     public static function post($path, $callback): void
     {
-        self::$routes['POST'][$path] = $callback;
+        static::$routes['POST'][$path] = $callback;
     }
 
     /**
      * @return string|string[]
      */
-    public function resolve()
+    public static function resolve()
     {
-        $path = $this->request->getPath();
-        $method = $this->request->method();
-        $callback = $this->routes[$method][$path] ?? false;
+        $path = static::$request->getPath();
+        $method = static::$request->method();
+        $callback = static::$routes[$method][$path] ?? false;
         if ($callback === false) {
-            $this->response->setStatusCode(404);
-            return $this->renderView("_404");
+            static::$response->setStatusCode(404);
+            return View::renderView('404');
         }
         if (is_string($callback)) {
-            return $this->renderView($callback);
+            return View::renderView($callback);
         }
-        if (is_array($callback)){
-            Application::$app->controller = new $callback[0]();
-            $callback[0] = Application::$app->controller;
-        }
-        return call_user_func($callback, $this->request);
-    }
-
-    /**
-     * @param $view
-     * @return string|string[]
-     */
-    public function renderView($view, $params = [])
-    {
-        $layoutContent = $this->layoutContent();
-        $viewContent = $this->renderOnlyView($view, $params);
-        return str_replace('{{content}}', $viewContent, $layoutContent);
-    }
-
-    public function renderContent($viewContent)
-    {
-        $layoutContent = $this->layoutContent();
-        return str_replace('{{content}}', $viewContent, $layoutContent);
-    }
-
-    /**
-     * @return string
-     */
-    protected function layoutContent()
-    {
-        $layout = Application::$app->controller->layout;
-        ob_start();
-        include_once Application::$ROOT_DIR . "/src/views/layouts/$layout.php";
-        return ob_get_clean();
-    }
-
-    /**
-     * @param $view
-     * @return string
-     */
-    protected function renderOnlyView($view, $params)
-    {
-        foreach ($params as $key => $value)
-        {
-            $$key = $value;
-        }
-        ob_start();
-        include_once Application::$ROOT_DIR . "/src/views/$view.php";
-        return ob_get_clean();
+        return call_user_func($callback);
     }
 }

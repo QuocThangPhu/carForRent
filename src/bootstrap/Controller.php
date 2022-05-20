@@ -2,18 +2,10 @@
 
 namespace Thangphu\CarForRent\bootstrap;
 
+use Thangphu\CarForRent\App\View;
+
 class Controller
 {
-    public string $layout = 'main';
-
-    /**
-     * @return void
-     */
-    public function setLayout($layout): void
-    {
-        $this->layout = $layout;
-    }
-
     /**
      * @param $view
      * @param $params
@@ -21,7 +13,6 @@ class Controller
      */
     public function render($view, $params = [])
     {
-        return Application::$app->router->renderView($view, $params);
+        return View::renderView($view, $params);
     }
-
 }

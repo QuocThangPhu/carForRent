@@ -16,14 +16,31 @@
 <body class="text-center">
 <nav class="navbar bg-info p-2 bg-opacity-25">
     <div class="container-fluid">
-        <h1><a href="/" class="navbar-brand" style="color: red">SayNo</a></h1>
+        <h1><a href="/" class="navbar-brand" style="color: red">
+                <?php if(isset($_SESSION['username'])) {
+                    echo $_SESSION['username'];
+                    ?>
+
+                <?php }else{
+                    echo 'Sayno';
+                }?></a></h1>
         <ul class="nav justify-content-end">
+            <?php if(isset($_SESSION['user_id'])) {
+                echo '
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout">Logout</a>
+                </li>'
+                ?>
+
+            <?php }else{
+                echo '
             <li class="nav-item">
-                <a class="nav-link" href="#">Login</a>
+                <a class="nav-link" href="/login">Login</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/register">Register</a>
-            </li>
+            </li>';
+            }?>
         </ul>
     </div>
 </nav>

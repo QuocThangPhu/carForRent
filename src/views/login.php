@@ -25,7 +25,7 @@
     <label for="username" class="sr-only">Username</label>
     <input type="text" id="username" name="username"
            class="form-control <?php echo $model->hasError('username') ? 'is-invalid' : '' ?>"
-           placeholder="Username" value="<?php echo $model->username ??'' ?>">
+           placeholder="Username" value="<?php echo $model->username ?? '' ?>">
     <p><?php echo $model->getFirstError('username') ?></p>
     <label for="password" class="sr-only">Password</label>
     <input type="password" id="password" name="password"
