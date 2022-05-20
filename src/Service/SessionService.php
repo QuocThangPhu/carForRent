@@ -28,5 +28,4 @@ class SessionService
     {
         return self::getUserId() != null;
     }
-
 }

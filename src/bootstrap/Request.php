@@ -1,5 +1,5 @@
 <?php
-    
+
 namespace Thangphu\CarForRent\bootstrap;
 
 class Request
@@ -29,6 +29,7 @@ class Request
     {
         return $this->method() === 'GET';
     }
+
     public function isPost()
     {
         return $this->method() === 'POST';
@@ -40,12 +41,12 @@ class Request
     public function getBody()
     {
         $body = [];
-        if($this->isGet()){
+        if ($this->isGet()) {
             foreach ($_GET as $key => $value) {
                 $body[$key] = filter_input(INPUT_GET, $key, FILTER_SANITIZE_SPECIAL_CHARS);
             }
         }
-        if($this->isPost()){
+        if ($this->isPost()) {
             foreach ($_POST as $key => $value) {
                 $body[$key] = filter_input(INPUT_POST, $key, FILTER_SANITIZE_SPECIAL_CHARS);
             }

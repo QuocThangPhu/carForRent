@@ -17,7 +17,6 @@ abstract class Validation
                 $this->{$key} = $value;
             }
         }
-
     }
 
     public array $error = [];

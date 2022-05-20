@@ -41,8 +41,7 @@ class LoginService
 
     private function validationLogin($request)
     {
-        if(empty($request->username) || empty($request->password))
-        {
+        if (empty($request->username) || empty($request->password)) {
             echo "Username or password cann't be empty";
         }
     }

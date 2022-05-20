@@ -17,6 +17,7 @@ class SiteController extends Controller
         ];
         return $this->render('home', $params);
     }
+
     /**
      * @return string|string[]
      */

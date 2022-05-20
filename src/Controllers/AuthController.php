@@ -17,6 +17,7 @@ class AuthController extends Controller
 {
     protected $connect;
     protected $request;
+
     public function __construct()
     {
         $this->connect = DatabaseConnect::getConnection();
@@ -38,12 +39,12 @@ class AuthController extends Controller
         $login = new LoginValidation();
         if ($this->request->isPost()) {
             $login->loadData($this->request->getBody());
-            if(!$login->validate()){
+            if (!$login->validate()) {
                 return View::renderOnlyView('login', [
                     'model' => $login
                 ]);
             }
-            try{
+            try {
                 $user->setUsername($login->username);
                 $user->setPassword($login->password);
                 $loginService = new LoginService();
@@ -51,20 +52,20 @@ class AuthController extends Controller
                 $_SESSION["user_id"] = $loginService->login($user)->getUser()->getId();
                 $_SESSION["username"] = $loginService->login($user)->getUser()->getUsername();
                 View::redirect('/');
-            }catch (ValidationException $e){
+            } catch (ValidationException $e) {
                 return View::renderOnlyView('login', [
                     'model' => $e->getMessage()
                 ]);
             }
         }
-
     }
 
     public function logout()
     {
-        unset($_SESSION["user_id"],$_SESSION["username"]);
+        unset($_SESSION["user_id"], $_SESSION["username"]);
         View::redirect('/');
     }
+
     public function registerForm()
     {
 

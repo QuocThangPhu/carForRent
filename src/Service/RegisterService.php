@@ -15,6 +15,7 @@ class RegisterService
 {
     protected UserRepository $userRepository;
     protected PDO $connect;
+
     public function __construct()
     {
         $this->connect = DatabaseConnect::getConnection();
@@ -26,9 +27,9 @@ class RegisterService
         $registerModel = new RegisterValidation();
         if ($request->isPost()) {
             $registerModel->loadData($request->getBody());
-            if ($registerModel->validate() ) {
+            if ($registerModel->validate()) {
                 $user = new UserRepository($this->connect);
-                $user->createUser($registerModel->username,$registerModel->password);
+                $user->createUser($registerModel->username, $registerModel->password);
             }
             return View::renderOnlyView('register', [
                 'model' => $registerModel
