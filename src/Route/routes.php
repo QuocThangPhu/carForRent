@@ -15,6 +15,6 @@ Router::get('/login', [new AuthController(), 'login']);
 Router::post('/loginCheck', [new AuthController(), 'loginCheck']);
 Router::get('/register', [new AuthController(), 'registerForm']);
 Router::post('/register', [new AuthController(), 'register']);
-Router::get('/logout', [new AuthController(), 'logout']);
+Router::post('/logout', [new AuthController(), 'logout']);
 
 Router::get('/404', '_404');

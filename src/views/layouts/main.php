@@ -25,21 +25,23 @@
                     echo 'Sayno';
                 } ?></a></h1>
         <ul class="nav justify-content-end">
-            <?php if (isset($_SESSION['user_id'])) {
-                echo '
-                <li class="nav-item">
-                    <a class="nav-link" href="/logout">Logout</a>
-                </li>'
-                ?>
-
-            <?php } else {
-                echo '
-            <li class="nav-item">
+            <?php if (!isset($_SESSION['user_id'])) {
+                echo '<li class="nav-item">
                 <a class="nav-link" href="/login">Login</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/register">Register</a>
             </li>';
+
+                ?>
+
+            <?php } else{
+                echo '
+            <li class="nav-item">
+                    <form action="/logout" method="post">
+                        <button type="submit">logout</button>
+                    </form>
+                </li>';
             } ?>
         </ul>
     </div>

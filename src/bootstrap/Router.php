@@ -54,7 +54,7 @@ class Router
         $callback = static::$routes[$method][$path] ?? false;
         if ($callback === false) {
             static::$response->setStatusCode(404);
-            return View::renderView('404');
+            return View::renderView('_404');
         }
         if (is_string($callback)) {
             return View::renderView($callback);

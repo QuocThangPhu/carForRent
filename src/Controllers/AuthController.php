@@ -17,11 +17,15 @@ class AuthController extends Controller
 {
     protected $connect;
     protected $request;
+    private $loginService;
+    protected UserModel $user;
 
     public function __construct()
     {
         $this->connect = DatabaseConnect::getConnection();
         $this->request = new Request();
+        $this->loginService = new LoginService();
+        $this->user = new UserModel();
     }
 
 
@@ -35,33 +39,37 @@ class AuthController extends Controller
 
     public function loginCheck()
     {
-        $user = new UserModel();
         $login = new LoginValidation();
-        if ($this->request->isPost()) {
-            $login->loadData($this->request->getBody());
-            if (!$login->validate()) {
-                return View::renderOnlyView('login', [
-                    'model' => $login
-                ]);
-            }
-            try {
-                $user->setUsername($login->username);
-                $user->setPassword($login->password);
-                $loginService = new LoginService();
-                $loginService->login($user);
-                $_SESSION["user_id"] = $loginService->login($user)->getUser()->getId();
-                $_SESSION["username"] = $loginService->login($user)->getUser()->getUsername();
-                View::redirect('/');
-            } catch (ValidationException $e) {
-                return View::renderOnlyView('login', [
-                    'model' => $e->getMessage()
-                ]);
-            }
+        if (!$this->request->isPost()) {
+            return View::renderOnlyView('login', [
+                'model' => $login
+            ]);
+        }
+        $login->loadData($this->request->getBody());
+        if (!$login->validate()) {
+            return View::renderOnlyView('login', [
+                'model' => $login
+            ]);
+        }
+        try {
+            $this->user->setUsername($login->username);
+            $this->user->setPassword($login->password);
+            $userSession = $this->loginService->login($this->user);
+            $_SESSION["user_id"] = $userSession->getUser()->getId();
+            $_SESSION["username"] = $userSession->getUser()->getUsername();
+            View::redirect('/');
+        } catch (ValidationException $e) {
+            return View::renderOnlyView('login', [
+                'model' => $e->getMessage()
+            ]);
         }
     }
 
     public function logout()
     {
+        if (!$this->request->isPost()) {
+            View::redirect('/');
+        }
         unset($_SESSION["user_id"], $_SESSION["username"]);
         View::redirect('/');
     }
