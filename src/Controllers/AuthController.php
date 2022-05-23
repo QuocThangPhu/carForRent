@@ -15,23 +15,23 @@ use Thangphu\CarForRent\Validation\LoginValidation;
 
 class AuthController extends Controller
 {
-    protected $connect;
-    protected $request;
-    private $loginService;
+    protected Request $request;
+    private LoginService $loginService;
     protected UserModel $user;
+    protected LoginValidation $loginValidation;
 
-    public function __construct()
+    public function __construct(Request $request,LoginService $loginService, UserModel $user, LoginValidation $loginValidation)
     {
-        $this->connect = DatabaseConnect::getConnection();
-        $this->request = new Request();
-        $this->loginService = new LoginService();
-        $this->user = new UserModel();
+        $this->request = $request;
+        $this->loginService = $loginService;
+        $this->user = $user;
+        $this->loginValidation = $loginValidation;
     }
 
 
     public function login()
     {
-        $login = new LoginValidation();
+        $login = $this->loginValidation;
         return View::renderOnlyView('login', [
             'model' => $login
         ]);
@@ -54,9 +54,9 @@ class AuthController extends Controller
         try {
             $this->user->setUsername($login->username);
             $this->user->setPassword($login->password);
-            $userSession = $this->loginService->login($this->user);
-            $_SESSION["user_id"] = $userSession->getUser()->getId();
-            $_SESSION["username"] = $userSession->getUser()->getUsername();
+            $userModel = $this->loginService->login($this->user);
+            $_SESSION["user_id"] = $userModel->getId();
+            $_SESSION["username"] = $userModel->getUsername();
             View::redirect('/');
         } catch (ValidationException $e) {
             return View::renderOnlyView('login', [

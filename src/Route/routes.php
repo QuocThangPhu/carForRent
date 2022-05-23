@@ -7,14 +7,14 @@ use Thangphu\CarForRent\Controllers\AuthController;
 use Thangphu\CarForRent\bootstrap\Application;
 use Thangphu\CarForRent\Controllers\SiteController;
 
-Router::get('/', [new SiteController(), 'home']);
-Router::get('/contact', [new SiteController(), 'contact']);
-Router::post('/contact', [new SiteController(), 'handleContact']);
+Router::get('/', [SiteController::class, 'home']);
+Router::get('/contact', [SiteController::class, 'contact']);
+Router::post('/contact', [SiteController::class, 'handleContact']);
 
-Router::get('/login', [new AuthController(), 'login']);
-Router::post('/loginCheck', [new AuthController(), 'loginCheck']);
-Router::get('/register', [new AuthController(), 'registerForm']);
-Router::post('/register', [new AuthController(), 'register']);
-Router::post('/logout', [new AuthController(), 'logout']);
+Router::get('/login', [AuthController::class, 'login']);
+Router::post('/loginCheck', [AuthController::class, 'loginCheck']);
+Router::get('/register', [AuthController::class, 'registerForm']);
+Router::post('/register', [AuthController::class, 'register']);
+Router::post('/logout', [AuthController::class, 'logout']);
 
 Router::get('/404', '_404');

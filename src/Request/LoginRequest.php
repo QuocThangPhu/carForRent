@@ -46,12 +46,4 @@ class LoginRequest
         $this->setUsername($loginRequest['username']);
         $this->setPassword($loginRequest['password']);
     }
-
-    public function validate()
-    {
-        if (empty($this->getUsername()) || empty($this->getPassword())) {
-            throw new ValidationException("Your username or password is empty");
-        }
-        return true;
-    }
 }

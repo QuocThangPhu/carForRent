@@ -3,15 +3,16 @@
 namespace Thangphu\CarForRent\Repository;
 
 use PDO;
+use Thangphu\CarForRent\Database\DatabaseConnect;
 use Thangphu\CarForRent\Model\UserModel;
 
 class UserRepository
 {
     private PDO $connection;
 
-    public function __construct(PDO $connection)
+    public function __construct()
     {
-        $this->connection = $connection;
+        $this->connection = DatabaseConnect::getConnection();
     }
 
     public function createUser($username, $password)

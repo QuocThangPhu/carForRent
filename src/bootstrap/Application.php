@@ -2,16 +2,17 @@
 
 namespace Thangphu\CarForRent\bootstrap;
 
-use Thangphu\CarForRent\bootstrap\Request;
-use Thangphu\CarForRent\bootstrap\Router;
-use Thangphu\CarForRent\bootstrap\Response;
-use Thangphu\CarForRent\bootstrap\Controller;
+use Thangphu\CarForRent\App\View;
+use Closure;
+use Exception;
+use ReflectionClass;
+use ReflectionException;
 
 class Application
 {
-    public Request $request;
-    public Response $response;
-    protected Router $route;
+    public static Request $request;
+    public static Response $response;
+    private static Router $routes;
     public static string $ROOT_DIR;
     public static Application $application;
 
@@ -19,13 +20,27 @@ class Application
     {
         self::$ROOT_DIR = $rootPath;
         self::$application = $this;
-        $this->request = new Request();
-        $this->response = new Response();
-        $this->route = new Router($this->request, $this->response);
+        static::$request = new Request();
+        static::$response = new Response();
+        static::$routes = new Router(static::$request, static::$response);
     }
 
     public function run()
     {
-        echo Router::resolve();
+        $container = new Container();
+        $path = static::$request->getPath();
+        $method = static::$request->method();
+        $callback = Router::$routes[$method][$path] ?? false;
+        if ($callback === false) {
+            static::$response->setStatusCode(404);
+            echo View::renderView('_404');
+        }
+        if (is_string($callback)) {
+            echo View::renderView($callback);
+        }
+        $currentController = $callback[0];
+        $action = $callback[1];
+        $controller = $container->make($currentController);
+        echo $controller->{$action}();
     }
 }

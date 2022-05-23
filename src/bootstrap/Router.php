@@ -9,7 +9,7 @@ class Router
     /**
      * @var array
      */
-    protected static $routes = [];
+    public static $routes = [];
     /**
      * @var Request
      */
@@ -42,23 +42,5 @@ class Router
     public static function post($path, $callback): void
     {
         static::$routes['POST'][$path] = $callback;
-    }
-
-    /**
-     * @return string|string[]
-     */
-    public static function resolve()
-    {
-        $path = static::$request->getPath();
-        $method = static::$request->method();
-        $callback = static::$routes[$method][$path] ?? false;
-        if ($callback === false) {
-            static::$response->setStatusCode(404);
-            return View::renderView('_404');
-        }
-        if (is_string($callback)) {
-            return View::renderView($callback);
-        }
-        return call_user_func($callback);
     }
 }
