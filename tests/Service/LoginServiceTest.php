@@ -24,6 +24,10 @@ class LoginServiceTest extends TestCase
             ->disableOriginalConstructor()->getMock();
         $userRepositoryMock->expects($this->once())->method('findUserByName')
             ->willReturn($userFromRepository);
+
+        $loginService = new LoginService($userRepositoryMock);
+        $loginService->login($userModel);
+        $this->assertEquals($userFromRepository->getId(), $userModel->getId());
     }
 
     /**

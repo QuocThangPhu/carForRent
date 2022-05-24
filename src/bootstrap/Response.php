@@ -4,47 +4,81 @@ namespace Thangphu\CarForRent\bootstrap;
 
 class Response
 {
-    public $user;
-    public $message = [];
+    const HTTP_OK = 200;
+    const HTTP_NOT_FOUND = 404;
+    const HTTP_INTERNAL_SERVER_ERROR = 500;
+    const HTTP_UNAUTHORIZED = 401;
 
-    /**
-     * @return array
-     */
-    public function getMessage(): array
+    protected ?string $template = null;
+    protected int $statusCode;
+    protected ?string $redirectUrl = null;
+    protected ?array $data = null;
+
+    public function getTemplate()
     {
-        return $this->message;
+        return $this->template;
     }
 
-    /**
-     * @param array $message
-     */
-    public function setMessage(array $message): void
+
+    public function setTemplate($template)
     {
-        $this->message = $message;
+        $this->template = $template;
     }
 
     /**
      * @param int $code
      * @return void
      */
-    public function setStatusCode(int $code): void
+    public function setStatusCode($statusCode): void
     {
-        http_response_code($code);
+        $this->statusCode = $statusCode;
+    }
+
+    public function getStatusCode()
+    {
+        return $this->statusCode;
+    }
+
+    public function getRedirectUrl()
+    {
+        return $this->redirectUrl;
+    }
+
+    public function setRedirectUrl($redirectUrl)
+    {
+        $this->redirectUrl = $redirectUrl;
     }
 
     /**
-     * @return mixed
+     * @return array|null
      */
-    public function getUser()
+    public function getData(): ?array
     {
-        return $this->user;
+        return $this->data;
     }
 
     /**
-     * @param mixed $user
+     * @param array|null $data
      */
-    public function setUser($user): void
+    public function setData(?array $data): void
     {
-        $this->user = $user;
+        $this->data = $data;
+    }
+
+    public function renderView($template, array $data = null)
+    {
+        $this->setTemplate($template);
+        if($data != null){
+            $this->setData([$data]);
+        }else {
+            $this->setData(null);
+        }
+        return $this;
+    }
+
+    public function redirect(string $url)
+    {
+        $this->setRedirectUrl($url);
+        return $this;
     }
 }

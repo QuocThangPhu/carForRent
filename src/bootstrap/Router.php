@@ -10,24 +10,7 @@ class Router
      * @var array
      */
     public static $routes = [];
-    /**
-     * @var Request
-     */
-    public static Request $request;
-    /**
-     * @var Response
-     */
-    public static Response $response;
 
-    /**
-     * @param Request $request
-     * @param Response $response
-     */
-    public function __construct(Request $request, Response $response)
-    {
-        static::$request = $request;
-        static::$response = $response;
-    }
 
     /**
      * @param $path

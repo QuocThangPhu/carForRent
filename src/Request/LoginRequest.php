@@ -2,7 +2,6 @@
 
 namespace Thangphu\CarForRent\Request;
 
-use Dotenv\Exception\ValidationException;
 
 class LoginRequest
 {
@@ -39,11 +38,5 @@ class LoginRequest
     public function setPassword(string $password): void
     {
         $this->password = $password;
-    }
-
-    public function __construct(array $loginRequest)
-    {
-        $this->setUsername($loginRequest['username']);
-        $this->setPassword($loginRequest['password']);
     }
 }

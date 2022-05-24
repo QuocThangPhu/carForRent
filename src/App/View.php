@@ -6,33 +6,21 @@ use Thangphu\CarForRent\bootstrap\Application;
 
 class View
 {
-    /**
-     * @param string $view
-     * @return array|false|string|string[]
-     */
-    public static function renderView(string $view, $params = [])
+    public static function display($response)
     {
-        $layoutContent = static::layoutContent();
-        $viewContent = static::renderOnlyView($view, $params);
-        return str_replace('{{content}}', $viewContent, $layoutContent);
-    }
-
-    public static function layoutContent()
-    {
-        ob_start();
-        include_once Application::$ROOT_DIR . "/src/views/layouts/main.php";
-        return ob_get_clean();
-    }
-
-    public static function renderOnlyView($view, $params)
-    {
-        foreach ($params as $key => $value) {
-            $$key = $value;
+        if($response == null)
+        {
+            return;
         }
+        if($response->getRedirectUrl() != null)
+        {
+            static::redirect($response->getRedirectUrl());
+        }
+        $template = $response->getTemplate();
+        $data = $response->getData();
 
-        ob_start();
-        include_once Application::$ROOT_DIR . "/src/views/$view.php";
-        return ob_get_clean();
+        require __DIR__ . "/../views/layouts/main.php";
+        require __DIR__ . "/../views/$template.php";
     }
 
     public static function redirect($url)

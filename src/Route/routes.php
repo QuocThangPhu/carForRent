@@ -8,8 +8,6 @@ use Thangphu\CarForRent\bootstrap\Application;
 use Thangphu\CarForRent\Controllers\SiteController;
 
 Router::get('/', [SiteController::class, 'home']);
-Router::get('/contact', [SiteController::class, 'contact']);
-Router::post('/contact', [SiteController::class, 'handleContact']);
 
 Router::get('/login', [AuthController::class, 'login']);
 Router::post('/loginCheck', [AuthController::class, 'loginCheck']);
