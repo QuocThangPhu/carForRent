@@ -21,24 +21,17 @@ class LoginService
 
     /**
      * @param UserModel $userInput
-     * @return array|bool
+     * @return UserModel|null
      */
     public function login(UserModel $userInput)
     {
         $response = new Response();
         $response->setUser($userInput);
         $existUser = $this->userRepository->findUserByName($userInput->getUsername());
-        if(!$existUser)
-        {
-            return ['username' => Validation::RULE_NOT_FOUND];
+        if($existUser && password_verify($userInput->getPassword(),$existUser->getPassword())) {
+            return $existUser;
         }
-        if(!password_verify($userInput->getPassword(),$existUser->getPassword()))
-        {
-            return ['password' => Validation::RULE_INCORRECT];
-        }
-        return [
-            'id' => $existUser->getId(),
-            'username'=> $existUser->getUsername()
-        ];
+
+        return null;
     }
 }

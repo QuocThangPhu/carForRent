@@ -27,4 +27,24 @@ class ResponseTest extends TestCase
             [Response::HTTP_UNAUTHORIZED],
         ];
     }
+
+    public function testRenderView()
+    {
+        $result = new Response();
+        $result->renderView('index', null);
+        $this->assertEquals('index', $result->getTemplate());
+        $this->assertEquals(null, $result->getData());
+    }
+
+    public function renderViewProvider()
+    {
+        return [
+            'view-render-1' => [
+                'param' => [
+                    'template' => 'index',
+                    'data' => ['']
+                ]
+            ]
+        ];
+    }
 }

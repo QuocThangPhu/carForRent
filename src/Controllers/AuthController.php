@@ -37,40 +37,38 @@ class AuthController
 
     public function loginCheck()
     {
+        // handle request
+
+        // validation
+
+        // logic
+
+        // return view
+        $loginValidation = new InputLoginValidation();
         if ($this->request->isPost()) {
-            $loginValidation = new InputLoginValidation();
+
             $loginValidation->loadData($this->request->getBody());
-            if (!$loginValidation->validate()) {
-                return $this->response->renderView('login', [
-                    'username' => $loginValidation->username,
-                    'password' => $loginValidation->password,
-                    'error' => [
-                        'username' => $loginValidation->getFirstError('username'),
-                        'password' => $loginValidation->getFirstError('password')
-                    ]
-                ]);
+            $isValid = $loginValidation->validate();
+            if ($isValid) {
+                //            $user = new UserModel();
+//            $user->setUsername($loginValidation->username);
+//            $user->setPassword($loginValidation->password);
+                $user = $this->loginService->login($loginValidation);
+                if ($user) {
+                    $_SESSION["user_id"] = $user->getId();
+                    $_SESSION["username"] = $user->getUsername();
+                    View::redirect('/');
+                }
+
             }
-            $user = new UserModel();
-            $user->setUsername($loginValidation->username);
-            $user->setPassword($loginValidation->password);
-            $loginCheck = $this->loginService->login($user);
-            if (!isset($loginCheck['id'])) {
-                return $this->response->renderView('login', [
-                    'username' => $loginValidation->username,
-                    'password' => $loginValidation->password,
-                    'error' => $loginCheck]);
-            }
-            try {
-                $_SESSION["user_id"] = $loginCheck['id'];
-                $_SESSION["username"] = $loginCheck['username'];
-                View::redirect('/');
-            } catch (ValidationException $e) {
-                return $this->response->renderView('login', [
-                    'model' => $e->getMessage()
-                ]);
-            }
+
         }
-        return $this->response->renderView('login');
+
+        return $this->response->renderView('login', [
+            'username' => $loginValidation->username,
+            'password' => $loginValidation->password,
+            'errors' => $loginValidation->getErrors()
+        ]);
 
     }
 
