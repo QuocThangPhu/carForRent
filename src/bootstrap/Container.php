@@ -80,7 +80,6 @@ class Container
         $dependencies = [];
 
         foreach ($parameters as $parameter) {
-//            $dependency = $parameter->getClass();
             $dependency = new ReflectionClass($parameter->getType()->getName());
             if (!is_null($dependency)) {
                 $dependencies[] = $this->make($dependency->name);

@@ -9,7 +9,7 @@ use Thangphu\CarForRent\Controllers\AuthController;
 use Thangphu\CarForRent\Model\UserModel;
 use Thangphu\CarForRent\Repository\UserRepository;
 use Thangphu\CarForRent\Service\LoginService;
-use Thangphu\CarForRent\Validation\LoginValidation;
+use Thangphu\CarForRent\Validation\InputLoginValidation;
 
 class AuthControllerTest extends TestCase
 {
@@ -22,7 +22,7 @@ class AuthControllerTest extends TestCase
                 ->disableOriginalConstructor()->getMock();
         $userMock = $this->getMockBuilder(UserModel::class)
             ->disableOriginalConstructor()->getMock();
-        $loginValidation = $this->getMockBuilder(LoginValidation::class)
+        $loginValidation = $this->getMockBuilder(InputLoginValidation::class)
             ->disableOriginalConstructor()->getMock();
 
         $loginViewTest = new AuthController($requestMock,$loginService,$userMock,$loginValidation);

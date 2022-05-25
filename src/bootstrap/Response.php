@@ -2,6 +2,8 @@
 
 namespace Thangphu\CarForRent\bootstrap;
 
+use Thangphu\CarForRent\Model\UserModel;
+
 class Response
 {
     const HTTP_OK = 200;
@@ -13,6 +15,7 @@ class Response
     protected int $statusCode;
     protected ?string $redirectUrl = null;
     protected ?array $data = null;
+    protected UserModel $user;
 
     public function getTemplate()
     {
@@ -69,7 +72,7 @@ class Response
     {
         $this->setTemplate($template);
         if($data != null){
-            $this->setData([$data]);
+            $this->setData([...$data]);
         }else {
             $this->setData(null);
         }
@@ -80,5 +83,21 @@ class Response
     {
         $this->setRedirectUrl($url);
         return $this;
+    }
+
+    /**
+     * @return UserModel
+     */
+    public function getUser(): UserModel
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param UserModel $user
+     */
+    public function setUser(UserModel $user): void
+    {
+        $this->user = $user;
     }
 }

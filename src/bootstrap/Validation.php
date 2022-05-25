@@ -9,6 +9,8 @@ abstract class Validation
     public const RULE_MIN = 'min';
     public const RULE_MAX = 'max';
     public const RULE_MATCH = 'match';
+    public const RULE_NOT_FOUND = 'not_found';
+    public const RULE_INCORRECT = 'incorrect';
 
     public function loadData($data)
     {
@@ -47,6 +49,12 @@ abstract class Validation
                 if ($ruleName === self::RULE_MATCH && $value !== $this->{$rule['match']}) {
                     $this->addError($attribute, self::RULE_MATCH, $rule);
                 }
+                if ($ruleName === self::RULE_NOT_FOUND && $value == null) {
+                    $this->addError($attribute, self::RULE_NOT_FOUND);
+                }
+                if ($ruleName === self::RULE_INCORRECT && !$value) {
+                    $this->addError($attribute, self::RULE_INCORRECT);
+                }
             }
         }
 
@@ -69,7 +77,9 @@ abstract class Validation
             self::RULE_EMAIL => 'This field must be valid email address',
             self::RULE_MIN => 'Min lenght of this field must be {min}',
             self::RULE_MAX => 'Max lenght of this field must be {max}',
-            self::RULE_MATCH => 'This field must be the same as {match}'
+            self::RULE_MATCH => 'This field must be the same as {match}',
+            self::RULE_NOT_FOUND => 'This field not found',
+            self::RULE_INCORRECT => 'This field incorrect'
         ];
     }
 

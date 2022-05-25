@@ -5,64 +5,73 @@ namespace Thangphu\CarForRent\Controllers;
 use Dotenv\Exception\ValidationException;
 use Thangphu\CarForRent\App\View;
 use Thangphu\CarForRent\bootstrap\Request;
+use Thangphu\CarForRent\bootstrap\Response;
 use Thangphu\CarForRent\Database\DatabaseConnect;
 use Thangphu\CarForRent\Model\UserModel;
 use Thangphu\CarForRent\Request\LoginRequest;
 use Thangphu\CarForRent\Service\LoginService;
 use Thangphu\CarForRent\Service\RegisterService;
-use Thangphu\CarForRent\Validation\LoginValidation;
+use Thangphu\CarForRent\Validation\InputLoginValidation;
+use Thangphu\CarForRent\Validation\LoginCheckValidation;
 
 class AuthController
 {
     protected Request $request;
     private LoginService $loginService;
-    protected UserModel $user;
-    protected LoginValidation $loginValidation;
+    protected Response $response;
+    protected InputLoginValidation $loginValidation;
 
-    public function __construct(Request $request,LoginService $loginService, UserModel $userModel, LoginValidation $loginValidation)
+    public function __construct(Request $request, LoginService $loginService, Response $response, InputLoginValidation $loginValidation)
     {
         $this->request = $request;
         $this->loginService = $loginService;
-        $this->userModel = $userModel;
+        $this->response = $response;
         $this->loginValidation = $loginValidation;
     }
 
 
     public function login()
     {
-        $login = $this->loginValidation;
-        return View::renderOnlyView('login', [
-            'model' => $login
-        ]);
+        return $this->response->renderView('login');
     }
 
     public function loginCheck()
     {
+        if ($this->request->isPost()) {
+            $loginValidation = new InputLoginValidation();
+            $loginValidation->loadData($this->request->getBody());
+            if (!$loginValidation->validate()) {
+                return $this->response->renderView('login', [
+                    'username' => $loginValidation->username,
+                    'password' => $loginValidation->password,
+                    'error' => [
+                        'username' => $loginValidation->getFirstError('username'),
+                        'password' => $loginValidation->getFirstError('password')
+                    ]
+                ]);
+            }
+            $user = new UserModel();
+            $user->setUsername($loginValidation->username);
+            $user->setPassword($loginValidation->password);
+            $loginCheck = $this->loginService->login($user);
+            if (!isset($loginCheck['id'])) {
+                return $this->response->renderView('login', [
+                    'username' => $loginValidation->username,
+                    'password' => $loginValidation->password,
+                    'error' => $loginCheck]);
+            }
+            try {
+                $_SESSION["user_id"] = $loginCheck['id'];
+                $_SESSION["username"] = $loginCheck['username'];
+                View::redirect('/');
+            } catch (ValidationException $e) {
+                return $this->response->renderView('login', [
+                    'model' => $e->getMessage()
+                ]);
+            }
+        }
+        return $this->response->renderView('login');
 
-        if (!$this->request->isPost()) {
-            return View::renderOnlyView('login', [
-                'model' => []
-            ]);
-        }
-        $login = new LoginValidation();
-        $login->loadData($this->request->getBody());
-        if (!$login->validate()) {
-            return View::renderOnlyView('login', [
-                'model' => $login
-            ]);
-        }
-        try {
-            $this->userModel->setUsername($login->username);
-            $this->userModel->setPassword($login->password);
-            $user = $this->loginService->login($this->userModel);
-            $_SESSION["user_id"] = $user->getId();
-            $_SESSION["username"] = $user->getUsername();
-            View::redirect('/');
-        } catch (ValidationException $e) {
-            return View::renderOnlyView('login', [
-                'model' => $e->getMessage()
-            ]);
-        }
     }
 
     public function logout()
@@ -72,21 +81,5 @@ class AuthController
         }
         unset($_SESSION["user_id"], $_SESSION["username"]);
         View::redirect('/');
-    }
-
-    public function registerForm()
-    {
-
-        $registerModel = new LoginValidation();
-        return View::renderOnlyView('register', [
-            'model' => $registerModel
-        ]);
-    }
-
-    public function register(Request $request)
-    {
-        $user = new UserModel();
-        $register = new RegisterService();
-        $register->register($request);
     }
 }

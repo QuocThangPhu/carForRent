@@ -8,7 +8,7 @@ use Thangphu\CarForRent\bootstrap\Request;
 use Thangphu\CarForRent\bootstrap\Service;
 use Thangphu\CarForRent\Database\DatabaseConnect;
 use Thangphu\CarForRent\Repository\UserRepository;
-use Thangphu\CarForRent\Validation\LoginValidation;
+use Thangphu\CarForRent\Validation\InputLoginValidation;
 use Thangphu\CarForRent\Validation\RegisterValidation;
 
 class RegisterService

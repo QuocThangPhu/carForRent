@@ -9,41 +9,23 @@ use Thangphu\CarForRent\Model\UserModel;
 class UserRepository
 {
     private PDO $connection;
+    private UserModel $user;
 
-    public function __construct()
+    public function __construct(UserModel $user)
     {
         $this->connection = DatabaseConnect::getConnection();
-    }
-
-    public function createUser($username, $password)
-    {
-
-        $password = hash("haval192,3", $password);
-        $newUser = $this->connection->prepare("INSERT INTO USER (username, password) 
-        VALUES ('$username','$password')");
-        $newUser->execute();
-
-        $user = new UserModel();
-        if ($row = $newUser->fetch()) {
-            $user->setId($row['id']);
-            $user->setUsername($row['username']);
-            $user->setPassword($row['password']);
-            return $user;
-        } else {
-            return null;
-        }
+        $this->user = $user;
     }
 
     public function findUserByName($username)
     {
-        $userWasFound = $this->connection->prepare("SELECT * FROM USER WHERE username = '$username' ");
-        $userWasFound->execute();
-        $user = new UserModel();
+        $userWasFound = $this->connection->prepare("SELECT * FROM USER WHERE username = ? ");
+        $userWasFound->execute([$username]);
         if ($row = $userWasFound->fetch()) {
-            $user->setId($row['idUSER']);
-            $user->setUsername($row['username']);
-            $user->setPassword($row['password']);
-            return $user;
+            $this->user->setId($row['idUSER']);
+            $this->user->setUsername($row['username']);
+            $this->user->setPassword($row['password']);
+            return $this->user;
         } else {
             return null;
         }

@@ -8,10 +8,6 @@ class View
 {
     public static function display($response)
     {
-        if($response == null)
-        {
-            return;
-        }
         if($response->getRedirectUrl() != null)
         {
             static::redirect($response->getRedirectUrl());

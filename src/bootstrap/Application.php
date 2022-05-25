@@ -14,9 +14,10 @@ use ReflectionException;
 class Application
 {
 
-    public function run($request, $responseView, $porvider)
+    public function run($request, $responseView, $provider)
     {
-        $container = $porvider->getContainer();
+
+        $container = $provider->getContainer();
 
         $path = $request->getPath();
         $method = $request->method();
@@ -26,16 +27,18 @@ class Application
             View::display($$responseView);
             return;
         }
-        $callback = $response[0];
+        $callback = $response;
         if (is_string($callback)) {
             $responseView->renderView($callback);
         }
         if (gettype($callback) == 'object') {
             $callback();
         }
+
         $currenController = $callback[0];
         $action = $callback[1];
         $controller = $container->make($currenController);
+
         $response =  $controller->{$action}();
         View::display($response);
     }

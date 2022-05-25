@@ -29,19 +29,4 @@ class DatabaseConnect
         }
         return self::$connection;
     }
-
-    public static function begin()
-    {
-        static::$connection->begin();
-    }
-
-    public static function commit()
-    {
-        static::$connection->commit();
-    }
-
-    public static function rollback()
-    {
-        static::$connection->rollback();
-    }
 }

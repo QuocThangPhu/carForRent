@@ -39,4 +39,18 @@ class LoginRequest
     {
         $this->password = $password;
     }
+
+    private function formatRequest($data)
+    {
+        $data = trim($data);
+        $data = stripslashes($data);
+        return htmlspecialchars($data);
+    }
+
+    public function fromArray (array $requestBody)
+    {
+        $this->setUsername($requestBody['username']);
+        $this->setPassword($requestBody['password']);
+        return $this;
+    }
 }

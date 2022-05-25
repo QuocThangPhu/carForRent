@@ -4,7 +4,7 @@ namespace Thangphu\CarForRent\Validation;
 
 use Thangphu\CarForRent\bootstrap\Validation;
 
-class LoginValidation extends Validation
+class InputLoginValidation extends Validation
 {
     public string $username;
     public string $password;
@@ -12,7 +12,7 @@ class LoginValidation extends Validation
     public function rules(): array
     {
         return [
-            'username' => [self::RULE_REQUIRED],
+            'username' => [self::RULE_NOT_FOUND],
             'password' => [self::RULE_REQUIRED],
         ];
     }
