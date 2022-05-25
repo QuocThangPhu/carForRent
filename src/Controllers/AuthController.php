@@ -2,31 +2,39 @@
 
 namespace Thangphu\CarForRent\Controllers;
 
-use Dotenv\Exception\ValidationException;
 use Thangphu\CarForRent\App\View;
 use Thangphu\CarForRent\bootstrap\Request;
 use Thangphu\CarForRent\bootstrap\Response;
-use Thangphu\CarForRent\Database\DatabaseConnect;
-use Thangphu\CarForRent\Model\UserModel;
 use Thangphu\CarForRent\Request\LoginRequest;
+use Thangphu\CarForRent\Response\UserResponse;
 use Thangphu\CarForRent\Service\LoginService;
-use Thangphu\CarForRent\Service\RegisterService;
-use Thangphu\CarForRent\Validation\InputLoginValidation;
-use Thangphu\CarForRent\Validation\LoginCheckValidation;
+use Thangphu\CarForRent\varlidator\LoginValidator;
 
 class AuthController
 {
-    protected Request $request;
-    private LoginService $loginService;
-    protected Response $response;
-    protected InputLoginValidation $loginValidation;
+    private $loginService;
+    private $loginValidator;
+    private $request;
+    private $response;
+    private $loginRequest;
+    private UserResponse $userResponse;
 
-    public function __construct(Request $request, LoginService $loginService, Response $response, InputLoginValidation $loginValidation)
+    public function __construct(
+        LoginService   $loginService,
+        LoginValidator $loginValidator,
+        Request        $request,
+        LoginRequest   $loginRequest,
+        Response       $response,
+        UserResponse   $userResponse
+
+    )
     {
-        $this->request = $request;
         $this->loginService = $loginService;
+        $this->loginValidator = $loginValidator;
+        $this->request = $request;
+        $this->loginRequest = $loginRequest;
         $this->response = $response;
-        $this->loginValidation = $loginValidation;
+        $this->userResponse = $userResponse;
     }
 
 
@@ -38,36 +46,28 @@ class AuthController
     public function loginCheck()
     {
         // handle request
-
-        // validation
-
-        // logic
-
-        // return view
-        $loginValidation = new InputLoginValidation();
-        if ($this->request->isPost()) {
-
-            $loginValidation->loadData($this->request->getBody());
-            $isValid = $loginValidation->validate();
-            if ($isValid) {
-                //            $user = new UserModel();
-//            $user->setUsername($loginValidation->username);
-//            $user->setPassword($loginValidation->password);
-                $user = $this->loginService->login($loginValidation);
-                if ($user) {
-                    $_SESSION["user_id"] = $user->getId();
-                    $_SESSION["username"] = $user->getUsername();
-                    View::redirect('/');
+        try {
+            $errorMessage = '';
+            if ($this->request->isPost()) {
+                $this->loginRequest->fromArray($this->request->getBody());
+                // validation
+                $this->loginValidator->validateUserLogin($this->loginRequest);
+                // logic
+                $isLoginSuccess = $this->loginService->login($this->loginRequest);
+                if ($isLoginSuccess) {
+                    return $this->response->renderView('home');
                 }
-
+                $errorMessage = 'Username or password is invalid!';
             }
-
+        } catch (\Exception $exception) {
+            $exception->getMessage();
+            $errorMessage = 'Something is error';
         }
-
+        //return view
         return $this->response->renderView('login', [
-            'username' => $loginValidation->username,
-            'password' => $loginValidation->password,
-            'errors' => $loginValidation->getErrors()
+            'username' => $this->loginRequest->getUsername(),
+            'password' => $this->loginRequest->getPassword(),
+            'errors' => $errorMessage
         ]);
 
     }

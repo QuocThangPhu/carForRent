@@ -4,6 +4,7 @@ namespace Thangphu\Test\bootstrap;
 
 use PHPUnit\Framework\TestCase;
 use Thangphu\CarForRent\bootstrap\Response;
+use Thangphu\CarForRent\Model\UserModel;
 
 class ResponseTest extends TestCase
 {
@@ -28,12 +29,40 @@ class ResponseTest extends TestCase
         ];
     }
 
-    public function testRenderView()
+    /**
+     * @dataProvider renderViewProvider
+     * @return void
+     */
+    public function testRenderView($param, $expected)
     {
         $result = new Response();
-        $result->renderView('index', null);
-        $this->assertEquals('index', $result->getTemplate());
-        $this->assertEquals(null, $result->getData());
+        $result->renderView($param['template'],$param['data']);
+        $this->assertEquals($expected[0], $result->getTemplate());
+        $this->assertEquals($expected[1], $result->getData());
+    }
+
+    public function testGetRedirectUrl()
+    {
+        $result = new Response();
+        $result->setRedirectUrl('home-test');
+        $this->assertEquals('home-test', $result->getRedirectUrl());
+    }
+
+    public function testGetUser()
+    {
+        $user = new UserModel();
+        $result = new Response();
+        $result->setUser($user);
+        $this->assertEquals($user, $result->getUser());
+    }
+
+    public function testRedirect()
+    {
+        $result = new Response();
+        $result->redirect('index');
+        $expected = new Response();
+        $expected->setRedirectUrl('index');
+        $this->assertEquals($result, $expected);
     }
 
     public function renderViewProvider()
@@ -42,7 +71,27 @@ class ResponseTest extends TestCase
             'view-render-1' => [
                 'param' => [
                     'template' => 'index',
-                    'data' => ['']
+                    'data' => null
+                ],
+                'expected' => [
+                    'index',
+                    null
+                ]
+            ],
+            'view-render-2' =>[
+                'param' => [
+                    'template' => 'home',
+                    'data' => [
+                        'username' => 'user1',
+                        'password' => '12345678'
+                        ]
+                ],
+                'expected' => [
+                    'home',
+                    [
+                        'username' => 'user1',
+                        'password' => '12345678'
+                    ]
                 ]
             ]
         ];

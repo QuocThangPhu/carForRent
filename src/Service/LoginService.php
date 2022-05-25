@@ -8,6 +8,7 @@ use Thangphu\CarForRent\bootstrap\Validation;
 use Thangphu\CarForRent\Database\DatabaseConnect;
 use Thangphu\CarForRent\Model\UserModel;
 use Thangphu\CarForRent\Repository\UserRepository;
+use Thangphu\CarForRent\Request\LoginRequest;
 
 class LoginService
 {
@@ -21,17 +22,17 @@ class LoginService
 
     /**
      * @param UserModel $userInput
-     * @return UserModel|null
+     * @return bool
      */
-    public function login(UserModel $userInput)
+    public function login(LoginRequest $userInput)
     {
-        $response = new Response();
-        $response->setUser($userInput);
         $existUser = $this->userRepository->findUserByName($userInput->getUsername());
         if($existUser && password_verify($userInput->getPassword(),$existUser->getPassword())) {
-            return $existUser;
+            $_SESSION['user_id'] = $existUser->getId();
+            $_SESSION['username'] = $existUser->getUsername();
+            return true;
         }
 
-        return null;
+        return false;
     }
 }
