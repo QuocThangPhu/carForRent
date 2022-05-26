@@ -8,11 +8,9 @@ use Thangphu\CarForRent\bootstrap\Response;
 
 class SiteController
 {
-    protected Request $request;
     protected Response $response;
-    public function __construct(Request $request, Response $response)
+    public function __construct(Response $response)
     {
-        $this->request = $request;
         $this->response = $response;
     }
 

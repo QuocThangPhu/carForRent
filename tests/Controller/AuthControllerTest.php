@@ -32,13 +32,41 @@ class AuthControllerTest extends TestCase
         $this->userResponse = $this->getMockBuilder(UserResponse::class)->getMock();
     }
 
-    public function testLogin()
+    public function testLoginView()
     {
         $response = new Response();
         $authController = new AuthController($this->loginService, $this->loginValidator, $this->request, $this->loginRequest, $response, $this->userResponse);
         $loginView = $authController->login()->getTemplate();
-        $expected = new Response();
-        $expected->setTemplate('login');
-        $this->assertEquals($expected->getTemplate(),$loginView);
+        $expectedView = new Response();
+        $expectedView->setTemplate('login');
+        $this->assertEquals($expectedView->getTemplate(),$loginView);
+    }
+
+    /**
+     *@runInSeparateProcess
+     */
+    public function testLogoutWithoutSuccess()
+    {
+        $request = new Request();
+        $_SERVER['REQUEST_METHOD'] = 'GET';
+        $authController = new AuthController($this->loginService, $this->loginValidator, $request, $this->loginRequest, $this->response, $this->userResponse);
+        $result = $authController->logout();
+        $this->assertFalse($result);
+    }
+
+    /**
+     * @runInSeparateProcess
+     */
+    public function testLogoutWithSuccess()
+    {
+        $request = new Request();
+        $_SERVER['REQUEST_METHOD'] = 'POST';
+        $_SESSION['user_id'] = 1;
+        $_SESSION['username'] = 'admin';
+        $authController = new AuthController($this->loginService, $this->loginValidator, $request, $this->loginRequest, $this->response, $this->userResponse);
+        $result = $authController->logout();
+        $this->assertTrue($result);
+        $this->assertFalse(isset($_SESSION['user_id']));
+        $this->assertFalse(isset($_SESSION['username']));
     }
 }

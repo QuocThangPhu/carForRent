@@ -73,8 +73,10 @@ class AuthController
     {
         if (!$this->request->isPost()) {
             View::redirect('/');
+            return false;
         }
         unset($_SESSION["user_id"], $_SESSION["username"]);
         View::redirect('/');
+        return true;
     }
 }

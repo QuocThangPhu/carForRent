@@ -17,7 +17,7 @@ class UserRepository
         $this->user = $user;
     }
 
-    public function findUserByName($username)
+    public function findUserByUserName($username)
     {
         $userWasFound = $this->connection->prepare("SELECT * FROM USER WHERE username = ? ");
         $userWasFound->execute([$username]);

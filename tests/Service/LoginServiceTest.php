@@ -23,7 +23,7 @@ class LoginServiceTest extends TestCase
         $userRequest = new LoginRequest();
         $userRequest->fromArray($expected);
         $userRepositoryMock = $this->getMockBuilder(UserRepository::class)->disableOriginalConstructor()->getMock();
-        $userRepositoryMock->expects($this->once())->method('findUserByName')->willReturn($user);
+        $userRepositoryMock->expects($this->once())->method('findUserByUserName')->willReturn($user);
         $loginService = new LoginService($userRepositoryMock);
         $result = $loginService->login($userRequest);
         $this->assertTrue($result);
@@ -41,7 +41,7 @@ class LoginServiceTest extends TestCase
         $userRequest = new LoginRequest();
         $userRequest->fromArray($expected);
         $userRepositoryMock = $this->getMockBuilder(UserRepository::class)->disableOriginalConstructor()->getMock();
-        $userRepositoryMock->expects($this->once())->method('findUserByName')->willReturn($user);
+        $userRepositoryMock->expects($this->once())->method('findUserByUserName')->willReturn($user);
         $loginService = new LoginService($userRepositoryMock);
         $result = $loginService->login($userRequest);
         $this->assertFalse($result);
