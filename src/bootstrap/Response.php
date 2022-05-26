@@ -71,9 +71,9 @@ class Response
     public function renderView($template, array $data = null)
     {
         $this->setTemplate($template);
-        if($data != null){
+        if ($data != null) {
             $this->setData([...$data]);
-        }else {
+        } else {
             $this->setData(null);
         }
         return $this;

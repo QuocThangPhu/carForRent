@@ -7,7 +7,8 @@ use Thangphu\CarForRent\Controllers\AuthController;
 use Thangphu\CarForRent\bootstrap\Application;
 use Thangphu\CarForRent\Controllers\SiteController;
 
-class routes{
+class routes
+{
     public static function run()
     {
         Router::get('/', [SiteController::class, 'home']);

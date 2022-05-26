@@ -2,7 +2,6 @@
 
 namespace Thangphu\CarForRent\Request;
 
-
 class LoginRequest extends \Thangphu\CarForRent\Model\UserModel
 {
     private string $username;
@@ -40,7 +39,7 @@ class LoginRequest extends \Thangphu\CarForRent\Model\UserModel
         $this->password = $password;
     }
 
-    public function fromArray (array $requestBody)
+    public function fromArray(array $requestBody)
     {
         $this->setUsername($requestBody['username']);
         $this->setPassword($requestBody['password']);

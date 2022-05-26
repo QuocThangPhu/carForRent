@@ -17,7 +17,6 @@ class LoginService
     public function __construct(UserRepository $userRepository)
     {
         $this->userRepository = $userRepository;
-
     }
 
     /**
@@ -27,7 +26,7 @@ class LoginService
     public function login(LoginRequest $userInput)
     {
         $existUser = $this->userRepository->findUserByName($userInput->getUsername());
-        if($existUser && password_verify($userInput->getPassword(),$existUser->getPassword())) {
+        if ($existUser && password_verify($userInput->getPassword(), $existUser->getPassword())) {
             $_SESSION['user_id'] = $existUser->getId();
             $_SESSION['username'] = $existUser->getUsername();
             return true;

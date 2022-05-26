@@ -20,15 +20,13 @@ class AuthController
     private UserResponse $userResponse;
 
     public function __construct(
-        LoginService   $loginService,
+        LoginService $loginService,
         LoginValidator $loginValidator,
-        Request        $request,
-        LoginRequest   $loginRequest,
-        Response       $response,
-        UserResponse   $userResponse
-
-    )
-    {
+        Request $request,
+        LoginRequest $loginRequest,
+        Response $response,
+        UserResponse $userResponse
+    ) {
         $this->loginService = $loginService;
         $this->loginValidator = $loginValidator;
         $this->request = $request;
@@ -69,7 +67,6 @@ class AuthController
             'password' => $this->loginRequest->getPassword(),
             'errors' => $errorMessage
         ]);
-
     }
 
     public function logout()

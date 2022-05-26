@@ -35,7 +35,7 @@
 
                 ?>
 
-            <?php } else{
+            <?php } else {
                 echo '
             <li class="nav-item">
                     <form action="/logout" method="post">
