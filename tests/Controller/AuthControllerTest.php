@@ -3,31 +3,42 @@
 namespace Thangphu\Test\Controller;
 
 use PHPUnit\Framework\TestCase;
-use Thangphu\CarForRent\App\View;
 use Thangphu\CarForRent\bootstrap\Request;
+use Thangphu\CarForRent\bootstrap\Response;
 use Thangphu\CarForRent\Controllers\AuthController;
-use Thangphu\CarForRent\Model\UserModel;
-use Thangphu\CarForRent\Repository\UserRepository;
+use Thangphu\CarForRent\Request\LoginRequest;
+use Thangphu\CarForRent\Response\UserResponse;
 use Thangphu\CarForRent\Service\LoginService;
-use Thangphu\CarForRent\Validation\InputLoginValidation;
+use Thangphu\CarForRent\varlidator\LoginValidator;
 
 class AuthControllerTest extends TestCase
 {
 
-    public function testLogin()
-    {
-        $requestMock = $this->getMockBuilder(Request::class)
-            ->disableOriginalConstructor()->getMock();
-        $loginService = $this->getMockBuilder(LoginService::class)
-                ->disableOriginalConstructor()->getMock();
-        $userMock = $this->getMockBuilder(UserModel::class)
-            ->disableOriginalConstructor()->getMock();
-        $loginValidation = $this->getMockBuilder(InputLoginValidation::class)
-            ->disableOriginalConstructor()->getMock();
+    private $loginService;
+    private $loginValidator;
+    private $request;
+    private $response;
+    private $loginRequest;
+    private UserResponse $userResponse;
 
-        $loginViewTest = new AuthController($requestMock,$loginService,$userMock,$loginValidation);
-        $returnViewLogin = $loginViewTest->login();
-        $this->assertFileEquals('/src/views/login.php',$returnViewLogin);
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->loginService = $this->getMockBuilder(LoginService::class)->disableOriginalConstructor()->getMock();
+        $this->loginValidator = $this->getMockBuilder(LoginValidator::class)->getMock();
+        $this->request = $this->getMockBuilder(Request::class)->getMock();
+        $this->response = $this->getMockBuilder(Response::class)->getMock();
+        $this->loginRequest = $this->getMockBuilder(LoginRequest::class)->getMock();
+        $this->userResponse = $this->getMockBuilder(UserResponse::class)->getMock();
     }
 
+    public function testLogin()
+    {
+        $response = new Response();
+        $authController = new AuthController($this->loginService, $this->loginValidator, $this->request, $this->loginRequest, $response, $this->userResponse);
+        $loginView = $authController->login()->getTemplate();
+        $expected = new Response();
+        $expected->setTemplate('login');
+        $this->assertEquals($expected->getTemplate(),$loginView);
+    }
 }

@@ -7,7 +7,7 @@ use Thangphu\CarForRent\Controllers\AuthController;
 use Thangphu\CarForRent\bootstrap\Application;
 use Thangphu\CarForRent\Controllers\SiteController;
 
-class routes
+class routeManage
 {
     public static function run()
     {
@@ -15,8 +15,6 @@ class routes
 
         Router::get('/login', [AuthController::class, 'login']);
         Router::post('/loginCheck', [AuthController::class, 'loginCheck']);
-        Router::get('/register', [AuthController::class, 'registerForm']);
-        Router::post('/register', [AuthController::class, 'register']);
         Router::post('/logout', [AuthController::class, 'logout']);
 
         Router::get('/404', '_404');

@@ -2,7 +2,7 @@
 
 use Thangphu\CarForRent\bootstrap\Request;
 use Thangphu\CarForRent\bootstrap\Response;
-use Thangphu\CarForRent\Route\routes;
+use Thangphu\CarForRent\Route\RouteManage;
 
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
@@ -14,7 +14,7 @@ use Thangphu\CarForRent\Service\ServiceProvider;
 
 session_start();
 
-routes::run();
+RouteManage::run();
 $app = new Application();
 $request = new Request();
 $responseView = new Response();

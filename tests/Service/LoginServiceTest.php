@@ -6,108 +6,162 @@ use Dotenv\Exception\ValidationException;
 use PHPUnit\Framework\TestCase;
 use Thangphu\CarForRent\Model\UserModel;
 use Thangphu\CarForRent\Repository\UserRepository;
+use Thangphu\CarForRent\Request\LoginRequest;
 use Thangphu\CarForRent\Service\LoginService;
 
 class LoginServiceTest extends TestCase
 {
     /**
-     * @dataProvider loginSuccessProvider
-     * @param array $params
-     * @param array $expected
-     * @return void
+     * @dataProvider loginRequestTrueProvider
      */
-    public function testLoginSuccess(array $params, array $expected){
-        $userModel = $this->getUser($params['id'], $params['username'], $params['password']);
-        $userFromRepository = $expected['user'];
-
-        $userRepositoryMock = $this->getMockBuilder(UserRepository::class)
-            ->disableOriginalConstructor()->getMock();
-        $userRepositoryMock->expects($this->once())->method('findUserByName')
-            ->willReturn($userFromRepository);
-
+    public function testLoginTrueService($param, $expected)
+    {
+        $user = new UserModel();
+        $user->setId($param['id']);
+        $user->setUsername($param['username']);
+        $user->setPassword($param['password']);
+        $userRequest = new LoginRequest();
+        $userRequest->fromArray($expected);
+        $userRepositoryMock = $this->getMockBuilder(UserRepository::class)->disableOriginalConstructor()->getMock();
+        $userRepositoryMock->expects($this->once())->method('findUserByName')->willReturn($user);
         $loginService = new LoginService($userRepositoryMock);
-        $loginService->login($userModel);
-        $this->assertEquals($userFromRepository->getId(), $userModel->getId());
+        $result = $loginService->login($userRequest);
+        $this->assertTrue($result);
     }
 
     /**
-     * @dataProvider loginSuccessProvider
-     * @param array $params
-     * @return void
+     * @dataProvider loginRequestFalseProvider
      */
-    public function testLoginWithoutExitUser(array $params)
+    public function testLoginFalseService($param, $expected)
     {
-        $userModel = $this->getUser($params['id'], $params['username'], $params['password']);
-        $userRepositoryMock = $this->getMockBuilder(UserRepository::class)
-            ->disableOriginalConstructor()->getMock();
-        $userRepositoryMock->expects($this->once())->method('findUserByName')
-            ->willReturn(null);
+        $user = new UserModel();
+        $user->setId($param['id']);
+        $user->setUsername($param['username']);
+        $user->setPassword($param['password']);
+        $userRequest = new LoginRequest();
+        $userRequest->fromArray($expected);
+        $userRepositoryMock = $this->getMockBuilder(UserRepository::class)->disableOriginalConstructor()->getMock();
+        $userRepositoryMock->expects($this->once())->method('findUserByName')->willReturn($user);
         $loginService = new LoginService($userRepositoryMock);
-        $this->expectException(ValidationException::class);
-        $loginService->login($userModel);
+        $result = $loginService->login($userRequest);
+        $this->assertFalse($result);
     }
 
-    /**
-     * @dataProvider loginWithWrongPaswordProvider
-     * @param array $params
-     * @param array $expected
-     * @return void
-     */
-    public function testLoginWithWrongPassword(array $params, array $expected)
-    {
-        $userModel = $this->getUser($params['id'], $params['username'], $params['password']);
-        $userFromRepository = $expected['user'];
-        $userRepositoryMock = $this->getMockBuilder(UserRepository::class)
-            ->disableOriginalConstructor()->getMock();
-        $userRepositoryMock->expects($this->once())->method('findUserByName')
-            ->willReturn($userFromRepository);
-        $loginService = new LoginService($userRepositoryMock);
-        $this->expectException(ValidationException::class);
-        $loginService->login($userModel);
-    }
-
-    public function loginSuccessProvider()
+    public function loginRequestTrueProvider()
     {
         return [
-          'happy-case-1'=>[
-              'params' => [
-                  'id' => 1,
-                  'username' => 'admin',
-                  'password' => '12345678',
-                  'userReturn' => $this->getUser(1,'admin',$this->hashPassword('12345678')),
-              ],
-              'expected' => [
-                  'user' => $this->getUser(1,'admin',$this->hashPassword('12345678'))
-              ]
-          ]
-        ];
-    }
-    public function loginWithWrongPaswordProvider()
-    {
-        return [
-            'happy-case-1'=>[
-                'params' => [
+            'login-request-1' => [
+                'param' => [
                     'id' => 1,
                     'username' => 'admin',
-                    'password' => '1234567',
-                    'userReturn' => $this->getUser(1,'admin',$this->hashPassword('12345678')),
+                    'password' => '$2a$12$O3Nt96tgUN5iAeF/jVPjEup4tFE468m3jzwFXjZ0Lj5a2d.CeA2WC'
                 ],
                 'expected' => [
-                    'user' => $this->getUser(1,'admin',$this->hashPassword('12345678'))
+                    'username' => 'admin',
+                    'password' => '12345678'
+                ]
+            ],
+            'login-request-2' => [
+                'param' => [
+                    'id' => 2,
+                    'username' => 'staff',
+                    'password' => '$2a$12$fQPccecny2EtUiwFfGxjieFyjC9bAcYpYJAlXk/TFiOozvII6hoGO'
+                ],
+                'expected' => [
+                    'username' => 'staff',
+                    'password' => '123456789'
                 ]
             ]
         ];
     }
-    private function hashPassword(string $password)
+
+    public function loginRequestFalseProvider()
     {
-        return password_hash($password, PASSWORD_BCRYPT);
+        return [
+            'login-request-1' => [
+                'param' => [
+                    'id' => 1,
+                    'username' => 'admin',
+                    'password' => '$2a$12$O3Nt962gUN5iAeF/jVPjEup4tFE468m3jzwFXjZ0Lj5a2d.CeA2WC'
+                ],
+                'expected' => [
+                    'username' => 'admin',
+                    'password' => '12345678'
+                ]
+            ],
+            'login-request-2' => [
+                'param' => [
+                    'id' => 2,
+                    'username' => 'staff',
+                    'password' => '$2a$12$fQ1ccecny2EtUiwFfGxjieFyjC9bAcYpYJAlXk/TFiOozvII6hoGO'
+                ],
+                'expected' => [
+                    'username' => 'staff',
+                    'password' => '123456789'
+                ]
+            ]
+        ];
     }
-    private function getUser(int $id, string $username, string $password)
+
+    /**
+     * @dataProvider checkPasswordTrueProvider
+     * @param $param
+     * @return void
+     */
+    public function testCheckTruePassword($param)
     {
-        $user = new UserModel();
-        $user->setId($id);
-        $user->setUsername($username);
-        $user->setPassword($password);
-        return $user;
+        $userRepositoryMock =$this->getMockBuilder(UserRepository::class)->disableOriginalConstructor()->getMock();
+        $checkPass = new LoginService($userRepositoryMock);
+        $result = $checkPass->checkPassword($param['plainPassword'], $param['password']);
+        $this->assertTrue($result);
+    }
+
+    /**
+     * @dataProvider checkPasswordFalseProvider
+     * @param $param
+     * @return void
+     */
+    public function testCheckFalsePassword($param)
+    {
+        $userRepositoryMock =$this->getMockBuilder(UserRepository::class)->disableOriginalConstructor()->getMock();
+        $checkPass = new LoginService($userRepositoryMock);
+        $result = $checkPass->checkPassword($param['plainPassword'], $param['password']);
+        $this->assertFalse($result);
+    }
+
+    public function checkPasswordFalseProvider()
+    {
+        return [
+            'check-password-1'  => [
+                'param' => [
+                    'plainPassword' => '12345678',
+                    'password' => '$2a$12$O3N196tgUN5iAeF/jVPjEup4tFE468m3jzwFXjZ0Lj5a2d.CeA2WC'
+                ],
+            ],
+            'check-password-2' => [
+                'param' => [
+                    'plainPassword' => '123456789',
+                    'password' => '$2a$12$fQP1cecny2EtUiwFfGxjieFyjC9bAcYpYJAlXk/TFiOozvII6hoGO'
+                ],
+            ]
+        ];
+    }
+
+    public function checkPasswordTrueProvider()
+    {
+        return [
+          'check-password-1'  => [
+              'param' => [
+                  'plainPassword' => '12345678',
+                  'password' => '$2a$12$O3Nt96tgUN5iAeF/jVPjEup4tFE468m3jzwFXjZ0Lj5a2d.CeA2WC'
+              ],
+          ],
+          'check-password-2' => [
+              'param' => [
+                  'plainPassword' => '123456789',
+                  'password' => '$2a$12$fQPccecny2EtUiwFfGxjieFyjC9bAcYpYJAlXk/TFiOozvII6hoGO'
+              ],
+          ]
+        ];
     }
 }

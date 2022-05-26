@@ -21,12 +21,6 @@ class RequestTest extends TestCase
         $this->assertEquals($expected, $request->getPath());
     }
 
-    public function testGetPathWithPositionIsNull()
-    {
-        $request = new Request();
-
-    }
-
     /**
      * @dataProvider getMethodProvider
      * @param $param

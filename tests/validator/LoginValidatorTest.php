@@ -24,15 +24,14 @@ class LoginValidatorTest extends TestCase
 
     /**
      * @dataProvider loginValidatorFalseProvider
-     * @return void
      */
     public function testLoginValidatorWithReturnFalse($param)
     {
         $loginRequest = new LoginRequest();
-        $loginRequest->fromArray($param);
+        $loginRe = $loginRequest->fromArray($param);
         $loginValid = new LoginValidator();
         $this->expectException(ValidateException::class);
-        $loginValid->validateUserLogin($loginRequest);
+        $loginValid->validateUserLogin($loginRe);
     }
 
     public function loginValidatorProvider()
@@ -54,7 +53,14 @@ class LoginValidatorTest extends TestCase
                 'param' =>[
                     'id' => 1,
                     'username' => 'admin',
-                    'password' => ' '
+                    'password' => ''
+                ],
+            ],
+            'user-response-2' => [
+                'param' =>[
+                    'id' => 1,
+                    'username' => '',
+                    'password' => '2234234'
                 ],
             ]
         ];

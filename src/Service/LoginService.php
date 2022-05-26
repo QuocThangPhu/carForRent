@@ -26,7 +26,7 @@ class LoginService
     public function login(LoginRequest $userInput)
     {
         $existUser = $this->userRepository->findUserByName($userInput->getUsername());
-        if ($existUser && password_verify($userInput->getPassword(), $existUser->getPassword())) {
+        if ($existUser && $this->checkPassword($userInput->getPassword(), $existUser->getPassword())) {
             $_SESSION['user_id'] = $existUser->getId();
             $_SESSION['username'] = $existUser->getUsername();
             return true;
@@ -34,4 +34,10 @@ class LoginService
 
         return false;
     }
+
+    public function checkPassword($plainPassword, $password)
+    {
+        return password_verify($plainPassword, $password);
+    }
+
 }

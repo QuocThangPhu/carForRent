@@ -17,7 +17,7 @@ class DatabaseConnect
         self::$dotenv = $dotenv->load();
         if (!self::$connection) {
             $servername = $_ENV['HOST'];
-            $username = $_ENV['USERNAME'];
+            $username = $_ENV['NAME'];
             $password = $_ENV['PASSWORD'];
             $dbname = $_ENV['DB_NAME'];
             try {
