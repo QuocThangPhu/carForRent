@@ -2,6 +2,8 @@
 
 namespace Thangphu\CarForRent\Response;
 
+use Firebase\JWT\JWT;
+
 class UserResponse
 {
     /**

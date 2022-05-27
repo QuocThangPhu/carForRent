@@ -23,6 +23,8 @@
     },
   "require": {
     "ext-pdo": "*",
-        "vlucas/phpdotenv": "^5.4"
+        "vlucas/phpdotenv": "^5.4",
+        "firebase/php-jwt": "^6.2",
+        "paragonie/sodium_compat": "^1.17"
   }
 }

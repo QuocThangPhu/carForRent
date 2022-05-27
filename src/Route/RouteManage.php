@@ -4,7 +4,7 @@ namespace Thangphu\CarForRent\Route;
 
 use Thangphu\CarForRent\bootstrap\Router;
 use Thangphu\CarForRent\Controllers\AuthController;
-use Thangphu\CarForRent\bootstrap\Application;
+use Thangphu\CarForRent\Controllers\API\AuthApiController;
 use Thangphu\CarForRent\Controllers\SiteController;
 
 class routeManage
@@ -15,6 +15,7 @@ class routeManage
 
         Router::get('/login', [AuthController::class, 'login']);
         Router::post('/loginCheck', [AuthController::class, 'loginCheck']);
+        Router::post('/api/loginCheck', [AuthApiController::class, 'loginCheck']);
         Router::post('/logout', [AuthController::class, 'logout']);
 
         Router::get('/404', '_404');

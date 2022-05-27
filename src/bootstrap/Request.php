@@ -34,6 +34,19 @@ class Request
         return $this->method() === 'POST';
     }
 
+    public function getRequestBody(): bool|string
+    {
+        return file_get_contents('php://input');
+    }
+
+    public function getRequestJsonBody()
+    {
+        $data = file_get_contents('php://input');
+
+        return json_decode($data, true);
+    }
+
+
     /**
      * @return array
      */

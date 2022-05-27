@@ -3,20 +3,12 @@
 namespace Thangphu\CarForRent\bootstrap;
 
 use Thangphu\CarForRent\App\View;
-use Thangphu\CarForRent\bootstrap\Request;
-use Thangphu\CarForRent\bootstrap\Response;
-use Thangphu\CarForRent\Service;
-use Closure;
-use Exception;
-use ReflectionClass;
-use ReflectionException;
 
 class Application
 {
 
     public function run($request, $responseView, $provider)
     {
-
         $container = $provider->getContainer();
 
         $path = $request->getPath();
@@ -30,9 +22,6 @@ class Application
         $callback = $response;
         if (is_string($callback)) {
             $responseView->renderView($callback);
-        }
-        if (gettype($callback) == 'object') {
-            $callback();
         }
 
         $currenController = $callback[0];

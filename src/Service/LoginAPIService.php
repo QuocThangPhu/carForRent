@@ -6,7 +6,7 @@ use Thangphu\CarForRent\Model\UserModel;
 use Thangphu\CarForRent\Repository\UserRepository;
 use Thangphu\CarForRent\Request\LoginRequest;
 
-class LoginService
+class LoginAPIService
 {
     protected UserRepository $userRepository;
 
@@ -16,8 +16,7 @@ class LoginService
     }
 
     /**
-     * @param UserModel $userInput
-     * @return bool
+     * @param LoginRequest $userInput
      */
     public function login(LoginRequest $userInput)
     {
@@ -25,10 +24,10 @@ class LoginService
         if ($existUser && $this->checkPassword($userInput->getPassword(), $existUser->getPassword())) {
             $_SESSION['user_id'] = $existUser->getId();
             $_SESSION['username'] = $existUser->getUsername();
-            return true;
+            return $existUser;
         }
 
-        return false;
+        return null;
     }
 
     public function checkPassword($plainPassword, $password)

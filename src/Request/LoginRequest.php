@@ -2,7 +2,9 @@
 
 namespace Thangphu\CarForRent\Request;
 
-class LoginRequest extends \Thangphu\CarForRent\Model\UserModel
+use Thangphu\CarForRent\Model\UserModel;
+
+class LoginRequest extends UserModel
 {
     private string $username;
     private string $password;
