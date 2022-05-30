@@ -19,10 +19,10 @@ class UserRepository
 
     public function findUserByUserName($username)
     {
-        $userWasFound = $this->connection->prepare("SELECT * FROM USER WHERE username = ? ");
+        $userWasFound = $this->connection->prepare("SELECT * FROM user WHERE username = ? ");
         $userWasFound->execute([$username]);
         if ($row = $userWasFound->fetch()) {
-            $this->user->setId($row['idUSER']);
+            $this->user->setId($row['id']);
             $this->user->setUsername($row['username']);
             $this->user->setPassword($row['password']);
             return $this->user;

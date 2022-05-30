@@ -2,7 +2,6 @@
 
 namespace Thangphu\CarForRent\varlidator;
 
-use Dotenv\Exception\ValidationException;
 use Thangphu\CarForRent\Exception\ValidateException;
 use Thangphu\CarForRent\Request\LoginRequest;
 
