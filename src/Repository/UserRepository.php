@@ -5,6 +5,7 @@ namespace Thangphu\CarForRent\Repository;
 use PDO;
 use Thangphu\CarForRent\Database\DatabaseConnect;
 use Thangphu\CarForRent\Model\UserModel;
+use Thangphu\CarForRent\Request\RegisterRequest;
 
 class UserRepository
 {
@@ -29,5 +30,39 @@ class UserRepository
         } else {
             return null;
         }
+    }
+    public function findUserById($id)
+    {
+        $userWasFound = $this->connection->prepare("SELECT * FROM user WHERE id = ? ");
+        $userWasFound->execute([$id]);
+        if ($row = $userWasFound->fetch()) {
+            $this->user->setId($row['id']);
+            $this->user->setUsername($row['username']);
+            $this->user->setPassword($row['password']);
+            $this->user->setRole($row['role']);
+            return $this->user;
+        } else {
+            return null;
+        }
+    }
+
+    public function findUserName($username)
+    {
+        $userWasFound = $this->connection->prepare("SELECT * FROM user WHERE username = ? ");
+        $userWasFound->execute([$username]);
+        if ($userWasFound->fetch()) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    public function createUser(RegisterRequest $registerRequest)
+    {
+        $password = password_hash($registerRequest->getPassword(), PASSWORD_BCRYPT);
+        $newUser = $this->connection->prepare("INSERT INTO user (username, password, role) VALUES (?, ?, ?)");
+        $newUser->execute([$registerRequest->getUsername(),$password, 'custormer']);
+        $this->findUserById($this->connection->lastInsertId());
+        return $this->user;
     }
 }

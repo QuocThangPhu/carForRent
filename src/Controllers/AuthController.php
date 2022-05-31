@@ -6,9 +6,12 @@ use Thangphu\CarForRent\App\View;
 use Thangphu\CarForRent\bootstrap\Request;
 use Thangphu\CarForRent\bootstrap\Response;
 use Thangphu\CarForRent\Request\LoginRequest;
+use Thangphu\CarForRent\Request\RegisterRequest;
 use Thangphu\CarForRent\Response\UserResponse;
 use Thangphu\CarForRent\Service\LoginService;
+use Thangphu\CarForRent\Service\RegisterService;
 use Thangphu\CarForRent\varlidator\LoginValidator;
+use Thangphu\CarForRent\varlidator\RegisterValidator;
 
 class AuthController
 {
@@ -18,6 +21,9 @@ class AuthController
     private $response;
     private $loginRequest;
     private UserResponse $userResponse;
+    private $registerRequest;
+    private $registerValidator;
+    private $registerService;
 
     public function __construct(
         LoginService $loginService,
@@ -25,7 +31,10 @@ class AuthController
         Request $request,
         LoginRequest $loginRequest,
         Response $response,
-        UserResponse $userResponse
+        UserResponse $userResponse,
+        RegisterRequest $registerRequest,
+        RegisterValidator $registerValidator,
+        RegisterService $registerService
     ) {
         $this->loginService = $loginService;
         $this->loginValidator = $loginValidator;
@@ -33,6 +42,9 @@ class AuthController
         $this->loginRequest = $loginRequest;
         $this->response = $response;
         $this->userResponse = $userResponse;
+        $this->registerRequest = $registerRequest;
+        $this->registerValidator = $registerValidator;
+        $this->registerService = $registerService;
     }
 
 
@@ -78,5 +90,33 @@ class AuthController
         unset($_SESSION["user_id"], $_SESSION["username"]);
         View::redirect('/');
         return true;
+    }
+
+    public function createUser()
+    {
+        return $this->response->renderView('register');
+    }
+
+    public function userCheck()
+    {
+        $errorMessage = '';
+        try {
+            if ($this->request->isPost()) {
+                $this->registerRequest->fromArray($this->request->getBody());
+                $this->registerValidator->validateUser($this->registerRequest);
+                $isSuccess = $this->registerService->register($this->registerRequest);
+                if($isSuccess){
+                    return $this->response->redirect('/');
+                }
+                $errorMessage = 'Somethings is wrong';
+            }
+        } catch (\Exception $exception) {
+            $exception->getMessage();
+            $errorMessage = 'Something is error';
+        }
+        //return view
+        return $this->response->renderView('register', [
+            'errors' => $errorMessage
+        ]);
     }
 }

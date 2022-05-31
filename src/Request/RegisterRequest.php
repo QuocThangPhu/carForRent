@@ -1,29 +1,12 @@
 <?php
 
-namespace Thangphu\CarForRent\Model;
+namespace Thangphu\CarForRent\Request;
 
-class UserModel
+class RegisterRequest
 {
-    private int $id;
     private string $username;
     private string $password;
-    private string $role;
-
-    /**
-     * @return int
-     */
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
-    /**
-     * @param int $id
-     */
-    public function setId(int $id): void
-    {
-        $this->id = $id;
-    }
+    private string $passwordConfirm;
 
     /**
      * @return string
@@ -60,16 +43,24 @@ class UserModel
     /**
      * @return string
      */
-    public function getRole(): string
+    public function getPasswordConfirm(): string
     {
-        return $this->role;
+        return $this->passwordConfirm;
     }
 
     /**
-     * @param string $role
+     * @param string $passwordConfirm
      */
-    public function setRole(string $role): void
+    public function setPasswordConfirm(string $passwordConfirm): void
     {
-        $this->role = $role;
+        $this->passwordConfirm = $passwordConfirm;
+    }
+
+    public function fromArray(array $requestBody)
+    {
+        $this->setUsername($requestBody['username']);
+        $this->setPassword($requestBody['password']);
+        $this->setPasswordConfirm($requestBody['passwordConfirm']);
+        return $this;
     }
 }
