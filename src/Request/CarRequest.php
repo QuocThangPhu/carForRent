@@ -36,9 +36,9 @@ class CarRequest extends CarModel
     }
 
     /**
-     * @param int $price
+     * @param ?int $price
      */
-    public function setPrice(int $price): void
+    public function setPrice(int $price = 0): void
     {
         $this->price = $price;
     }
@@ -78,7 +78,7 @@ class CarRequest extends CarModel
     public function fromArray($requestBody)
     {
         $this->setName($requestBody['name']);
-        $this->setPrice($requestBody['price']);
+        $this->setPrice((int)$requestBody['price']);
         $this->setPicture($requestBody['picture']);
         $this->setBrand($requestBody['brand']);
         return $this;

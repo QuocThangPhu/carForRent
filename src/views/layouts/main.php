@@ -38,6 +38,9 @@
             <?php } else {
                 echo '
             <li class="nav-item">
+                <a class="nav-link" href="/createCar">Create Car</a>
+            </li>
+            <li class="nav-item">
                     <form action="/logout" method="post">
                         <button type="submit">logout</button>
                     </form>

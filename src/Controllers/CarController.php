@@ -7,7 +7,7 @@ use Thangphu\CarForRent\bootstrap\Response;
 use Thangphu\CarForRent\Repository\CarRepository;
 use Thangphu\CarForRent\Request\CarRequest;
 use Thangphu\CarForRent\Response\CarResponse;
-use Thangphu\CarForRent\Service\CarService;
+use Thangphu\CarForRent\Service\UploadImageService;
 use Thangphu\CarForRent\varlidator\CreateCarValidator;
 
 class CarController
@@ -18,6 +18,7 @@ class CarController
     protected CarRequest $carRequest;
     protected CreateCarValidator $carValidator;
     protected CarRepository $carRepository;
+    protected UploadImageService $uploadImageService;
 
     public function __construct(
         CarResponse   $carResponse,
@@ -25,7 +26,8 @@ class CarController
         Request       $request,
         CarRequest $carRequest,
         CreateCarValidator $carValidator,
-        CarRepository $carRepository
+        CarRepository $carRepository,
+        UploadImageService $uploadImageService
     )
     {
         $this->carResponse = $carResponse;
@@ -34,6 +36,7 @@ class CarController
         $this->carRequest = $carRequest;
         $this->carValidator = $carValidator;
         $this->carRepository = $carRepository;
+        $this->uploadImageService = $uploadImageService;
     }
 
     public function createCarView()
@@ -46,11 +49,14 @@ class CarController
         $errorMessage = '';
         try {
             if ($this->request->isPost()) {
-                $this->carRequest->fromArray($this->request->getBody());
+                $requestData = $this->request->getBody();
+                $isUploadImage = $this->uploadImageService->upload($_FILES['picture']);
+                $requestData['picture'] = $isUploadImage;
+                $this->carRequest->fromArray($requestData);
                 $this->carValidator->createCarValidator($this->carRequest);
                 $isSuccess = $this->carRepository->createCar($this->carRequest);
                 if($isSuccess){
-                    return $this->response->renderView('home');
+                    return $this->response->redirect('/');
                 }
                 $errorMessage = 'Somethings is wrong';
             }

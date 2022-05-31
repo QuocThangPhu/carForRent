@@ -41,10 +41,8 @@ class CarRepository
 
     public function createCar(CarRequest $carRequest)
     {
-        $newCar = $this->connection->prepare("INSERT INTO car (name, price, picture, brand) VALUES ('?', ?, '?', '?')");
-        $newCar->execute([$carRequest->getName(), $carRequest->getPrice(), $carRequest->getPicture(), $carRequest->getBrand()]);
-        var_dump($newCar);
-        die;
+        $newCar = $this->connection->prepare("INSERT INTO car (name, price, picture, brand) VALUES (?, ?, ?, ?)");
+            $newCar->execute([$carRequest->getName(), $carRequest->getPrice(), $carRequest->getPicture(), $carRequest->getBrand()]);
         return true;
     }
 }

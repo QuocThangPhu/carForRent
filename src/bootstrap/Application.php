@@ -16,7 +16,7 @@ class Application
         $response = Router::$routes[$method][$path] ?? false;
         if (!$response) {
             $responseView->renderView('404');
-            View::display($$responseView);
+            View::display($responseView);
             return;
         }
         $callback = $response;

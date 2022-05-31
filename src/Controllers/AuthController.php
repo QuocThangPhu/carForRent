@@ -53,7 +53,7 @@ class AuthController
                 // logic
                 $isLoginSuccess = $this->loginService->login($this->loginRequest);
                 if ($isLoginSuccess) {
-                    return $this->response->renderView('home');
+                    return $this->response->redirect('/');
                 }
                 $errorMessage = 'Username or password is invalid!';
             }
