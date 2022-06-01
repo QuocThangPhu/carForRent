@@ -53,7 +53,12 @@ class CarController
                 $isUploadImage = $this->uploadImageService->upload($_FILES['picture']);
                 $requestData['picture'] = $isUploadImage;
                 $this->carRequest->fromArray($requestData);
-                $this->carValidator->createCarValidator($this->carRequest);
+                $isCarValid = $this->carValidator->createCarValidator($this->carRequest);
+                if(is_array($isCarValid)){
+                    return $this->response->renderView('createCar', [
+                        'errors' => $isCarValid
+                    ]);
+                }
                 $isSuccess = $this->carRepository->createCar($this->carRequest);
                 if($isSuccess){
                     return $this->response->redirect('/');

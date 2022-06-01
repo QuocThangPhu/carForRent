@@ -9,12 +9,15 @@ class CreateCarValidator
 {
     public function createCarValidator(CarRequest $car)
     {
-        if (empty($car->getName()) || empty($car->getPrice()) || empty($car->getBrand()) || empty($car->getPicture())) {
-            throw new ValidateException("The field can't be empty");
+        $validator = new Validator();
+        $validator->name('name')->value($car->getName())->min(3)->max(255)->required();
+        $validator->name('brand')->value($car->getBrand())->min(3)->max(255)->required();
+        $validator->name('price')->value($car->getPrice())->is_int()->max(999999999)->required();
+
+        if($validator->isSuccess()){
+            return true;
+        }else{
+            return $validator->getErrors();
         }
-        if(strlen($car->getName()) > 30 || strlen($car->getBrand()) > 30){
-        throw new ValidateException("The filed name or brand is not more than 30 characters");
-    }
-        return true;
     }
 }

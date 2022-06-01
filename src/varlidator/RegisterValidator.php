@@ -9,12 +9,14 @@ class RegisterValidator
 {
     public function validateUser(RegisterRequest $user)
     {
-        if (empty($user->getUsername()) || empty($user->getPassword()) || empty($user->getPasswordConfirm())) {
-            throw new ValidateException("The filed can't be empty");
+        $validator = new Validator();
+        $validator->name('username')->value($user->getUsername())->pattern('alphanum')->min(3)->max(50)->required();
+        $validator->name('password')->value($user->getPassword())->min(3)->max(255)->required();
+        $validator->name('confirmPassword')->value($user->getPasswordConfirm())->equal($user->getPassword())->min(3)->max(255)->required();
+        if($validator->isSuccess()){
+            return true;
+        }else{
+            return $validator->getErrors();
         }
-        if(strlen($user->getUsername()) > 30 ){
-            throw new ValidateException("Username is not more than 30 characters");
-        }
-        return true;
     }
 }

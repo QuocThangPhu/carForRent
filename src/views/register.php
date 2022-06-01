@@ -6,10 +6,10 @@
                  height="72">
             <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
             <?php
-            if ($data != null && array_key_exists('errors', $data)) {
-                echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    ' . $data["errors"] . '
-                  </div>';
+            if (isset($data['errors'])&& !is_array($data['errors'])) {
+                echo '<p class="alert alert-danger alert-dismissible fade show" style="color: red; font-style: italic">';
+                echo $data['errors'];
+                echo '</p>';
             }
             ?>
             <div class="container-fluid content" style="width: 70%; height: 80%; border-top: 20px">
@@ -17,14 +17,36 @@
                 <input type="text" id="username" name="username"
                        class="form-control "
                        placeholder="Username" value="<?= $data['username'] ?? '' ?>">
+                <?php
+                if (isset($data['errors']['username'])) {
+                    echo '<p class="errorMessage" style="color: red; font-style: italic">';
+                    echo $data['errors']['username'];
+                    echo '</p>';
+                }
+                ?>
                 <label for="password" class="sr-only">Password</label>
                 <input type="password" id="password" name="password"
                        class="form-control "
                        placeholder="Password">
+                <?php
+                if (isset($data['errors']['password'])) {
+                    echo '<p class="errorMessage" style="color: red; font-style: italic">';
+                    echo $data['errors']['password'];
+                    echo '</p>';
+                }
+                ?>
                 <label for="passwordConfirm" class="sr-only">Password Confirm</label>
+
                 <input type="password" id="passwordConfirm" name="passwordConfirm"
                        class="form-control "
                        placeholder="PasswordConfirm">
+                <?php
+                if (isset($data['errors']['confirmPassword'])) {
+                    echo '<p class="errorMessage" style="color: red; font-style: italic">';
+                    echo $data['errors']['confirmPassword'];
+                    echo '</p>';
+                }
+                ?>
                 <div class="checkbox mb-3">
                     <label>
                         <input type="checkbox" value="remember-me"> Remember me
