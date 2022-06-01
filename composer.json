@@ -25,6 +25,7 @@
     "ext-pdo": "*",
         "vlucas/phpdotenv": "^5.4",
         "firebase/php-jwt": "^6.2",
-        "paragonie/sodium_compat": "^1.17"
+        "paragonie/sodium_compat": "^1.17",
+        "aws/aws-sdk-php": "^3.224"
   }
 }

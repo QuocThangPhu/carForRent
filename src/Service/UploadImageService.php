@@ -2,12 +2,27 @@
 
 namespace Thangphu\CarForRent\Service;
 
+use Aws\S3\Exception\S3Exception;
+use Dotenv\Dotenv;
 use Thangphu\CarForRent\Exception\UploadImageException;
+use Aws\S3\S3Client;
 
 class UploadImageService
 {
-    public function upload($file): string
+
+    protected static $dotenv;
+
+    public function upload($file): ?string
     {
+        $dotenv = Dotenv::createImmutable(__DIR__ . "/../../");
+        self::$dotenv = $dotenv->load();
+        $bucketName = $_ENV['S3_BUCKET_NAME'];
+        $bucketRegion = $_ENV['S3_BUCKET_REGION'];
+        $s3Client = new S3Client([
+            'version' => 'latest',
+            'region' => $bucketRegion,
+            'credentials' => ['key' => $_ENV['S3_ACCESS_KEY_ID'], 'secret' => $_ENV['S3_SECRET_ACCESS_KEY']]
+        ]);
         if ($_SERVER["REQUEST_METHOD"] == "GET") {
             throw new UploadImageException('Invalid request method');
         }
@@ -40,8 +55,19 @@ class UploadImageService
 
 
         if (move_uploaded_file($file["tmp_name"], $path . $filename)) {
-            $file_Path = '/upload/' . $filename;
-            return $file_Path;
+            $file_Path = $path. $filename;
+            $key = basename($file_Path);
+            try {
+                $result = $s3Client->putObject([
+                    'Bucket' => $bucketName,
+                    'Key' => $key,
+                    'SourceFile' => $file_Path,
+                ]);
+                unlink($path . $filename);
+                return $result->get('ObjectURL');
+            } catch (S3Exception $e) {
+                return null;
+            }
         } else {
             throw new UploadImageException("Error: There was an error uploading your file.");
         }

@@ -1,6 +1,6 @@
 <body style="background: aliceblue">
 <div class="container">
-    <div class="container-fluid" style="width: 50%; height: 600px; background: gainsboro; border-radius: 5%; border: solid 1px black">
+    <div class="container-fluid" style="width: 50%; height: 800px; background: gainsboro; border-radius: 5%; border: solid 1px black">
         <form class="form-signin" action="storeCar" method="post" enctype="multipart/form-data">
             <img class="mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72"
                  height="72">
@@ -12,7 +12,7 @@
                   </div>';
             }
             ?>
-            <div class="container-fluid content" style="width: 70%; height: 500px; border-top: 20px">
+            <div class="container-fluid content" style="width: 70%; height: 800px; border-top: 20px">
                 <label for="username" class="sr-only">Name: </label>
                 <input type="text" id="name" name="name"
                        class="form-control "

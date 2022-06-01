@@ -27,10 +27,10 @@
         <ul class="nav justify-content-end">
             <?php if (!isset($_SESSION['user_id'])) {
                 echo '<li class="nav-item">
-                <a class="nav-link" href="/login">Login</a>
+                <a class="nav-link btn btn-outline-primary" href="/login">Login</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/createUser">Register</a>
+                <a class="nav-link btn btn-outline-primary" href="/createUser">Register</a>
             </li>';
 
                 ?>
@@ -38,11 +38,11 @@
             <?php } else {
                 echo '
             <li class="nav-item">
-                <a class="nav-link" href="/createCar">Create Car</a>
+                <a class="nav-link btn btn-outline-primary" href="/createCar">Create Car</a>
             </li>
             <li class="nav-item">
                     <form action="/logout" method="post">
-                        <button type="submit">logout</button>
+                        <button class="btn btn-outline-primary" type="submit">logout</button>
                     </form>
                 </li>';
             } ?>
