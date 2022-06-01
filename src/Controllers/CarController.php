@@ -61,8 +61,7 @@ class CarController
                 $errorMessage = 'Somethings is wrong';
             }
         } catch (\Exception $exception) {
-            $exception->getMessage();
-            $errorMessage = 'Something is error';
+            $errorMessage = $exception->getMessage();
         }
         //return view
         return $this->response->renderView('createCar', [

@@ -70,8 +70,7 @@ class AuthController
                 $errorMessage = 'Username or password is invalid!';
             }
         } catch (\Exception $exception) {
-            $exception->getMessage();
-            $errorMessage = 'Something is error';
+            $errorMessage = $exception->getMessage();
         }
         //return view
         return $this->response->renderView('login', [
@@ -111,8 +110,7 @@ class AuthController
                 $errorMessage = 'Somethings is wrong';
             }
         } catch (\Exception $exception) {
-            $exception->getMessage();
-            $errorMessage = 'Something is error';
+            $errorMessage = $exception->getMessage();
         }
         //return view
         return $this->response->renderView('register', [

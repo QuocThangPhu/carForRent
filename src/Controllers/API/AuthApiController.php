@@ -75,8 +75,7 @@ class AuthApiController
                 $errorMessage = 'Username or password is invalid!';
             }
         } catch (\Exception $exception) {
-            $exception->getMessage();
-            $errorMessage = 'Something is error';
+            $errorMessage = $exception->getMessage();
         }
         //return view
         return $this->response->toJson([
@@ -105,8 +104,7 @@ class AuthApiController
                 $errorMessage = 'Somethings is wrong';
             }
         } catch (\Exception $exception) {
-            $exception->getMessage();
-            $errorMessage = 'Something is error';
+            $errorMessage = $exception->getMessage();
         }
         //return view
         return $this->response->toJson([

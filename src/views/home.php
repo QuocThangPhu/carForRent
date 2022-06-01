@@ -16,7 +16,7 @@
                         <img src="<?= $car['picture'] ?>" class="card-img-top" alt="..." style="object-fit: cover;height: 200px;">
                         <div class="card-body">
                             <h5 class="card-title"><?= $car['name'] ?></h5>
-                            <p class="card-text"><b>Price:</b> $<?= $car['price'] ?>000</p>
+                            <p class="card-text"><b>Price:</b> $<?= number_format($car['price']) ?></p>
                             <p class="card-text"><b>Brand:</b> <?= $car['brand'] ?></p>
                             <a href="#" class="btn btn-primary">Go somewhere</a>
                         </div>
