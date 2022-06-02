@@ -103,13 +103,13 @@ class AuthController
             if ($this->request->isPost()) {
                 $this->registerRequest->fromArray($this->request->getBody());
                 $isUserRegisterValid = $this->registerValidator->validateUser($this->registerRequest);
-                if(is_array($isUserRegisterValid)){
+                if (is_array($isUserRegisterValid)) {
                     return $this->response->renderView('register', [
                         'errors' => $isUserRegisterValid
                     ]);
                 }
                 $isSuccess = $this->registerService->register($this->registerRequest);
-                if($isSuccess){
+                if ($isSuccess) {
                     return $this->response->redirect('/');
                 }
                 $errorMessage = 'Somethings is wrong';

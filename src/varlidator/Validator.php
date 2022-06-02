@@ -106,16 +106,18 @@ class Validator
     {
         if ($this->file['error'] != 4 && $this->file['size'] > $size) {
             $this->errors[$this->name] = 'The file ' . $this->name . ' exceeds the maximum size of ' . number_format(
-                    $size / 1048576,
-                    2
-                ) . ' MB.';
+                $size / 1048576,
+                2
+            ) . ' MB.';
         }
         return $this;
     }
 
-    public  function is_int(): static
+    public function is_int(): static
     {
-        if(is_numeric($this->value)) return $this;
+        if (is_numeric($this->value)) {
+            return $this;
+        }
         $this->errors[$this->name] = 'Field value ' . $this->name . ' must be integer';
         return $this;
     }

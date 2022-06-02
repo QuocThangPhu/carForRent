@@ -91,7 +91,7 @@ class AuthApiController
                 $this->registerRequest->fromArray($this->request->getRequestJsonBody());
                 $this->registerValidator->validateUser($this->registerRequest);
                 $isSuccess = $this->registerApiService->register($this->registerRequest);
-                if($isSuccess){
+                if ($isSuccess) {
                     $token = $this->tokenService->generate($isSuccess);
                     return $this->response->toJson([
                         'data' => [

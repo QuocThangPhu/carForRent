@@ -14,9 +14,9 @@ class CreateCarValidator
         $validator->name('brand')->value($car->getBrand())->min(3)->max(255)->required();
         $validator->name('price')->value($car->getPrice())->is_int()->max(999999999)->required();
 
-        if($validator->isSuccess()){
+        if ($validator->isSuccess()) {
             return true;
-        }else{
+        } else {
             return $validator->getErrors();
         }
     }

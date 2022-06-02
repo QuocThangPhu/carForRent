@@ -13,9 +13,9 @@ class RegisterValidator
         $validator->name('username')->value($user->getUsername())->pattern('alphanum')->min(3)->max(50)->required();
         $validator->name('password')->value($user->getPassword())->min(3)->max(255)->required();
         $validator->name('confirmPassword')->value($user->getPasswordConfirm())->equal($user->getPassword())->min(3)->max(255)->required();
-        if($validator->isSuccess()){
+        if ($validator->isSuccess()) {
             return true;
-        }else{
+        } else {
             return $validator->getErrors();
         }
     }
