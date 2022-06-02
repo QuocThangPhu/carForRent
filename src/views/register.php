@@ -1,5 +1,5 @@
 <section class="py-5" style="background: #888a85">
-    <div class="container" style="background: white">
+    <div class="container" style="background: white; width: 40%; height: 700px;">
         <div class="container-fluid">
         <form class="form-signin" action="/userCheck" method="post">
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWds5526ohygFImcAhzDK-pqExf3ets--fYg&usqp=CAU" alt="" width="170"
@@ -12,7 +12,7 @@
                 echo '</p>';
             }
             ?>
-            <div class="container-fluid content" style="width: 50%; height: 500px; border-top: 20px">
+            <div class="container-fluid content" style="width: 80%; height: 500px; border-top: 20px">
                 <label for="username" class="sr-only">Username</label>
                 <input type="text" id="username" name="username"
                        class="form-control "

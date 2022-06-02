@@ -1,5 +1,5 @@
 <!-- Header-->
-<header class="bg-dark py-5">
+<header class="bg-dark py-4">
     <div class="container px-4 px-lg-5 my-5">
         <div class="text-center text-white">
             <h1 class="display-4 fw-bolder">Carforent - Diggory</h1>
@@ -19,15 +19,17 @@
                     <div class="card-body p-4">
                         <div class="text-center">
                             <!-- Product name-->
-                            <h5 class="fw-bolder"><?= $car['name'] ?></h5>
+                            <div><h4 class="fw-bolder"><?= $car['name'] ?></h4></div>
+                            <div>__________________________</div>
+                            <br>
                             <!-- Product price-->
-                            $<?= number_format($car['price']) ?>
-                            <div>Brand: <?= $car['brand'] ?></div>
+                            <div style="color: #bd2130"><h6>$<?= number_format($car['price']) ?>/day</h6></div>
+                            <div><h6>Brand: <?= $car['brand'] ?></h6></div>
                         </div>
                     </div>
                     <!-- Product actions-->
                     <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">View options</a></div>
+                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="">RentCar</a></div>
                     </div>
                 </div>
             </div>

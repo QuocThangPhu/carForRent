@@ -1,12 +1,12 @@
 <section class="py-5" style="background: #888a85">
-    <div class="container" style="background: white">
+    <div class="container" style="background: white; width: 40%; height: 700px;">
         <div class="container-fluid">
             <form class="form-signin" action="loginCheck" method="post">
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWds5526ohygFImcAhzDK-pqExf3ets--fYg&usqp=CAU" alt="" width="170"
                       height="150">
                 <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
 
-                <div class="container-fluid content" style="width: 50%; height: 600px; border-top: 20px">
+                <div class="container-fluid content" style="width: 80%; height: 600px; border-top: 20px">
                     <?php
                     if ($data != null && array_key_exists('errors', $data)) {
                         echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">

@@ -1,11 +1,11 @@
 <section class="py-5" style="background: #888a85">
-    <div class="container" style="background: white">
+    <div class="container" style="background: white; width: 40%; height: 700px;">
     <div class="container-fluid">
         <form class="form-signin" action="storeCar" method="post" enctype="multipart/form-data">
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWds5526ohygFImcAhzDK-pqExf3ets--fYg&usqp=CAU" alt="" width="170"
                  height="150">
 
-            <div class="container-fluid content" style="width: 50%; height: 700px; border-top: 20px">
+            <div class="container-fluid content" style="width: 80%; height: 700px; border-top: 20px">
                 <h1 class="h3 mb-3 font-weight-normal">Create a car</h1>
                 <?php
 
@@ -52,9 +52,14 @@
                 <input type="file" id="picture" name="picture"
                        class="form-control "
                        placeholder="picture" value="<?= $data['picture'] ?? '' ?>">
+                <br>
                 <button class="btn btn-lg btn-primary btn-block" type="submit">Create</button>
             </div>
         </form>
     </div>
 </div>
 </section>
+
+<footer class="py-5 bg-dark">
+    <div class="container"><p class="m-0 text-center text-white">Carforent &copy; Diggory.me</p></div>
+</footer>
