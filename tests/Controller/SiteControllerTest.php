@@ -5,16 +5,19 @@ namespace Thangphu\Test\Controller;
 use PHPUnit\Framework\TestCase;
 use Thangphu\CarForRent\bootstrap\Response;
 use Thangphu\CarForRent\Controllers\SiteController;
+use Thangphu\CarForRent\Model\CarModel;
+use Thangphu\CarForRent\Repository\CarRepository;
 
 class SiteControllerTest extends TestCase
 {
     public function testHome()
     {
         $response = new Response();
-        $siteView = new SiteController($response);
+        $carRepository = $this->getMockBuilder(CarRepository::class)->disableOriginalConstructor()->getMock();
+        $siteView = new SiteController($response ,$carRepository);
         $resultView = $siteView->home()->getTemplate();
         $expectedView = new Response();
-        $expectedView->setTemplate('home');
+        $expectedView->renderView('home', ['cars' => $carRepository->selectCar()]);
         $this->assertEquals($expectedView->getTemplate(), $resultView);
     }
 }

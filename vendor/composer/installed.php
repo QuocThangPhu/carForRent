@@ -5,7 +5,7 @@
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '001aa6ea0971254ca657b50926158407efb977da',
+        'reference' => '1441a78ca430155b7731c2c0267fb522d3dc0583',
         'name' => 'thangphu/car-for-rent',
         'dev' => true,
     ),
@@ -664,7 +664,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '001aa6ea0971254ca657b50926158407efb977da',
+            'reference' => '1441a78ca430155b7731c2c0267fb522d3dc0583',
             'dev_requirement' => false,
         ),
         'theseer/tokenizer' => array(

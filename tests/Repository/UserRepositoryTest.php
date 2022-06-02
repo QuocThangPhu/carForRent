@@ -15,9 +15,9 @@ class UserRepositoryTest extends TestCase
         $userRepository = new UserRepository($user);
         $userResult = $userRepository->findUserByUserName('thang');
         $userExpected = new UserModel();
-        $userExpected->setId(3);
+        $userExpected->setId(1);
         $userExpected->setUsername('thang');
-        $userExpected->setPassword('$2a$12$lTQrfYTTE67g68CsoCN2/OFlGXfQ8iFmbhXZ363/SQsslfbXN58xS');
+        $userExpected->setPassword('$2a$12$TG.0nLmE8i.KbC3JanS7/.ri0fZ/CO/qHQIs67WLHFnws98GLY0zK');
         $this->assertEquals($userExpected,$userResult);
     }
 

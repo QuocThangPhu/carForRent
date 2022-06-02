@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Dashboard for /var/www/carForRent/src</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="_css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link href="_css/nv.d3.min.css" rel="stylesheet" type="text/css">
+  <link href="_css/style.css" rel="stylesheet" type="text/css">
+  <link href="_css/custom.css" rel="stylesheet" type="text/css">
+ </head>
+ <body>
+  <header>
+   <div class="container-fluid">
+    <div class="row">
+     <div class="col-md-12">
+      <nav aria-label="breadcrumb">
+       <ol class="breadcrumb">
+         <li class="breadcrumb-item"><a href="index.html">/var/www/carForRent/src</a></li>
+         <li class="breadcrumb-item active">(Dashboard)</li>
+
+       </ol>
+      </nav>
+     </div>
+    </div>
+   </div>
+  </header>
+  <div class="container-fluid">
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Classes</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="classCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="classComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Controllers/API/AuthApiController.php.html#17">Thangphu\CarForRent\Controllers\API\AuthApiController</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controllers/CarController.php.html#13">Thangphu\CarForRent\Controllers\CarController</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository/CarRepository.php.html#11">Thangphu\CarForRent\Repository\CarRepository</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Request/CarRequest.php.html#7">Thangphu\CarForRent\Request\CarRequest</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Request/RegisterRequest.php.html#5">Thangphu\CarForRent\Request\RegisterRequest</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Response/CarResponse.php.html#5">Thangphu\CarForRent\Response\CarResponse</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Service/RegisterAPIService.php.html#8">Thangphu\CarForRent\Service\RegisterAPIService</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Service/RegisterService.php.html#8">Thangphu\CarForRent\Service\RegisterService</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Service/ServiceProvider.php.html#8">Thangphu\CarForRent\Service\ServiceProvider</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Service/TokenService.php.html#8">Thangphu\CarForRent\Service\TokenService</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Service/UploadImageService.php.html#10">Thangphu\CarForRent\Service\UploadImageService</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="bootstrap/Application.php.html#7">Thangphu\CarForRent\bootstrap\Application</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="bootstrap/BaseServiceProvider.php.html#5">Thangphu\CarForRent\bootstrap\BaseServiceProvider</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="bootstrap/Container.php.html#10">Thangphu\CarForRent\bootstrap\Container</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="varlidator/CreateCarValidator.php.html#8">Thangphu\CarForRent\varlidator\CreateCarValidator</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="varlidator/RegisterValidator.php.html#8">Thangphu\CarForRent\varlidator\RegisterValidator</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="varlidator/Validator.php.html#5">Thangphu\CarForRent\varlidator\Validator</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="App/View.php.html#8">Thangphu\CarForRent\App\View</a></td><td class="text-right">5%</td></tr>
+       <tr><td><a href="Repository/UserRepository.php.html#10">Thangphu\CarForRent\Repository\UserRepository</a></td><td class="text-right">34%</td></tr>
+       <tr><td><a href="Controllers/AuthController.php.html#16">Thangphu\CarForRent\Controllers\AuthController</a></td><td class="text-right">37%</td></tr>
+       <tr><td><a href="bootstrap/Request.php.html#5">Thangphu\CarForRent\bootstrap\Request</a></td><td class="text-right">38%</td></tr>
+       <tr><td><a href="varlidator/LoginValidator.php.html#8">Thangphu\CarForRent\varlidator\LoginValidator</a></td><td class="text-right">80%</td></tr>
+       <tr><td><a href="Database/DatabaseConnect.php.html#9">Thangphu\CarForRent\Database\DatabaseConnect</a></td><td class="text-right">83%</td></tr>
+       <tr><td><a href="bootstrap/Response.php.html#7">Thangphu\CarForRent\bootstrap\Response</a></td><td class="text-right">85%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="varlidator/Validator.php.html#5">Thangphu\CarForRent\varlidator\Validator</a></td><td class="text-right">1260</td></tr>
+       <tr><td><a href="bootstrap/Container.php.html#10">Thangphu\CarForRent\bootstrap\Container</a></td><td class="text-right">156</td></tr>
+       <tr><td><a href="Controllers/API/AuthApiController.php.html#17">Thangphu\CarForRent\Controllers\API\AuthApiController</a></td><td class="text-right">90</td></tr>
+       <tr><td><a href="Service/UploadImageService.php.html#10">Thangphu\CarForRent\Service\UploadImageService</a></td><td class="text-right">72</td></tr>
+       <tr><td><a href="Controllers/AuthController.php.html#16">Thangphu\CarForRent\Controllers\AuthController</a></td><td class="text-right">62</td></tr>
+       <tr><td><a href="Controllers/CarController.php.html#13">Thangphu\CarForRent\Controllers\CarController</a></td><td class="text-right">56</td></tr>
+       <tr><td><a href="bootstrap/Request.php.html#5">Thangphu\CarForRent\bootstrap\Request</a></td><td class="text-right">44</td></tr>
+       <tr><td><a href="Service/RegisterAPIService.php.html#8">Thangphu\CarForRent\Service\RegisterAPIService</a></td><td class="text-right">42</td></tr>
+       <tr><td><a href="App/View.php.html#8">Thangphu\CarForRent\App\View</a></td><td class="text-right">36</td></tr>
+       <tr><td><a href="Service/RegisterService.php.html#8">Thangphu\CarForRent\Service\RegisterService</a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="Repository/UserRepository.php.html#10">Thangphu\CarForRent\Repository\UserRepository</a></td><td class="text-right">26</td></tr>
+       <tr><td><a href="Repository/CarRepository.php.html#11">Thangphu\CarForRent\Repository\CarRepository</a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="bootstrap/Response.php.html#7">Thangphu\CarForRent\bootstrap\Response</a></td><td class="text-right">14</td></tr>
+       <tr><td><a href="bootstrap/Application.php.html#7">Thangphu\CarForRent\bootstrap\Application</a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="varlidator/CreateCarValidator.php.html#8">Thangphu\CarForRent\varlidator\CreateCarValidator</a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="varlidator/RegisterValidator.php.html#8">Thangphu\CarForRent\varlidator\RegisterValidator</a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="varlidator/LoginValidator.php.html#8">Thangphu\CarForRent\varlidator\LoginValidator</a></td><td class="text-right">4</td></tr>
+       <tr><td><a href="Database/DatabaseConnect.php.html#9">Thangphu\CarForRent\Database\DatabaseConnect</a></td><td class="text-right">3</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Methods</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="methodCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="methodComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="App/View.php.html#10"><abbr title="Thangphu\CarForRent\App\View::display">display</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="App/View.php.html#22"><abbr title="Thangphu\CarForRent\App\View::handleViewJson">handleViewJson</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="App/View.php.html#32"><abbr title="Thangphu\CarForRent\App\View::handleViewTemplate">handleViewTemplate</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controllers/API/AuthApiController.php.html#30"><abbr title="Thangphu\CarForRent\Controllers\API\AuthApiController::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controllers/API/AuthApiController.php.html#54"><abbr title="Thangphu\CarForRent\Controllers\API\AuthApiController::loginCheck">loginCheck</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controllers/API/AuthApiController.php.html#86"><abbr title="Thangphu\CarForRent\Controllers\API\AuthApiController::userCheck">userCheck</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controllers/AuthController.php.html#56"><abbr title="Thangphu\CarForRent\Controllers\AuthController::loginCheck">loginCheck</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controllers/AuthController.php.html#94"><abbr title="Thangphu\CarForRent\Controllers\AuthController::createUser">createUser</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controllers/AuthController.php.html#99"><abbr title="Thangphu\CarForRent\Controllers\AuthController::userCheck">userCheck</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controllers/CarController.php.html#23"><abbr title="Thangphu\CarForRent\Controllers\CarController::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controllers/CarController.php.html#42"><abbr title="Thangphu\CarForRent\Controllers\CarController::createCarView">createCarView</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controllers/CarController.php.html#47"><abbr title="Thangphu\CarForRent\Controllers\CarController::storeCar">storeCar</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository/CarRepository.php.html#17"><abbr title="Thangphu\CarForRent\Repository\CarRepository::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository/CarRepository.php.html#24"><abbr title="Thangphu\CarForRent\Repository\CarRepository::selectCar">selectCar</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository/CarRepository.php.html#42"><abbr title="Thangphu\CarForRent\Repository\CarRepository::createCar">createCar</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository/UserRepository.php.html#34"><abbr title="Thangphu\CarForRent\Repository\UserRepository::findUserById">findUserById</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository/UserRepository.php.html#49"><abbr title="Thangphu\CarForRent\Repository\UserRepository::findUserName">findUserName</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository/UserRepository.php.html#60"><abbr title="Thangphu\CarForRent\Repository\UserRepository::createUser">createUser</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Request/CarRequest.php.html#17"><abbr title="Thangphu\CarForRent\Request\CarRequest::getName">getName</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Request/CarRequest.php.html#25"><abbr title="Thangphu\CarForRent\Request\CarRequest::setName">setName</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Request/CarRequest.php.html#33"><abbr title="Thangphu\CarForRent\Request\CarRequest::getPrice">getPrice</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Request/CarRequest.php.html#41"><abbr title="Thangphu\CarForRent\Request\CarRequest::setPrice">setPrice</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Request/CarRequest.php.html#49"><abbr title="Thangphu\CarForRent\Request\CarRequest::getPicture">getPicture</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Request/CarRequest.php.html#57"><abbr title="Thangphu\CarForRent\Request\CarRequest::setPicture">setPicture</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Request/CarRequest.php.html#65"><abbr title="Thangphu\CarForRent\Request\CarRequest::getBrand">getBrand</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Request/CarRequest.php.html#73"><abbr title="Thangphu\CarForRent\Request\CarRequest::setBrand">setBrand</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Request/CarRequest.php.html#78"><abbr title="Thangphu\CarForRent\Request\CarRequest::fromArray">fromArray</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Request/RegisterRequest.php.html#14"><abbr title="Thangphu\CarForRent\Request\RegisterRequest::getUsername">getUsername</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Request/RegisterRequest.php.html#22"><abbr title="Thangphu\CarForRent\Request\RegisterRequest::setUsername">setUsername</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Request/RegisterRequest.php.html#30"><abbr title="Thangphu\CarForRent\Request\RegisterRequest::getPassword">getPassword</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Request/RegisterRequest.php.html#38"><abbr title="Thangphu\CarForRent\Request\RegisterRequest::setPassword">setPassword</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Request/RegisterRequest.php.html#46"><abbr title="Thangphu\CarForRent\Request\RegisterRequest::getPasswordConfirm">getPasswordConfirm</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Request/RegisterRequest.php.html#54"><abbr title="Thangphu\CarForRent\Request\RegisterRequest::setPasswordConfirm">setPasswordConfirm</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Request/RegisterRequest.php.html#59"><abbr title="Thangphu\CarForRent\Request\RegisterRequest::fromArray">fromArray</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Response/CarResponse.php.html#7"><abbr title="Thangphu\CarForRent\Response\CarResponse::carResponse">carResponse</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Service/RegisterAPIService.php.html#12"><abbr title="Thangphu\CarForRent\Service\RegisterAPIService::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Service/RegisterAPIService.php.html#17"><abbr title="Thangphu\CarForRent\Service\RegisterAPIService::register">register</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Service/RegisterAPIService.php.html#30"><abbr title="Thangphu\CarForRent\Service\RegisterAPIService::checkPassword">checkPassword</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Service/RegisterService.php.html#12"><abbr title="Thangphu\CarForRent\Service\RegisterService::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Service/RegisterService.php.html#17"><abbr title="Thangphu\CarForRent\Service\RegisterService::register">register</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Service/RegisterService.php.html#30"><abbr title="Thangphu\CarForRent\Service\RegisterService::checkPassword">checkPassword</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Service/ServiceProvider.php.html#10"><abbr title="Thangphu\CarForRent\Service\ServiceProvider::register">register</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Service/TokenService.php.html#11"><abbr title="Thangphu\CarForRent\Service\TokenService::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Service/TokenService.php.html#16"><abbr title="Thangphu\CarForRent\Service\TokenService::generate">generate</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Service/UploadImageService.php.html#15"><abbr title="Thangphu\CarForRent\Service\UploadImageService::upload">upload</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="bootstrap/Application.php.html#10"><abbr title="Thangphu\CarForRent\bootstrap\Application::run">run</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="bootstrap/BaseServiceProvider.php.html#8"><abbr title="Thangphu\CarForRent\bootstrap\BaseServiceProvider::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="bootstrap/BaseServiceProvider.php.html#14"><abbr title="Thangphu\CarForRent\bootstrap\BaseServiceProvider::getContainer">getContainer</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="bootstrap/Container.php.html#18"><abbr title="Thangphu\CarForRent\bootstrap\Container::bind">bind</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="bootstrap/Container.php.html#34"><abbr title="Thangphu\CarForRent\bootstrap\Container::make">make</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="bootstrap/Container.php.html#49"><abbr title="Thangphu\CarForRent\bootstrap\Container::resolve">resolve</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="bootstrap/Container.php.html#78"><abbr title="Thangphu\CarForRent\bootstrap\Container::resolveDependencies">resolveDependencies</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="bootstrap/Request.php.html#37"><abbr title="Thangphu\CarForRent\bootstrap\Request::getRequestBody">getRequestBody</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="bootstrap/Request.php.html#42"><abbr title="Thangphu\CarForRent\bootstrap\Request::getRequestJsonBody">getRequestJsonBody</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="bootstrap/Request.php.html#53"><abbr title="Thangphu\CarForRent\bootstrap\Request::getBody">getBody</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="bootstrap/Response.php.html#106"><abbr title="Thangphu\CarForRent\bootstrap\Response::toJson">toJson</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="varlidator/CreateCarValidator.php.html#10"><abbr title="Thangphu\CarForRent\varlidator\CreateCarValidator::createCarValidator">createCarValidator</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="varlidator/RegisterValidator.php.html#10"><abbr title="Thangphu\CarForRent\varlidator\RegisterValidator::validateUser">validateUser</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="varlidator/Validator.php.html#28"><abbr title="Thangphu\CarForRent\varlidator\Validator::name">name</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="varlidator/Validator.php.html#34"><abbr title="Thangphu\CarForRent\varlidator\Validator::value">value</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="varlidator/Validator.php.html#40"><abbr title="Thangphu\CarForRent\varlidator\Validator::pattern">pattern</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="varlidator/Validator.php.html#55"><abbr title="Thangphu\CarForRent\varlidator\Validator::customPattern">customPattern</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="varlidator/Validator.php.html#64"><abbr title="Thangphu\CarForRent\varlidator\Validator::required">required</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="varlidator/Validator.php.html#72"><abbr title="Thangphu\CarForRent\varlidator\Validator::min">min</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="varlidator/Validator.php.html#86"><abbr title="Thangphu\CarForRent\varlidator\Validator::max">max</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="varlidator/Validator.php.html#100"><abbr title="Thangphu\CarForRent\varlidator\Validator::purify">purify</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="varlidator/Validator.php.html#105"><abbr title="Thangphu\CarForRent\varlidator\Validator::maxSize">maxSize</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="varlidator/Validator.php.html#116"><abbr title="Thangphu\CarForRent\varlidator\Validator::is_int">is_int</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="varlidator/Validator.php.html#123"><abbr title="Thangphu\CarForRent\varlidator\Validator::equal">equal</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="varlidator/Validator.php.html#131"><abbr title="Thangphu\CarForRent\varlidator\Validator::getErrors">getErrors</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="varlidator/Validator.php.html#139"><abbr title="Thangphu\CarForRent\varlidator\Validator::isSuccess">isSuccess</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="varlidator/LoginValidator.php.html#10"><abbr title="Thangphu\CarForRent\varlidator\LoginValidator::validateUserLogin">validateUserLogin</abbr></a></td><td class="text-right">80%</td></tr>
+       <tr><td><a href="Database/DatabaseConnect.php.html#14"><abbr title="Thangphu\CarForRent\Database\DatabaseConnect::getConnection">getConnection</abbr></a></td><td class="text-right">83%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Service/UploadImageService.php.html#15"><abbr title="Thangphu\CarForRent\Service\UploadImageService::upload">upload</abbr></a></td><td class="text-right">72</td></tr>
+       <tr><td><a href="Controllers/AuthController.php.html#99"><abbr title="Thangphu\CarForRent\Controllers\AuthController::userCheck">userCheck</abbr></a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="Controllers/CarController.php.html#47"><abbr title="Thangphu\CarForRent\Controllers\CarController::storeCar">storeCar</abbr></a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="bootstrap/Request.php.html#53"><abbr title="Thangphu\CarForRent\bootstrap\Request::getBody">getBody</abbr></a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="varlidator/Validator.php.html#40"><abbr title="Thangphu\CarForRent\varlidator\Validator::pattern">pattern</abbr></a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="varlidator/Validator.php.html#64"><abbr title="Thangphu\CarForRent\varlidator\Validator::required">required</abbr></a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="Controllers/API/AuthApiController.php.html#54"><abbr title="Thangphu\CarForRent\Controllers\API\AuthApiController::loginCheck">loginCheck</abbr></a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="Controllers/API/AuthApiController.php.html#86"><abbr title="Thangphu\CarForRent\Controllers\API\AuthApiController::userCheck">userCheck</abbr></a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="Controllers/AuthController.php.html#56"><abbr title="Thangphu\CarForRent\Controllers\AuthController::loginCheck">loginCheck</abbr></a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="bootstrap/Container.php.html#49"><abbr title="Thangphu\CarForRent\bootstrap\Container::resolve">resolve</abbr></a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="bootstrap/Container.php.html#78"><abbr title="Thangphu\CarForRent\bootstrap\Container::resolveDependencies">resolveDependencies</abbr></a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="varlidator/Validator.php.html#72"><abbr title="Thangphu\CarForRent\varlidator\Validator::min">min</abbr></a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="varlidator/Validator.php.html#86"><abbr title="Thangphu\CarForRent\varlidator\Validator::max">max</abbr></a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="App/View.php.html#10"><abbr title="Thangphu\CarForRent\App\View::display">display</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Service/RegisterAPIService.php.html#17"><abbr title="Thangphu\CarForRent\Service\RegisterAPIService::register">register</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Service/RegisterService.php.html#17"><abbr title="Thangphu\CarForRent\Service\RegisterService::register">register</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="bootstrap/Application.php.html#10"><abbr title="Thangphu\CarForRent\bootstrap\Application::run">run</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="varlidator/Validator.php.html#55"><abbr title="Thangphu\CarForRent\varlidator\Validator::customPattern">customPattern</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="varlidator/Validator.php.html#105"><abbr title="Thangphu\CarForRent\varlidator\Validator::maxSize">maxSize</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Repository/CarRepository.php.html#24"><abbr title="Thangphu\CarForRent\Repository\CarRepository::selectCar">selectCar</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Repository/UserRepository.php.html#34"><abbr title="Thangphu\CarForRent\Repository\UserRepository::findUserById">findUserById</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Repository/UserRepository.php.html#49"><abbr title="Thangphu\CarForRent\Repository\UserRepository::findUserName">findUserName</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Service/RegisterAPIService.php.html#30"><abbr title="Thangphu\CarForRent\Service\RegisterAPIService::checkPassword">checkPassword</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="bootstrap/Container.php.html#18"><abbr title="Thangphu\CarForRent\bootstrap\Container::bind">bind</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="bootstrap/Container.php.html#34"><abbr title="Thangphu\CarForRent\bootstrap\Container::make">make</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="varlidator/CreateCarValidator.php.html#10"><abbr title="Thangphu\CarForRent\varlidator\CreateCarValidator::createCarValidator">createCarValidator</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="varlidator/RegisterValidator.php.html#10"><abbr title="Thangphu\CarForRent\varlidator\RegisterValidator::validateUser">validateUser</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="varlidator/Validator.php.html#116"><abbr title="Thangphu\CarForRent\varlidator\Validator::is_int">is_int</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="varlidator/Validator.php.html#123"><abbr title="Thangphu\CarForRent\varlidator\Validator::equal">equal</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="varlidator/Validator.php.html#131"><abbr title="Thangphu\CarForRent\varlidator\Validator::getErrors">getErrors</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="varlidator/Validator.php.html#139"><abbr title="Thangphu\CarForRent\varlidator\Validator::isSuccess">isSuccess</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="varlidator/LoginValidator.php.html#10"><abbr title="Thangphu\CarForRent\varlidator\LoginValidator::validateUserLogin">validateUserLogin</abbr></a></td><td class="text-right">4</td></tr>
+       <tr><td><a href="Database/DatabaseConnect.php.html#14"><abbr title="Thangphu\CarForRent\Database\DatabaseConnect::getConnection">getConnection</abbr></a></td><td class="text-right">3</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <footer>
+    <hr/>
+    <p>
+     <small>Generated by <a href="https://github.com/sebastianbergmann/php-code-coverage" target="_top">php-code-coverage 9.2.15</a> using <a href="https://secure.php.net/" target="_top">PHP 8.1.2</a> and <a href="https://phpunit.de/">PHPUnit 9.5.20</a> at Thu Jun 2 7:03:09 UTC 2022.</small>
+    </p>
+   </footer>
+  </div>
+  <script src="_js/jquery.min.js" type="text/javascript"></script>
+  <script src="_js/d3.min.js" type="text/javascript"></script>
+  <script src="_js/nv.d3.min.js" type="text/javascript"></script>
+  <script type="text/javascript">
+$(document).ready(function() {
+  nv.addGraph(function() {
+    var chart = nv.models.multiBarChart();
+    chart.tooltips(false)
+      .showControls(false)
+      .showLegend(false)
+      .reduceXTicks(false)
+      .staggerLabels(true)
+      .yAxis.tickFormat(d3.format('d'));
+
+    d3.select('#classCoverageDistribution svg')
+      .datum(getCoverageDistributionData([17,1,0,0,3,0,0,0,0,3,0,11], "Class Coverage"))
+      .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  nv.addGraph(function() {
+    var chart = nv.models.multiBarChart();
+    chart.tooltips(false)
+      .showControls(false)
+      .showLegend(false)
+      .reduceXTicks(false)
+      .staggerLabels(true)
+      .yAxis.tickFormat(d3.format('d'));
+
+    d3.select('#methodCoverageDistribution svg')
+      .datum(getCoverageDistributionData([71,0,0,0,0,0,0,0,0,2,0,58], "Method Coverage"))
+      .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  function getCoverageDistributionData(data, label) {
+    var labels = [
+      '0%',
+      '0-10%',
+      '10-20%',
+      '20-30%',
+      '30-40%',
+      '40-50%',
+      '50-60%',
+      '60-70%',
+      '70-80%',
+      '80-90%',
+      '90-100%',
+      '100%'
+    ];
+    var values = [];
+    $.each(labels, function(key) {
+      values.push({x: labels[key], y: data[key]});
+    });
+
+    return [
+      {
+        key: label,
+        values: values,
+        color: "#4572A7"
+      }
+    ];
+  }
+  nv.addGraph(function() {
+    var chart = nv.models.scatterChart()
+      .showDistX(true)
+      .showDistY(true)
+      .showLegend(false)
+      .forceX([0, 100]);
+    chart.tooltipContent(function(graph) {
+      return '<p>' + graph.point.class + '</p>';
+    });
+
+    chart.xAxis.axisLabel('Code Coverage (in percent)');
+    chart.yAxis.axisLabel('Cyclomatic Complexity');
+
+    d3.select('#classComplexity svg')
+      .datum(getComplexityData([[5.88235294117647,6,"<a href=\"App\/View.php.html#8\">Thangphu\\CarForRent\\App\\View<\/a>"],[0,9,"<a href=\"Controllers\/API\/AuthApiController.php.html#17\">Thangphu\\CarForRent\\Controllers\\API\\AuthApiController<\/a>"],[37.2093023255814,14,"<a href=\"Controllers\/AuthController.php.html#16\">Thangphu\\CarForRent\\Controllers\\AuthController<\/a>"],[0,7,"<a href=\"Controllers\/CarController.php.html#13\">Thangphu\\CarForRent\\Controllers\\CarController<\/a>"],[100,2,"<a href=\"Controllers\/SiteController.php.html#8\">Thangphu\\CarForRent\\Controllers\\SiteController<\/a>"],[83.33333333333334,3,"<a href=\"Database\/DatabaseConnect.php.html#9\">Thangphu\\CarForRent\\Database\\DatabaseConnect<\/a>"],[100,0,"<a href=\"Exception\/UploadImageException.php.html#7\">Thangphu\\CarForRent\\Exception\\UploadImageException<\/a>"],[100,0,"<a href=\"Exception\/ValidateException.php.html#7\">Thangphu\\CarForRent\\Exception\\ValidateException<\/a>"],[100,10,"<a href=\"Model\/CarModel.php.html#5\">Thangphu\\CarForRent\\Model\\CarModel<\/a>"],[100,8,"<a href=\"Model\/UserModel.php.html#5\">Thangphu\\CarForRent\\Model\\UserModel<\/a>"],[0,4,"<a href=\"Repository\/CarRepository.php.html#11\">Thangphu\\CarForRent\\Repository\\CarRepository<\/a>"],[34.48275862068966,8,"<a href=\"Repository\/UserRepository.php.html#10\">Thangphu\\CarForRent\\Repository\\UserRepository<\/a>"],[0,9,"<a href=\"Request\/CarRequest.php.html#7\">Thangphu\\CarForRent\\Request\\CarRequest<\/a>"],[100,5,"<a href=\"Request\/LoginRequest.php.html#7\">Thangphu\\CarForRent\\Request\\LoginRequest<\/a>"],[0,7,"<a href=\"Request\/RegisterRequest.php.html#5\">Thangphu\\CarForRent\\Request\\RegisterRequest<\/a>"],[0,1,"<a href=\"Response\/CarResponse.php.html#5\">Thangphu\\CarForRent\\Response\\CarResponse<\/a>"],[100,1,"<a href=\"Response\/UserResponse.php.html#7\">Thangphu\\CarForRent\\Response\\UserResponse<\/a>"],[100,1,"<a href=\"Route\/RouteManage.php.html#12\">Thangphu\\CarForRent\\Route\\routeManage<\/a>"],[100,5,"<a href=\"Service\/LoginAPIService.php.html#9\">Thangphu\\CarForRent\\Service\\LoginAPIService<\/a>"],[100,5,"<a href=\"Service\/LoginService.php.html#9\">Thangphu\\CarForRent\\Service\\LoginService<\/a>"],[0,6,"<a href=\"Service\/RegisterAPIService.php.html#8\">Thangphu\\CarForRent\\Service\\RegisterAPIService<\/a>"],[0,5,"<a href=\"Service\/RegisterService.php.html#8\">Thangphu\\CarForRent\\Service\\RegisterService<\/a>"],[0,1,"<a href=\"Service\/ServiceProvider.php.html#8\">Thangphu\\CarForRent\\Service\\ServiceProvider<\/a>"],[0,2,"<a href=\"Service\/TokenService.php.html#8\">Thangphu\\CarForRent\\Service\\TokenService<\/a>"],[0,8,"<a href=\"Service\/UploadImageService.php.html#10\">Thangphu\\CarForRent\\Service\\UploadImageService<\/a>"],[0,3,"<a href=\"bootstrap\/Application.php.html#7\">Thangphu\\CarForRent\\bootstrap\\Application<\/a>"],[0,2,"<a href=\"bootstrap\/BaseServiceProvider.php.html#5\">Thangphu\\CarForRent\\bootstrap\\BaseServiceProvider<\/a>"],[0,12,"<a href=\"bootstrap\/Container.php.html#10\">Thangphu\\CarForRent\\bootstrap\\Container<\/a>"],[38.88888888888889,12,"<a href=\"bootstrap\/Request.php.html#5\">Thangphu\\CarForRent\\bootstrap\\Request<\/a>"],[85,14,"<a href=\"bootstrap\/Response.php.html#7\">Thangphu\\CarForRent\\bootstrap\\Response<\/a>"],[100,2,"<a href=\"bootstrap\/Router.php.html#7\">Thangphu\\CarForRent\\bootstrap\\Router<\/a>"],[0,2,"<a href=\"varlidator\/CreateCarValidator.php.html#8\">Thangphu\\CarForRent\\varlidator\\CreateCarValidator<\/a>"],[80,4,"<a href=\"varlidator\/LoginValidator.php.html#8\">Thangphu\\CarForRent\\varlidator\\LoginValidator<\/a>"],[0,2,"<a href=\"varlidator\/RegisterValidator.php.html#8\">Thangphu\\CarForRent\\varlidator\\RegisterValidator<\/a>"],[0,35,"<a href=\"varlidator\/Validator.php.html#5\">Thangphu\\CarForRent\\varlidator\\Validator<\/a>"]], 'Class Complexity'))
+      .transition()
+      .duration(500)
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  nv.addGraph(function() {
+    var chart = nv.models.scatterChart()
+      .showDistX(true)
+      .showDistY(true)
+      .showLegend(false)
+      .forceX([0, 100]);
+    chart.tooltipContent(function(graph) {
+      return '<p>' + graph.point.class + '</p>';
+    });
+
+    chart.xAxis.axisLabel('Code Coverage (in percent)');
+    chart.yAxis.axisLabel('Method Complexity');
+
+    d3.select('#methodComplexity svg')
+      .datum(getComplexityData([[0,3,"<a href=\"App\/View.php.html#10\">Thangphu\\CarForRent\\App\\View::display<\/a>"],[0,1,"<a href=\"App\/View.php.html#22\">Thangphu\\CarForRent\\App\\View::handleViewJson<\/a>"],[0,1,"<a href=\"App\/View.php.html#32\">Thangphu\\CarForRent\\App\\View::handleViewTemplate<\/a>"],[100,1,"<a href=\"App\/View.php.html#41\">Thangphu\\CarForRent\\App\\View::redirect<\/a>"],[0,1,"<a href=\"Controllers\/API\/AuthApiController.php.html#30\">Thangphu\\CarForRent\\Controllers\\API\\AuthApiController::__construct<\/a>"],[0,4,"<a href=\"Controllers\/API\/AuthApiController.php.html#54\">Thangphu\\CarForRent\\Controllers\\API\\AuthApiController::loginCheck<\/a>"],[0,4,"<a href=\"Controllers\/API\/AuthApiController.php.html#86\">Thangphu\\CarForRent\\Controllers\\API\\AuthApiController::userCheck<\/a>"],[100,1,"<a href=\"Controllers\/AuthController.php.html#28\">Thangphu\\CarForRent\\Controllers\\AuthController::__construct<\/a>"],[100,1,"<a href=\"Controllers\/AuthController.php.html#51\">Thangphu\\CarForRent\\Controllers\\AuthController::login<\/a>"],[0,4,"<a href=\"Controllers\/AuthController.php.html#56\">Thangphu\\CarForRent\\Controllers\\AuthController::loginCheck<\/a>"],[100,2,"<a href=\"Controllers\/AuthController.php.html#83\">Thangphu\\CarForRent\\Controllers\\AuthController::logout<\/a>"],[0,1,"<a href=\"Controllers\/AuthController.php.html#94\">Thangphu\\CarForRent\\Controllers\\AuthController::createUser<\/a>"],[0,5,"<a href=\"Controllers\/AuthController.php.html#99\">Thangphu\\CarForRent\\Controllers\\AuthController::userCheck<\/a>"],[0,1,"<a href=\"Controllers\/CarController.php.html#23\">Thangphu\\CarForRent\\Controllers\\CarController::__construct<\/a>"],[0,1,"<a href=\"Controllers\/CarController.php.html#42\">Thangphu\\CarForRent\\Controllers\\CarController::createCarView<\/a>"],[0,5,"<a href=\"Controllers\/CarController.php.html#47\">Thangphu\\CarForRent\\Controllers\\CarController::storeCar<\/a>"],[100,1,"<a href=\"Controllers\/SiteController.php.html#13\">Thangphu\\CarForRent\\Controllers\\SiteController::__construct<\/a>"],[100,1,"<a href=\"Controllers\/SiteController.php.html#19\">Thangphu\\CarForRent\\Controllers\\SiteController::home<\/a>"],[83.33333333333334,3,"<a href=\"Database\/DatabaseConnect.php.html#14\">Thangphu\\CarForRent\\Database\\DatabaseConnect::getConnection<\/a>"],[100,1,"<a href=\"Model\/CarModel.php.html#16\">Thangphu\\CarForRent\\Model\\CarModel::getId<\/a>"],[100,1,"<a href=\"Model\/CarModel.php.html#24\">Thangphu\\CarForRent\\Model\\CarModel::setId<\/a>"],[100,1,"<a href=\"Model\/CarModel.php.html#32\">Thangphu\\CarForRent\\Model\\CarModel::getName<\/a>"],[100,1,"<a href=\"Model\/CarModel.php.html#40\">Thangphu\\CarForRent\\Model\\CarModel::setName<\/a>"],[100,1,"<a href=\"Model\/CarModel.php.html#48\">Thangphu\\CarForRent\\Model\\CarModel::getPrice<\/a>"],[100,1,"<a href=\"Model\/CarModel.php.html#56\">Thangphu\\CarForRent\\Model\\CarModel::setPrice<\/a>"],[100,1,"<a href=\"Model\/CarModel.php.html#64\">Thangphu\\CarForRent\\Model\\CarModel::getPicture<\/a>"],[100,1,"<a href=\"Model\/CarModel.php.html#72\">Thangphu\\CarForRent\\Model\\CarModel::setPicture<\/a>"],[100,1,"<a href=\"Model\/CarModel.php.html#80\">Thangphu\\CarForRent\\Model\\CarModel::getBrand<\/a>"],[100,1,"<a href=\"Model\/CarModel.php.html#88\">Thangphu\\CarForRent\\Model\\CarModel::setBrand<\/a>"],[100,1,"<a href=\"Model\/UserModel.php.html#15\">Thangphu\\CarForRent\\Model\\UserModel::getId<\/a>"],[100,1,"<a href=\"Model\/UserModel.php.html#23\">Thangphu\\CarForRent\\Model\\UserModel::setId<\/a>"],[100,1,"<a href=\"Model\/UserModel.php.html#31\">Thangphu\\CarForRent\\Model\\UserModel::getUsername<\/a>"],[100,1,"<a href=\"Model\/UserModel.php.html#39\">Thangphu\\CarForRent\\Model\\UserModel::setUsername<\/a>"],[100,1,"<a href=\"Model\/UserModel.php.html#47\">Thangphu\\CarForRent\\Model\\UserModel::getPassword<\/a>"],[100,1,"<a href=\"Model\/UserModel.php.html#55\">Thangphu\\CarForRent\\Model\\UserModel::setPassword<\/a>"],[100,1,"<a href=\"Model\/UserModel.php.html#63\">Thangphu\\CarForRent\\Model\\UserModel::getRole<\/a>"],[100,1,"<a href=\"Model\/UserModel.php.html#71\">Thangphu\\CarForRent\\Model\\UserModel::setRole<\/a>"],[0,1,"<a href=\"Repository\/CarRepository.php.html#17\">Thangphu\\CarForRent\\Repository\\CarRepository::__construct<\/a>"],[0,2,"<a href=\"Repository\/CarRepository.php.html#24\">Thangphu\\CarForRent\\Repository\\CarRepository::selectCar<\/a>"],[0,1,"<a href=\"Repository\/CarRepository.php.html#42\">Thangphu\\CarForRent\\Repository\\CarRepository::createCar<\/a>"],[100,1,"<a href=\"Repository\/UserRepository.php.html#15\">Thangphu\\CarForRent\\Repository\\UserRepository::__construct<\/a>"],[100,2,"<a href=\"Repository\/UserRepository.php.html#21\">Thangphu\\CarForRent\\Repository\\UserRepository::findUserByUserName<\/a>"],[0,2,"<a href=\"Repository\/UserRepository.php.html#34\">Thangphu\\CarForRent\\Repository\\UserRepository::findUserById<\/a>"],[0,2,"<a href=\"Repository\/UserRepository.php.html#49\">Thangphu\\CarForRent\\Repository\\UserRepository::findUserName<\/a>"],[0,1,"<a href=\"Repository\/UserRepository.php.html#60\">Thangphu\\CarForRent\\Repository\\UserRepository::createUser<\/a>"],[0,1,"<a href=\"Request\/CarRequest.php.html#17\">Thangphu\\CarForRent\\Request\\CarRequest::getName<\/a>"],[0,1,"<a href=\"Request\/CarRequest.php.html#25\">Thangphu\\CarForRent\\Request\\CarRequest::setName<\/a>"],[0,1,"<a href=\"Request\/CarRequest.php.html#33\">Thangphu\\CarForRent\\Request\\CarRequest::getPrice<\/a>"],[0,1,"<a href=\"Request\/CarRequest.php.html#41\">Thangphu\\CarForRent\\Request\\CarRequest::setPrice<\/a>"],[0,1,"<a href=\"Request\/CarRequest.php.html#49\">Thangphu\\CarForRent\\Request\\CarRequest::getPicture<\/a>"],[0,1,"<a href=\"Request\/CarRequest.php.html#57\">Thangphu\\CarForRent\\Request\\CarRequest::setPicture<\/a>"],[0,1,"<a href=\"Request\/CarRequest.php.html#65\">Thangphu\\CarForRent\\Request\\CarRequest::getBrand<\/a>"],[0,1,"<a href=\"Request\/CarRequest.php.html#73\">Thangphu\\CarForRent\\Request\\CarRequest::setBrand<\/a>"],[0,1,"<a href=\"Request\/CarRequest.php.html#78\">Thangphu\\CarForRent\\Request\\CarRequest::fromArray<\/a>"],[100,1,"<a href=\"Request\/LoginRequest.php.html#15\">Thangphu\\CarForRent\\Request\\LoginRequest::getUsername<\/a>"],[100,1,"<a href=\"Request\/LoginRequest.php.html#23\">Thangphu\\CarForRent\\Request\\LoginRequest::setUsername<\/a>"],[100,1,"<a href=\"Request\/LoginRequest.php.html#31\">Thangphu\\CarForRent\\Request\\LoginRequest::getPassword<\/a>"],[100,1,"<a href=\"Request\/LoginRequest.php.html#39\">Thangphu\\CarForRent\\Request\\LoginRequest::setPassword<\/a>"],[100,1,"<a href=\"Request\/LoginRequest.php.html#44\">Thangphu\\CarForRent\\Request\\LoginRequest::fromArray<\/a>"],[0,1,"<a href=\"Request\/RegisterRequest.php.html#14\">Thangphu\\CarForRent\\Request\\RegisterRequest::getUsername<\/a>"],[0,1,"<a href=\"Request\/RegisterRequest.php.html#22\">Thangphu\\CarForRent\\Request\\RegisterRequest::setUsername<\/a>"],[0,1,"<a href=\"Request\/RegisterRequest.php.html#30\">Thangphu\\CarForRent\\Request\\RegisterRequest::getPassword<\/a>"],[0,1,"<a href=\"Request\/RegisterRequest.php.html#38\">Thangphu\\CarForRent\\Request\\RegisterRequest::setPassword<\/a>"],[0,1,"<a href=\"Request\/RegisterRequest.php.html#46\">Thangphu\\CarForRent\\Request\\RegisterRequest::getPasswordConfirm<\/a>"],[0,1,"<a href=\"Request\/RegisterRequest.php.html#54\">Thangphu\\CarForRent\\Request\\RegisterRequest::setPasswordConfirm<\/a>"],[0,1,"<a href=\"Request\/RegisterRequest.php.html#59\">Thangphu\\CarForRent\\Request\\RegisterRequest::fromArray<\/a>"],[0,1,"<a href=\"Response\/CarResponse.php.html#7\">Thangphu\\CarForRent\\Response\\CarResponse::carResponse<\/a>"],[100,1,"<a href=\"Response\/UserResponse.php.html#13\">Thangphu\\CarForRent\\Response\\UserResponse::userResponse<\/a>"],[100,1,"<a href=\"Route\/RouteManage.php.html#14\">Thangphu\\CarForRent\\Route\\routeManage::run<\/a>"],[100,1,"<a href=\"Service\/LoginAPIService.php.html#13\">Thangphu\\CarForRent\\Service\\LoginAPIService::__construct<\/a>"],[100,3,"<a href=\"Service\/LoginAPIService.php.html#21\">Thangphu\\CarForRent\\Service\\LoginAPIService::login<\/a>"],[100,1,"<a href=\"Service\/LoginAPIService.php.html#33\">Thangphu\\CarForRent\\Service\\LoginAPIService::checkPassword<\/a>"],[100,1,"<a href=\"Service\/LoginService.php.html#13\">Thangphu\\CarForRent\\Service\\LoginService::__construct<\/a>"],[100,3,"<a href=\"Service\/LoginService.php.html#22\">Thangphu\\CarForRent\\Service\\LoginService::login<\/a>"],[100,1,"<a href=\"Service\/LoginService.php.html#34\">Thangphu\\CarForRent\\Service\\LoginService::checkPassword<\/a>"],[0,1,"<a href=\"Service\/RegisterAPIService.php.html#12\">Thangphu\\CarForRent\\Service\\RegisterAPIService::__construct<\/a>"],[0,3,"<a href=\"Service\/RegisterAPIService.php.html#17\">Thangphu\\CarForRent\\Service\\RegisterAPIService::register<\/a>"],[0,2,"<a href=\"Service\/RegisterAPIService.php.html#30\">Thangphu\\CarForRent\\Service\\RegisterAPIService::checkPassword<\/a>"],[0,1,"<a href=\"Service\/RegisterService.php.html#12\">Thangphu\\CarForRent\\Service\\RegisterService::__construct<\/a>"],[0,3,"<a href=\"Service\/RegisterService.php.html#17\">Thangphu\\CarForRent\\Service\\RegisterService::register<\/a>"],[0,1,"<a href=\"Service\/RegisterService.php.html#30\">Thangphu\\CarForRent\\Service\\RegisterService::checkPassword<\/a>"],[0,1,"<a href=\"Service\/ServiceProvider.php.html#10\">Thangphu\\CarForRent\\Service\\ServiceProvider::register<\/a>"],[0,1,"<a href=\"Service\/TokenService.php.html#11\">Thangphu\\CarForRent\\Service\\TokenService::__construct<\/a>"],[0,1,"<a href=\"Service\/TokenService.php.html#16\">Thangphu\\CarForRent\\Service\\TokenService::generate<\/a>"],[0,8,"<a href=\"Service\/UploadImageService.php.html#15\">Thangphu\\CarForRent\\Service\\UploadImageService::upload<\/a>"],[0,3,"<a href=\"bootstrap\/Application.php.html#10\">Thangphu\\CarForRent\\bootstrap\\Application::run<\/a>"],[0,1,"<a href=\"bootstrap\/BaseServiceProvider.php.html#8\">Thangphu\\CarForRent\\bootstrap\\BaseServiceProvider::__construct<\/a>"],[100,0,"<a href=\"bootstrap\/BaseServiceProvider.php.html#12\">Thangphu\\CarForRent\\bootstrap\\BaseServiceProvider::register<\/a>"],[0,1,"<a href=\"bootstrap\/BaseServiceProvider.php.html#14\">Thangphu\\CarForRent\\bootstrap\\BaseServiceProvider::getContainer<\/a>"],[0,2,"<a href=\"bootstrap\/Container.php.html#18\">Thangphu\\CarForRent\\bootstrap\\Container::bind<\/a>"],[0,2,"<a href=\"bootstrap\/Container.php.html#34\">Thangphu\\CarForRent\\bootstrap\\Container::make<\/a>"],[0,4,"<a href=\"bootstrap\/Container.php.html#49\">Thangphu\\CarForRent\\bootstrap\\Container::resolve<\/a>"],[0,4,"<a href=\"bootstrap\/Container.php.html#78\">Thangphu\\CarForRent\\bootstrap\\Container::resolveDependencies<\/a>"],[100,2,"<a href=\"bootstrap\/Request.php.html#10\">Thangphu\\CarForRent\\bootstrap\\Request::getPath<\/a>"],[100,1,"<a href=\"bootstrap\/Request.php.html#22\">Thangphu\\CarForRent\\bootstrap\\Request::method<\/a>"],[100,1,"<a href=\"bootstrap\/Request.php.html#27\">Thangphu\\CarForRent\\bootstrap\\Request::isGet<\/a>"],[100,1,"<a href=\"bootstrap\/Request.php.html#32\">Thangphu\\CarForRent\\bootstrap\\Request::isPost<\/a>"],[0,1,"<a href=\"bootstrap\/Request.php.html#37\">Thangphu\\CarForRent\\bootstrap\\Request::getRequestBody<\/a>"],[0,1,"<a href=\"bootstrap\/Request.php.html#42\">Thangphu\\CarForRent\\bootstrap\\Request::getRequestJsonBody<\/a>"],[0,5,"<a href=\"bootstrap\/Request.php.html#53\">Thangphu\\CarForRent\\bootstrap\\Request::getBody<\/a>"],[100,1,"<a href=\"bootstrap\/Response.php.html#22\">Thangphu\\CarForRent\\bootstrap\\Response::getTemplate<\/a>"],[100,1,"<a href=\"bootstrap\/Response.php.html#28\">Thangphu\\CarForRent\\bootstrap\\Response::setTemplate<\/a>"],[100,1,"<a href=\"bootstrap\/Response.php.html#37\">Thangphu\\CarForRent\\bootstrap\\Response::setStatusCode<\/a>"],[100,1,"<a href=\"bootstrap\/Response.php.html#42\">Thangphu\\CarForRent\\bootstrap\\Response::getStatusCode<\/a>"],[100,1,"<a href=\"bootstrap\/Response.php.html#47\">Thangphu\\CarForRent\\bootstrap\\Response::getRedirectUrl<\/a>"],[100,1,"<a href=\"bootstrap\/Response.php.html#52\">Thangphu\\CarForRent\\bootstrap\\Response::setRedirectUrl<\/a>"],[100,1,"<a href=\"bootstrap\/Response.php.html#60\">Thangphu\\CarForRent\\bootstrap\\Response::getData<\/a>"],[100,1,"<a href=\"bootstrap\/Response.php.html#68\">Thangphu\\CarForRent\\bootstrap\\Response::setData<\/a>"],[100,2,"<a href=\"bootstrap\/Response.php.html#73\">Thangphu\\CarForRent\\bootstrap\\Response::renderView<\/a>"],[100,1,"<a href=\"bootstrap\/Response.php.html#84\">Thangphu\\CarForRent\\bootstrap\\Response::redirect<\/a>"],[100,1,"<a href=\"bootstrap\/Response.php.html#93\">Thangphu\\CarForRent\\bootstrap\\Response::getUser<\/a>"],[100,1,"<a href=\"bootstrap\/Response.php.html#101\">Thangphu\\CarForRent\\bootstrap\\Response::setUser<\/a>"],[0,1,"<a href=\"bootstrap\/Response.php.html#106\">Thangphu\\CarForRent\\bootstrap\\Response::toJson<\/a>"],[100,1,"<a href=\"bootstrap\/Router.php.html#20\">Thangphu\\CarForRent\\bootstrap\\Router::get<\/a>"],[100,1,"<a href=\"bootstrap\/Router.php.html#25\">Thangphu\\CarForRent\\bootstrap\\Router::post<\/a>"],[0,2,"<a href=\"varlidator\/CreateCarValidator.php.html#10\">Thangphu\\CarForRent\\varlidator\\CreateCarValidator::createCarValidator<\/a>"],[80,4,"<a href=\"varlidator\/LoginValidator.php.html#10\">Thangphu\\CarForRent\\varlidator\\LoginValidator::validateUserLogin<\/a>"],[0,2,"<a href=\"varlidator\/RegisterValidator.php.html#10\">Thangphu\\CarForRent\\varlidator\\RegisterValidator::validateUser<\/a>"],[0,1,"<a href=\"varlidator\/Validator.php.html#28\">Thangphu\\CarForRent\\varlidator\\Validator::name<\/a>"],[0,1,"<a href=\"varlidator\/Validator.php.html#34\">Thangphu\\CarForRent\\varlidator\\Validator::value<\/a>"],[0,5,"<a href=\"varlidator\/Validator.php.html#40\">Thangphu\\CarForRent\\varlidator\\Validator::pattern<\/a>"],[0,3,"<a href=\"varlidator\/Validator.php.html#55\">Thangphu\\CarForRent\\varlidator\\Validator::customPattern<\/a>"],[0,5,"<a href=\"varlidator\/Validator.php.html#64\">Thangphu\\CarForRent\\varlidator\\Validator::required<\/a>"],[0,4,"<a href=\"varlidator\/Validator.php.html#72\">Thangphu\\CarForRent\\varlidator\\Validator::min<\/a>"],[0,4,"<a href=\"varlidator\/Validator.php.html#86\">Thangphu\\CarForRent\\varlidator\\Validator::max<\/a>"],[0,1,"<a href=\"varlidator\/Validator.php.html#100\">Thangphu\\CarForRent\\varlidator\\Validator::purify<\/a>"],[0,3,"<a href=\"varlidator\/Validator.php.html#105\">Thangphu\\CarForRent\\varlidator\\Validator::maxSize<\/a>"],[0,2,"<a href=\"varlidator\/Validator.php.html#116\">Thangphu\\CarForRent\\varlidator\\Validator::is_int<\/a>"],[0,2,"<a href=\"varlidator\/Validator.php.html#123\">Thangphu\\CarForRent\\varlidator\\Validator::equal<\/a>"],[0,2,"<a href=\"varlidator\/Validator.php.html#131\">Thangphu\\CarForRent\\varlidator\\Validator::getErrors<\/a>"],[0,2,"<a href=\"varlidator\/Validator.php.html#139\">Thangphu\\CarForRent\\varlidator\\Validator::isSuccess<\/a>"]], 'Method Complexity'))
+      .transition()
+      .duration(500)
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  function getComplexityData(data, label) {
+    var values = [];
+    $.each(data, function(key) {
+      var value = Math.round(data[key][0]*100) / 100;
+      values.push({
+        x: value,
+        y: data[key][1],
+        class: data[key][2],
+        size: 0.05,
+        shape: 'diamond'
+      });
+    });
+
+    return [
+      {
+        key: label,
+        values: values,
+        color: "#4572A7"
+      }
+    ];
+  }
+});
+  </script>
+ </body>
+</html>
