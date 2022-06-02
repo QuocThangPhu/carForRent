@@ -1,4 +1,5 @@
-<body style="background: aliceblue">
+<nav class="navbar bg-light">
+</nav>
 <div class="container">
     <div class="container-fluid" style="width: 50%; height: 800px; background: gainsboro; border-radius: 5%; border: solid 1px black">
         <form class="form-signin" action="storeCar" method="post" enctype="multipart/form-data">
@@ -56,4 +57,3 @@
         </form>
     </div>
 </div>
-</body>

@@ -1,4 +1,6 @@
 <body style="background: aliceblue">
+<nav class="navbar bg-light">
+</nav>
     <div class="container">
         <div class="container-fluid" style="width: 50%; height: 70%; background: gainsboro; border-radius: 5%; border: solid 1px black">
             <form class="form-signin" action="loginCheck" method="post">
