@@ -1,20 +1,19 @@
-<body style="background: aliceblue">
-<nav class="navbar bg-light">
-</nav>
-    <div class="container">
-        <div class="container-fluid" style="width: 50%; height: 70%; background: gainsboro; border-radius: 5%; border: solid 1px black">
+<section class="py-5" style="background: #888a85">
+    <div class="container" style="background: white">
+        <div class="container-fluid">
             <form class="form-signin" action="loginCheck" method="post">
-                <img class="mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72"
-                     height="72">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWds5526ohygFImcAhzDK-pqExf3ets--fYg&usqp=CAU" alt="" width="170"
+                      height="150">
                 <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-                <?php
-                if ($data != null && array_key_exists('errors', $data)) {
-                    echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+
+                <div class="container-fluid content" style="width: 50%; height: 600px; border-top: 20px">
+                    <?php
+                    if ($data != null && array_key_exists('errors', $data)) {
+                        echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
                     ' . $data["errors"] . '
                   </div>';
-                }
-                ?>
-                <div class="container-fluid content" style="width: 70%; height: 80%; border-top: 20px">
+                    }
+                    ?>
                     <label for="username" class="sr-only">Username</label>
                     <input type="text" id="username" name="username"
                            class="form-control "
@@ -29,9 +28,11 @@
                         </label>
                     </div>
                     <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-                    <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
                 </div>
             </form>
         </div>
     </div>
-</body>
+</section>
+<footer class="py-5 bg-dark">
+    <div class="container"><p class="m-0 text-center text-white">Carforent &copy; Diggory.me</p></div>
+</footer>

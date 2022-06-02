@@ -1,20 +1,20 @@
-<nav class="navbar bg-light">
-</nav>
-<div class="container">
-    <div class="container-fluid" style="width: 50%; height: 800px; background: gainsboro; border-radius: 5%; border: solid 1px black">
+<section class="py-5" style="background: #888a85">
+    <div class="container" style="background: white">
+    <div class="container-fluid">
         <form class="form-signin" action="storeCar" method="post" enctype="multipart/form-data">
-            <img class="mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72"
-                 height="72">
-            <h1 class="h3 mb-3 font-weight-normal">Create a car</h1>
-            <?php
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWds5526ohygFImcAhzDK-pqExf3ets--fYg&usqp=CAU" alt="" width="170"
+                 height="150">
 
-            if (isset($data['errors'])&& !is_array($data['errors'])) {
-                echo '<p class="alert alert-danger alert-dismissible fade show" style="color: red; font-style: italic">';
-                echo $data['errors'];
-                echo '</p>';
-            }
-            ?>
-            <div class="container-fluid content" style="width: 70%; height: 800px; border-top: 20px">
+            <div class="container-fluid content" style="width: 50%; height: 700px; border-top: 20px">
+                <h1 class="h3 mb-3 font-weight-normal">Create a car</h1>
+                <?php
+
+                if (isset($data['errors'])&& !is_array($data['errors'])) {
+                    echo '<p class="alert alert-danger alert-dismissible fade show" style="color: red; font-style: italic">';
+                    echo $data['errors'];
+                    echo '</p>';
+                }
+                ?>
                 <label for="username" class="sr-only">Name: </label>
                 <input type="text" id="name" name="name"
                        class="form-control "
@@ -57,3 +57,4 @@
         </form>
     </div>
 </div>
+</section>
