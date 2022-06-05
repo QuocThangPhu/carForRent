@@ -39,7 +39,7 @@
                 </ul>
                 <?php if (!isset($_SESSION['user_id'])) {
                     echo '<a class="nav-link active" aria-current="page" href="/login">Login</a>
-                            <a class="nav-link active" aria-current="page" href="/createUser">Register</a>';
+                            <a class="nav-link active" aria-current="page" href="/register">Register</a>';
                     ?>
                 <?php } else {
                     echo '

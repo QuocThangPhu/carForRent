@@ -5,7 +5,7 @@ namespace Thangphu\Test\Controller;
 use PHPUnit\Framework\TestCase;
 use Thangphu\CarForRent\bootstrap\Request;
 use Thangphu\CarForRent\bootstrap\Response;
-use Thangphu\CarForRent\Controllers\AuthController;
+use Thangphu\CarForRent\Controllers\LoginController;
 use Thangphu\CarForRent\Request\LoginRequest;
 use Thangphu\CarForRent\Request\RegisterRequest;
 use Thangphu\CarForRent\Response\UserResponse;
@@ -28,15 +28,15 @@ class AuthControllerTest extends TestCase
     private $registerService;
 
     /**
-     * @return AuthController
+     * @return LoginController
      */
-    public function getAuthController(): AuthController
+    public function getAuthController(): LoginController
     {
         $request = new Request();
         $_SERVER['REQUEST_METHOD'] = 'POST';
         $_SESSION['user_id'] = 1;
         $_SESSION['username'] = 'admin';
-        $authController = new AuthController(
+        $authController = new LoginController(
             $this->loginService,
             $this->loginValidator,
             $request,
@@ -67,7 +67,7 @@ class AuthControllerTest extends TestCase
     public function testLoginView()
     {
         $response = new Response();
-        $authController = new AuthController(
+        $authController = new LoginController(
             $this->loginService,
             $this->loginValidator,
             $this->request,
@@ -91,7 +91,7 @@ class AuthControllerTest extends TestCase
     {
         $request = new Request();
         $_SERVER['REQUEST_METHOD'] = 'GET';
-        $authController = new AuthController(
+        $authController = new LoginController(
             $this->loginService,
             $this->loginValidator,
             $request,

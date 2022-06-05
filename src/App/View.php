@@ -42,4 +42,9 @@ class View
     {
         header("Location: $url");
     }
+
+    public static function renderView(string $string, array $message)
+    {
+
+    }
 }

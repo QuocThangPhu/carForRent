@@ -10,11 +10,11 @@ class LoginValidator
     public function validateUserLogin(LoginRequest $user)
     {
         if (empty($user->getUsername()) || empty($user->getPassword())) {
-            throw new ValidateException("Username or password can't be empty");
+            return ["error"=>true, "message"=>"Username or password cannot be empty"];
         }
         if (strlen($user->getUsername()) > 30) {
-            throw new ValidateException("Username is not more than 30 characters");
+            return ["error"=>true, "message"=>"Username cann't more than 30 character"];
         }
-        return true;
+        return [];
     }
 }

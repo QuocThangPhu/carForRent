@@ -18,8 +18,7 @@
     ],
     "require-dev": {
         "phpunit/phpunit": "^9",
-        "vimeo/psalm": "^4.23",
-      "ext-xdebug": "*"
+        "vimeo/psalm": "^4.23"
     },
   "require": {
     "ext-pdo": "*",

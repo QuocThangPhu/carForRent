@@ -4,25 +4,25 @@ namespace Thangphu\Test\bootstrap;
 
 use PHPUnit\Framework\TestCase;
 use Thangphu\CarForRent\bootstrap\Router;
-use Thangphu\CarForRent\Controllers\AuthController;
+use Thangphu\CarForRent\Controllers\LoginController;
 
 class RouterTest extends TestCase
 {
     public function testGet()
     {
-        Router::get('/login', [AuthController::class, 'index']);
+        Router::get('/login', [LoginController::class, 'index']);
         $routes = Router::$routes;
         $result = $routes['GET']['/login'];
-        $expected = [AuthController::class, 'index'];
+        $expected = [LoginController::class, 'index'];
         $this->assertEquals($expected,$result);
     }
 
     public function testPost()
     {
-        Router::post('/login', [AuthController::class, 'login']);
+        Router::post('/login', [LoginController::class, 'login']);
         $routes = Router::$routes;
         $result = $routes['POST']['/login'];
-        $expected = [AuthController::class, 'login'];
+        $expected = [LoginController::class, 'login'];
         $this->assertEquals($expected,$result);
     }
 }
