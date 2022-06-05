@@ -2,73 +2,44 @@
 
 namespace Thangphu\CarForRent\bootstrap;
 
+use Thangphu\CarForRent\App\View;
 use Thangphu\CarForRent\bootstrap\Request;
-use Thangphu\CarForRent\bootstrap\Router;
 use Thangphu\CarForRent\bootstrap\Response;
-use Thangphu\CarForRent\bootstrap\Controller;
+use Thangphu\CarForRent\Service;
+use Closure;
+use Exception;
+use ReflectionClass;
+use ReflectionException;
 
 class Application
 {
-    /**
-     * @var string
-     */
-    public static string $ROOT_DIR;
 
-    /**
-     * @var Router
-     */
-    public Router $router;
-
-    /**
-     * @var Request
-     */
-    public Request $request;
-
-    /**
-     * @var Response
-     */
-    public Response $response;
-
-    /**
-     * @var Application
-     */
-    public static Application $app;
-
-    /**
-     * @var Controller
-     */
-    public Controller $controller;
-
-    /**
-     * @param $rootPath
-     */
-    public function __construct($rootPath)
+    public function run($request, $responseView, $provider)
     {
-        self::$ROOT_DIR = $rootPath;
-        $this->request = new Request();
-        $this->response = new Response();
-        self::$app = $this;
-        $this->router = new Router($this->request, $this->response);
-    }
 
-    /**
-     * @return void
-     */
-    public function run(): void
-    {
-        echo $this->router->resolve();
-    }
+        $container = $provider->getContainer();
 
-    /**
-     * @return Controller
-     */
-    public function getController(): Controller
-    {
-        return $this->controller;
-    }
+        $path = $request->getPath();
+        $method = $request->method();
+        $response = Router::$routes[$method][$path] ?? false;
+        if (!$response) {
+            $responseView->renderView('404');
+            View::display($$responseView);
+            return;
+        }
+        $callback = $response;
+        if (is_string($callback)) {
+            $responseView->renderView($callback);
+        }
+        if (gettype($callback) == 'object') {
+            $callback();
+        }
 
-    public function setController(Controller $controller): void
-    {
-        $this->controller = $controller;
+        $currenController = $callback[0];
+        $action = $callback[1];
+        $controller = $container->make($currenController);
+
+        $response =  $controller->{$action}();
+        View::display($response);
     }
 }

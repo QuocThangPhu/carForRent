@@ -1,5 +1,5 @@
 <?php
-    
+
 namespace Thangphu\CarForRent\bootstrap;
 
 class Request
@@ -10,11 +10,10 @@ class Request
     public function getPath()
     {
         $path = $_SERVER['REQUEST_URI'] ?? '/';
-        $position = strpos($path, '?');
-        if ($position === false) {
+        if (!strpos($path, '?')) {
             return $path;
         }
-        return substr($path, 0, $position);
+        return substr($path, 0, strpos($path, '?'));
     }
 
     /**
@@ -29,6 +28,7 @@ class Request
     {
         return $this->method() === 'GET';
     }
+
     public function isPost()
     {
         return $this->method() === 'POST';
@@ -40,16 +40,16 @@ class Request
     public function getBody()
     {
         $body = [];
-        if($this->method() === 'GET'){
+        if ($this->isGet()) {
             foreach ($_GET as $key => $value) {
                 $body[$key] = filter_input(INPUT_GET, $key, FILTER_SANITIZE_SPECIAL_CHARS);
             }
         }
-        if($this->method() === 'POST'){
-        foreach ($_POST as $key => $value) {
-            $body[$key] = filter_input(INPUT_POST, $key, FILTER_SANITIZE_SPECIAL_CHARS);
+        if ($this->isPost()) {
+            foreach ($_POST as $key => $value) {
+                $body[$key] = filter_input(INPUT_POST, $key, FILTER_SANITIZE_SPECIAL_CHARS);
+            }
         }
-    }
         return $body;
     }
 }

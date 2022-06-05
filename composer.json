@@ -5,11 +5,24 @@
             "Thangphu\\CarForRent\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Thangphu\\Test\\": "tests/"
+        }
+    },
     "authors": [
         {
             "name": "ThangPhu-nfq",
             "email": "thang.phu@nfq.asia"
         }
     ],
-    "require": {}
+    "require-dev": {
+        "phpunit/phpunit": "^9",
+        "vimeo/psalm": "^4.23",
+      "ext-xdebug": "*"
+    },
+  "require": {
+    "ext-pdo": "*",
+        "vlucas/phpdotenv": "^5.4"
+  }
 }

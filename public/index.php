@@ -1,22 +1,22 @@
 <?php
 
-require_once __DIR__.'/../vendor/autoload.php';
+use Thangphu\CarForRent\bootstrap\Request;
+use Thangphu\CarForRent\bootstrap\Response;
+use Thangphu\CarForRent\Route\RouteManage;
+
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
+require '../vendor/autoload.php';
 
-use Thangphu\CarForRent\Controllers\AuthController;
 use Thangphu\CarForRent\bootstrap\Application;
-use Thangphu\CarForRent\Controllers\SiteController;
+use Thangphu\CarForRent\Database\DatabaseConnect;
+use Thangphu\CarForRent\Service\ServiceProvider;
 
-$application = new Application( dirname(__DIR__));
+session_start();
 
-$application->router->get('/',[new SiteController(), 'home']);
-$application->router->get('/contact',[new SiteController(), 'contact']);
-$application->router->post('/contact', [new SiteController(), 'handleContact']);
-
-$application->router->get('/login', [new AuthController(), 'login']);
-$application->router->post('/login', [new AuthController(), 'login']);
-$application->router->get('/register', [new AuthController(), 'register']);
-$application->router->post('/register', [new AuthController(), 'register']);
-
-$application->run();
+RouteManage::run();
+$app = new Application();
+$request = new Request();
+$responseView = new Response();
+$provider = new ServiceProvider();
+$app->run($request, $responseView, $provider);

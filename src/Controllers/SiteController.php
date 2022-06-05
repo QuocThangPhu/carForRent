@@ -2,45 +2,20 @@
 
 namespace Thangphu\CarForRent\Controllers;
 
-use Thangphu\CarForRent\bootstrap\Application;
-use Thangphu\CarForRent\bootstrap\Controller;
+use Thangphu\CarForRent\App\View;
 use Thangphu\CarForRent\bootstrap\Request;
+use Thangphu\CarForRent\bootstrap\Response;
 
-class SiteController extends Controller
+class SiteController
 {
+    protected Response $response;
+    public function __construct(Response $response)
+    {
+        $this->response = $response;
+    }
 
     public function home()
     {
-        $params = [
-            'name' => "Sayno"
-        ];
-        return $this->render('home', $params);
+        return $this->response->renderView('home');
     }
-    /**
-     * @return string|string[]
-     */
-    public function contact()
-    {
-        return $this->render('contact');
-    }
-
-    /**
-     * @return string
-     */
-    public function handleContact(Request $request)
-    {
-        $body = $request->getBody();
-        return 'handling submittid';
-    }
-
-    /**
-     * @param $number1
-     * @param $number2
-     * @return string
-     */
-//    public function sum($number1, $number2)
-//    {
-//        $finalnumber = $number1 + $number2;
-//        return $finalnumber;
-//    }
 }
