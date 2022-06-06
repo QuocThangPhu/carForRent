@@ -19,7 +19,7 @@ class LoginValidatorTest extends TestCase
         $loginRequest->fromArray($param);
         $loginValid = new LoginValidator();
         $result = $loginValid->validateUserLogin($loginRequest);
-        $this->assertEquals(true, $result);
+        $this->assertEquals([], $result);
     }
 
     /**
@@ -30,8 +30,8 @@ class LoginValidatorTest extends TestCase
         $loginRequest = new LoginRequest();
         $loginRe = $loginRequest->fromArray($param);
         $loginValid = new LoginValidator();
-        $this->expectException(ValidateException::class);
-        $loginValid->validateUserLogin($loginRe);
+        $result = $loginValid->validateUserLogin($loginRe);
+        $this->assertTrue($result['error']);
     }
 
     public function loginValidatorProvider()
@@ -60,6 +60,13 @@ class LoginValidatorTest extends TestCase
                 'param' =>[
                     'id' => 1,
                     'username' => '',
+                    'password' => '2234234'
+                ],
+            ],
+            'user-response-3' => [
+                'param' =>[
+                    'id' => 1,
+                    'username' => 'asdhadgasgdahdawiqeyqweiuqweqwegdasdahdgashdgahadashdahsdha',
                     'password' => '2234234'
                 ],
             ]

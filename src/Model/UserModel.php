@@ -7,6 +7,7 @@ class UserModel
     private int $id;
     private string $username;
     private string $password;
+    private string $role;
 
     /**
      * @return int
@@ -54,5 +55,21 @@ class UserModel
     public function setPassword(string $password): void
     {
         $this->password = $password;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRole(): string
+    {
+        return $this->role;
+    }
+
+    /**
+     * @param string $role
+     */
+    public function setRole(string $role): void
+    {
+        $this->role = $role;
     }
 }

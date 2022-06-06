@@ -5,7 +5,7 @@ namespace Thangphu\Test\Route;
 use PHPUnit\Framework\TestCase;
 use Thangphu\CarForRent\bootstrap\Request;
 use Thangphu\CarForRent\bootstrap\Router;
-use Thangphu\CarForRent\Controllers\AuthController;
+use Thangphu\CarForRent\Controllers\LoginController;
 use Thangphu\CarForRent\Controllers\SiteController;
 use Thangphu\CarForRent\Route\RouteManage;
 
@@ -16,7 +16,7 @@ class RouteManageTest extends TestCase
      * @dataProvider routesProvider
      * @return void
      */
-    public function testRuns($param, $expected)
+    public function testRuns($param, $expected): void
     {
         RouteManage::run();
         $_SERVER['REQUEST_METHOD'] = $param['method'];
@@ -44,14 +44,14 @@ class RouteManageTest extends TestCase
                     'path' => '/login',
                     'method' => 'GET'
                 ],
-                'expected' => [AuthController::class, 'login']
+                'expected' => [LoginController::class, 'login']
             ],
             'route-3' => [
                 'param' => [
-                    'path' => '/loginCheck',
+                    'path' => '/login',
                     'method' => 'POST'
                 ],
-                'expected' => [AuthController::class, 'loginCheck']
+                'expected' => [LoginController::class, 'login']
             ]
         ];
     }

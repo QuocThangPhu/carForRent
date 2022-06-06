@@ -4,12 +4,14 @@ namespace Thangphu\CarForRent\bootstrap;
 
 use Thangphu\CarForRent\Model\UserModel;
 
-class Response
+class Response extends \Thangphu\CarForRent\Request\LoginRequest
 {
     const HTTP_OK = 200;
     const HTTP_NOT_FOUND = 404;
-    const HTTP_INTERNAL_SERVER_ERROR = 500;
     const HTTP_UNAUTHORIZED = 401;
+    const HTTP_FORBIDDEN = 403;
+    const HTTP_BAD_REQUEST = 400;
+    const HTTP_INTERNAL_SERVER_ERROR = 500;
 
     protected ?string $template = null;
     protected int $statusCode;
@@ -99,5 +101,12 @@ class Response
     public function setUser(UserModel $user): void
     {
         $this->user = $user;
+    }
+
+    public function toJson(array $data, int $statusCode = self::HTTP_OK)
+    {
+        $this->setStatusCode($statusCode);
+        $this->setData([...$data]);
+        return $this;
     }
 }

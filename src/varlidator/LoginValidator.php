@@ -2,7 +2,6 @@
 
 namespace Thangphu\CarForRent\varlidator;
 
-use Dotenv\Exception\ValidationException;
 use Thangphu\CarForRent\Exception\ValidateException;
 use Thangphu\CarForRent\Request\LoginRequest;
 
@@ -11,8 +10,11 @@ class LoginValidator
     public function validateUserLogin(LoginRequest $user)
     {
         if (empty($user->getUsername()) || empty($user->getPassword())) {
-            throw new ValidateException("Username or password can't be empty");
+            return ["error"=>true, "message"=>"Username or password cannot be empty"];
         }
-        return true;
+        if (strlen($user->getUsername()) > 30) {
+            return ["error"=>true, "message"=>"Username cann't more than 30 character"];
+        }
+        return [];
     }
 }
