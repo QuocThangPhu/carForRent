@@ -38,36 +38,27 @@ class CarController
         $this->uploadImageService = $uploadImageService;
     }
 
-    public function createCarView()
+    public function createNewCar()
     {
-        return $this->response->renderView('createCar');
-    }
-
-    public function storeCar()
-    {
-        $errorMessage = '';
-        try {
-            if ($this->request->isPost()) {
-                $requestData = $this->request->getBody();
-                $isUploadImage = $this->uploadImageService->upload($_FILES['picture']);
-                $requestData['picture'] = $isUploadImage;
-                $this->carRequest->fromArray($requestData);
-                $isCarValid = $this->carValidator->createCarValidator($this->carRequest);
-                if (is_array($isCarValid)) {
-                    return $this->response->renderView('createCar', [
-                        'errors' => $isCarValid
-                    ]);
-                }
-                $isSuccess = $this->carRepository->createCar($this->carRequest);
-                if ($isSuccess) {
-                    return $this->response->redirect('/');
-                }
-                $errorMessage = 'Somethings is wrong';
-            }
-        } catch (\Exception $exception) {
-            $errorMessage = $exception->getMessage();
+        if (!$this->request->isPost()) {
+            return $this->response->renderView('createCar');
         }
-        //return view
+        $requestData = $this->request->getBody();
+        $requestData['picture'] = $_FILES['picture']['name'];
+        $this->carRequest->fromArray($requestData);
+        $isCarValid = $this->carValidator->createCarValidator($this->carRequest);
+        if (is_array($isCarValid)) {
+            return $this->response->renderView('createCar', [
+                'errors' => $isCarValid
+            ]);
+        }
+        $isUploadImage = $this->uploadImageService->upload($_FILES['picture']);
+        $this->carRequest->setPicture($isUploadImage);
+        $isSuccess = $this->carRepository->createCar($this->carRequest);
+        if ($isSuccess) {
+            return $this->response->redirect('/');
+        }
+        $errorMessage = 'Somethings is wrong';
         return $this->response->renderView('createCar', [
             'errors' => $errorMessage
         ]);

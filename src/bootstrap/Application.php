@@ -10,7 +10,6 @@ class Application
     public function run($request, $responseView, $provider)
     {
         $container = $provider->getContainer();
-
         $path = $request->getPath();
         $method = $request->method();
         $response = Router::$routes[$method][$path] ?? false;
@@ -23,11 +22,9 @@ class Application
         if (is_string($callback)) {
             $responseView->renderView($callback);
         }
-
         $currenController = $callback[0];
         $action = $callback[1];
         $controller = $container->make($currenController);
-
         $response =  $controller->{$action}();
         View::display($response);
     }

@@ -11,7 +11,7 @@ abstract class BaseServiceProvider
     }
     abstract public function register();
 
-    public function getContainer()
+    public function getContainer(): Container
     {
         $this->register();
         return $this->provider;

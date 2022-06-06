@@ -34,12 +34,12 @@ class LoginController extends BaseController
             return $this->response->renderView('login');
         }
         $this->loginRequest->fromArray($this->request->getBody());
-        $this->loginValidator->validateUserLogin($this->loginRequest);
-        if (!empty($isLoginFormVaild)) {
+        $isLoginFormValid = $this->loginValidator->validateUserLogin($this->loginRequest);
+        if (!empty($isLoginFormValid)) {
             $message = [
                 'username' => $this->loginRequest->getUsername(),
                 'password' => $this->loginRequest->getPassword(),
-                'errors' => $isLoginFormVaild['message']
+                'errors' => $isLoginFormValid['message']
             ];
             return $this->response->renderView('login', $message);
         }

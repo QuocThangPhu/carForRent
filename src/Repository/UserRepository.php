@@ -57,7 +57,7 @@ class UserRepository
         }
     }
 
-    public function createUser(RegisterRequest $registerRequest)
+    public function createUser(RegisterRequest $registerRequest): ?UserModel
     {
         $password = password_hash($registerRequest->getPassword(), PASSWORD_BCRYPT);
         $newUser = $this->connection->prepare("INSERT INTO user (username, password, role) VALUES (?, ?, ?)");

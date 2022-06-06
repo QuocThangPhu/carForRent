@@ -17,7 +17,7 @@ class RegisterAPIService
     public function register(RegisterRequest $user)
     {
         $existUser = $this->userRepository->findUserName($user->getUsername());
-        if ($existUser == true && $this->checkPassword($user->getPassword(), $user->getPasswordConfirm())) {
+        if ($existUser && $this->checkPassword($user->getPassword(), $user->getPasswordConfirm())) {
             $newUser = $this->userRepository->createUser($user);
             $_SESSION['user_id'] = $newUser->getId();
             $_SESSION['username'] = $newUser->getUsername();
@@ -29,6 +29,6 @@ class RegisterAPIService
 
     public function checkPassword($password, $passwordConfirm)
     {
-        return $password == $passwordConfirm ? true: false;
+        return $password == $passwordConfirm;
     }
 }

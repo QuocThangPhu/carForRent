@@ -1,7 +1,7 @@
 <section class="py-5" style="background: #888a85">
     <div class="container" style="background: white; width: 40%; height: 700px;">
     <div class="container-fluid">
-        <form class="form-signin" action="storeCar" method="post" enctype="multipart/form-data">
+        <form class="form-signin" action="createCar" method="post" enctype="multipart/form-data">
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWds5526ohygFImcAhzDK-pqExf3ets--fYg&usqp=CAU" alt="" width="170"
                  height="150">
 

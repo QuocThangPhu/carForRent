@@ -4,17 +4,14 @@ namespace Thangphu\CarForRent\Controllers\API;
 
 use Thangphu\CarForRent\bootstrap\Request;
 use Thangphu\CarForRent\bootstrap\Response;
+use Thangphu\CarForRent\Controllers\BaseController;
 use Thangphu\CarForRent\Request\LoginRequest;
-use Thangphu\CarForRent\Request\RegisterRequest;
 use Thangphu\CarForRent\Response\UserResponse;
 use Thangphu\CarForRent\Service\LoginAPIService;
-use Thangphu\CarForRent\Service\RegisterAPIService;
-use Thangphu\CarForRent\Service\RegisterService;
 use Thangphu\CarForRent\Service\TokenService;
 use Thangphu\CarForRent\varlidator\LoginValidator;
-use Thangphu\CarForRent\varlidator\RegisterValidator;
 
-class AuthApiController
+class LoginApiController extends BaseController
 {
     protected Request $request;
     protected Response $response;
@@ -23,9 +20,6 @@ class AuthApiController
     protected LoginRequest $loginRequest;
     protected LoginValidator $loginValidator;
     protected TokenService $tokenService;
-    protected RegisterRequest $registerRequest;
-    protected RegisterValidator $registerValidator;
-    protected RegisterAPIService $registerApiService;
 
     public function __construct(
         Request $request,
@@ -35,25 +29,17 @@ class AuthApiController
         LoginRequest $loginRequest,
         LoginValidator $loginValidator,
         TokenService $tokenService,
-        RegisterRequest $registerRequest,
-        RegisterValidator $registerValidator,
-        RegisterAPIService $registerApiService
     ) {
-        $this->request = $request;
-        $this->response = $response;
+        parent::__construct($request, $response);
         $this->loginApiService = $loginApiService;
         $this->userResponse = $userResponse;
         $this->loginRequest = $loginRequest;
         $this->loginValidator = $loginValidator;
         $this->tokenService = $tokenService;
-        $this->registerRequest = $registerRequest;
-        $this->registerValidator = $registerValidator;
-        $this->registerApiService = $registerApiService;
     }
 
-    public function loginCheck()
+    public function login()
     {
-        // handle request
         try {
             $errorMessage = '';
             if ($this->request->isPost()) {
@@ -77,36 +63,6 @@ class AuthApiController
         } catch (\Exception $exception) {
             $errorMessage = $exception->getMessage();
         }
-        //return view
-        return $this->response->toJson([
-            'message' => $errorMessage
-        ], Response::HTTP_UNAUTHORIZED);
-    }
-
-    public function userCheck()
-    {
-        $errorMessage = '';
-        try {
-            if ($this->request->isPost()) {
-                $this->registerRequest->fromArray($this->request->getRequestJsonBody());
-                $this->registerValidator->validateUser($this->registerRequest);
-                $isSuccess = $this->registerApiService->register($this->registerRequest);
-                if ($isSuccess) {
-                    $token = $this->tokenService->generate($isSuccess);
-                    return $this->response->toJson([
-                        'data' => [
-                            ...$this->userResponse->userResponse($isSuccess),
-                            'token' => $token
-                        ],
-                        'message' => $errorMessage
-                    ], Response::HTTP_OK);
-                }
-                $errorMessage = 'Somethings is wrong';
-            }
-        } catch (\Exception $exception) {
-            $errorMessage = $exception->getMessage();
-        }
-        //return view
         return $this->response->toJson([
             'message' => $errorMessage
         ], Response::HTTP_UNAUTHORIZED);

@@ -11,35 +11,31 @@ use Thangphu\CarForRent\Response\CarResponse;
 class CarRepository
 {
     private PDO $connection;
-    private CarModel $car;
-    private CarResponse $carResponse;
 
     public function __construct(CarModel $car, CarResponse $carResponse)
     {
         $this->connection = DatabaseConnect::getConnection();
-        $this->car = $car;
-        $this->carResponse = $carResponse;
     }
 
-    public function selectCar()
+    public function selectCar(): array
     {
         $exitCar = $this->connection->prepare("SELECT * FROM car ");
         $exitCar->execute();
         $rows = $exitCar->fetchAll();
         $cars = [];
         foreach ($rows as $row) {
-            $this->car->setId($row['id']);
-            $this->car->setName($row['name']);
-            $this->car->setPrice($row['price']);
-            $this->car->setPicture($row['picture']);
-            $this->car->setBrand($row['brand']);
-            $carResponse = $this->carResponse->carResponse($this->car);
-            array_push($cars, $carResponse);
+            $cars[] = [
+                'id' => $row['id'],
+                'name' => $row['name'],
+                'picture' => $row['picture'],
+                'brand' => $row['brand'],
+                'price' => $row['price']
+            ];
         }
         return $cars;
     }
 
-    public function createCar(CarRequest $carRequest)
+    public function createCar(CarRequest $carRequest): bool
     {
         $newCar = $this->connection->prepare("INSERT INTO car (name, price, picture, brand) VALUES (?, ?, ?, ?)");
             $newCar->execute([$carRequest->getName(), $carRequest->getPrice(), $carRequest->getPicture(), $carRequest->getBrand()]);
