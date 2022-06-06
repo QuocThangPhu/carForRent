@@ -9,7 +9,7 @@
                 <h1 class="h3 mb-3 font-weight-normal">Create a car</h1>
                 <?php
 
-                if (isset($data['errors'])&& !is_array($data['errors'])) {
+                if (isset($data['errors']) && !is_array($data['errors'])) {
                     echo '<p class="alert alert-danger alert-dismissible fade show" style="color: red; font-style: italic">';
                     echo $data['errors'];
                     echo '</p>';

@@ -45,6 +45,5 @@ class View
 
     public static function renderView(string $string, array $message)
     {
-
     }
 }

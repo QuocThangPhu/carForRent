@@ -6,7 +6,6 @@ use Thangphu\CarForRent\App\View;
 
 class Application
 {
-
     public function run($request, $responseView, $provider)
     {
         $container = $provider->getContainer();

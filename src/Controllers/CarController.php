@@ -21,9 +21,9 @@ class CarController
     protected UploadImageService $uploadImageService;
 
     public function __construct(
-        CarResponse   $carResponse,
-        Response      $response,
-        Request       $request,
+        CarResponse $carResponse,
+        Response $response,
+        Request $request,
         CarRequest $carRequest,
         CreateCarValidator $carValidator,
         CarRepository $carRepository,

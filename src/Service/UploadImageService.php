@@ -41,7 +41,7 @@ class UploadImageService
             throw new UploadImageException("Error: Please select a valid file format.");
         }
         if (move_uploaded_file($file["tmp_name"], $path . $filename)) {
-            return '/upload/'. $filename;
+            return '/upload/' . $filename;
         } else {
             throw new UploadImageException("Error: There was an error uploading your file.");
         }
