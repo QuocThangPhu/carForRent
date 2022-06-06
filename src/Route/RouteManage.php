@@ -21,7 +21,7 @@ class routeManage
         Router::get('/register', [RegisterController::class, 'register']);
         Router::post('/register', [RegisterController::class, 'register']);
         Router::post('/api/register', [RegisterApiController::class, 'register']);
-        Router::post('/api/loginCheck', [LoginApiController::class, 'login']);
+        Router::post('/api/login', [LoginApiController::class, 'login']);
         Router::post('/logout', [LoginController::class, 'logout']);
 
         Router::get('/createCar', [CarController::class, 'createNewCar']);

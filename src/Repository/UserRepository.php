@@ -51,9 +51,9 @@ class UserRepository
         $userWasFound = $this->connection->prepare("SELECT * FROM user WHERE username = ? ");
         $userWasFound->execute([$username]);
         if ($userWasFound->fetch()) {
-            return false;
-        } else {
             return true;
+        } else {
+            return false;
         }
     }
 

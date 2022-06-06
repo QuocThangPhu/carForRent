@@ -12,7 +12,7 @@ class CarRepository
 {
     private PDO $connection;
 
-    public function __construct(CarModel $car, CarResponse $carResponse)
+    public function __construct()
     {
         $this->connection = DatabaseConnect::getConnection();
     }

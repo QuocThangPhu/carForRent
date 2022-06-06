@@ -16,7 +16,7 @@ class RouteManageTest extends TestCase
      * @dataProvider routesProvider
      * @return void
      */
-    public function testRuns($param, $expected)
+    public function testRuns($param, $expected): void
     {
         RouteManage::run();
         $_SERVER['REQUEST_METHOD'] = $param['method'];
@@ -48,10 +48,10 @@ class RouteManageTest extends TestCase
             ],
             'route-3' => [
                 'param' => [
-                    'path' => '/loginCheck',
+                    'path' => '/login',
                     'method' => 'POST'
                 ],
-                'expected' => [LoginController::class, 'loginCheck']
+                'expected' => [LoginController::class, 'login']
             ]
         ];
     }

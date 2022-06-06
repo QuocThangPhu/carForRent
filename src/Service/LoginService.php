@@ -17,7 +17,6 @@ class LoginService
 
     /**
      * @param UserModel $userInput
-     * @return bool
      */
     public function login(LoginRequest $userInput)
     {
@@ -25,10 +24,10 @@ class LoginService
         if ($existUser && $this->checkPassword($userInput->getPassword(), $existUser->getPassword())) {
             $_SESSION['user_id'] = $existUser->getId();
             $_SESSION['username'] = $existUser->getUsername();
-            return true;
+            return $existUser;
         }
 
-        return false;
+        return null;
     }
 
     public function checkPassword($plainPassword, $password)

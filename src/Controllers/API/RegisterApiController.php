@@ -7,7 +7,7 @@ use Thangphu\CarForRent\bootstrap\Response;
 use Thangphu\CarForRent\Controllers\BaseController;
 use Thangphu\CarForRent\Request\RegisterRequest;
 use Thangphu\CarForRent\Response\UserResponse;
-use Thangphu\CarForRent\Service\RegisterAPIService;
+use Thangphu\CarForRent\Service\RegisterService;
 use Thangphu\CarForRent\Service\TokenService;
 use Thangphu\CarForRent\varlidator\RegisterValidator;
 
@@ -15,7 +15,7 @@ class RegisterApiController extends BaseController
 {
     protected $registerValidator;
     protected $registerRequest;
-    protected $registerApiService;
+    protected $registerService;
     protected $tokenService;
     protected $userResponse;
 
@@ -26,14 +26,14 @@ class RegisterApiController extends BaseController
         TokenService $tokenService,
         RegisterRequest $registerRequest,
         RegisterValidator $registerValidator,
-        RegisterAPIService $registerApiService
+        RegisterService $registerService
     ) {
         parent::__construct($request, $response);
         $this->userResponse = $userResponse;
         $this->tokenService = $tokenService;
         $this->registerRequest = $registerRequest;
         $this->registerValidator = $registerValidator;
-        $this->registerApiService = $registerApiService;
+        $this->registerService = $registerService;
     }
 
     public function register()
@@ -43,9 +43,9 @@ class RegisterApiController extends BaseController
             if ($this->request->isPost()) {
                 $this->registerRequest->fromArray($this->request->getRequestJsonBody());
                 $this->registerValidator->validateUser($this->registerRequest);
-                $isSuccess = $this->registerApiService->register($this->registerRequest);
+                $isSuccess = $this->registerService->register($this->registerRequest);
                 if ($isSuccess) {
-                    $token = $this->tokenService->generate($isSuccess);
+                    $token = $this->tokenService->generate($isSuccess->getId());
                     return $this->response->toJson([
                         'data' => [
                             ...$this->userResponse->userResponse($isSuccess),

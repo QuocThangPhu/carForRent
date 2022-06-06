@@ -7,7 +7,7 @@ use Thangphu\CarForRent\bootstrap\Response;
 use Thangphu\CarForRent\Controllers\BaseController;
 use Thangphu\CarForRent\Request\LoginRequest;
 use Thangphu\CarForRent\Response\UserResponse;
-use Thangphu\CarForRent\Service\LoginAPIService;
+use Thangphu\CarForRent\Service\LoginService;
 use Thangphu\CarForRent\Service\TokenService;
 use Thangphu\CarForRent\varlidator\LoginValidator;
 
@@ -15,7 +15,7 @@ class LoginApiController extends BaseController
 {
     protected Request $request;
     protected Response $response;
-    protected LoginAPIService $loginApiService;
+    protected LoginService $loginService;
     protected UserResponse $userResponse;
     protected LoginRequest $loginRequest;
     protected LoginValidator $loginValidator;
@@ -24,14 +24,14 @@ class LoginApiController extends BaseController
     public function __construct(
         Request $request,
         Response $response,
-        LoginAPIService $loginApiService,
+        LoginService $loginService,
         UserResponse $userResponse,
         LoginRequest $loginRequest,
         LoginValidator $loginValidator,
         TokenService $tokenService,
     ) {
         parent::__construct($request, $response);
-        $this->loginApiService = $loginApiService;
+        $this->loginService = $loginService;
         $this->userResponse = $userResponse;
         $this->loginRequest = $loginRequest;
         $this->loginValidator = $loginValidator;
@@ -47,9 +47,9 @@ class LoginApiController extends BaseController
                 // validation
                 $this->loginValidator->validateUserLogin($this->loginRequest);
                 // logic
-                $existUser = $this->loginApiService->login($this->loginRequest);
+                $existUser = $this->loginService->login($this->loginRequest);
                 if ($existUser) {
-                    $token = $this->tokenService->generate($existUser);
+                    $token = $this->tokenService->generate($existUser->getId());
                     return $this->response->toJson([
                         'data' => [
                             ...$this->userResponse->userResponse($existUser),

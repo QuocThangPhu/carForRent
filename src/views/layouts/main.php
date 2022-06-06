@@ -44,7 +44,7 @@
                 <?php } else {
                     echo '
                     <a class="nav-link active" aria-current="page" href="/createCar">Create Car</a>
-                    <form action="/logout" method="post">
+                    <form action="/logout" method="POST">
                         <button class="btn btn-outline-primary" type="submit">logout</button>
                     </form>';
                 } ?>

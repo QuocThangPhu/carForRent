@@ -4,7 +4,7 @@ namespace Thangphu\CarForRent\bootstrap;
 
 use Thangphu\CarForRent\Model\UserModel;
 
-class Response
+class Response extends \Thangphu\CarForRent\Request\LoginRequest
 {
     const HTTP_OK = 200;
     const HTTP_NOT_FOUND = 404;

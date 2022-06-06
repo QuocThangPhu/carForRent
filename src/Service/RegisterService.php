@@ -17,14 +17,14 @@ class RegisterService
     public function register(RegisterRequest $user)
     {
         $existUser = $this->userRepository->findUserName($user->getUsername());
-        if ($existUser && $this->checkPassword($user->getPassword(), $user->getPasswordConfirm())) {
+        if (!$existUser && $this->checkPassword($user->getPassword(), $user->getPasswordConfirm())) {
             $newUser = $this->userRepository->createUser($user);
             $_SESSION['user_id'] = $newUser->getId();
             $_SESSION['username'] = $newUser->getUsername();
-            return true;
+            return $newUser;
         }
 
-        return false;
+        return null;
     }
 
     public function checkPassword($password, $passwordConfirm): bool
