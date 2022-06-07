@@ -8,15 +8,8 @@ use Thangphu\CarForRent\Model\CarModel;
 use Thangphu\CarForRent\Request\CarRequest;
 use Thangphu\CarForRent\Response\CarResponse;
 
-class CarRepository
+class CarRepository extends DatabaseRepository
 {
-    private PDO $connection;
-
-    public function __construct()
-    {
-        $this->connection = DatabaseConnect::getConnection();
-    }
-
     public function selectCar(): array
     {
         $exitCar = $this->connection->prepare("SELECT * FROM car ");

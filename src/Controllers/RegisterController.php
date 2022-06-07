@@ -10,6 +10,7 @@ use Thangphu\CarForRent\varlidator\RegisterValidator;
 
 class RegisterController extends BaseController
 {
+    const SOMETHINGS_IS_WRONG = 'Somethings is wrong';
     private $registerRequest;
     private $registerValidator;
     private $registerService;
@@ -32,20 +33,30 @@ class RegisterController extends BaseController
         if (!$this->request->isPost()) {
             return $this->response->renderView('register');
         }
-        $this->registerRequest->fromArray($this->request->getBody());
-        $isUserRegisterValid = $this->registerValidator->validateUser($this->registerRequest);
-        if (is_array($isUserRegisterValid)) {
-            return $this->response->renderView('register', [
-                'errors' => $isUserRegisterValid
-            ]);
-        }
-        $isSuccess = $this->registerService->register($this->registerRequest);
-        if ($isSuccess) {
-            return $this->response->redirect('/');
-        }
-        $errorMessage = 'Somethings is wrong';
+        $this->checkValidateRegister();
+        $this->checkRegisterSuccess();
+        $errorMessage = static::SOMETHINGS_IS_WRONG;
         return $this->response->renderView('register', [
             'errors' => $errorMessage
         ]);
+    }
+
+    private function checkValidateRegister(): void
+    {
+        $this->registerRequest->fromArray($this->request->getBody());
+        $isUserRegisterValid = $this->registerValidator->validateUser($this->registerRequest);
+        if (is_array($isUserRegisterValid)) {
+            $this->response->renderView('register', [
+                'errors' => $isUserRegisterValid
+            ]);
+        }
+    }
+
+    private function checkRegisterSuccess(): void
+    {
+        $isSuccess = $this->registerService->register($this->registerRequest);
+        if ($isSuccess) {
+            $this->response->redirect('/');
+        }
     }
 }

@@ -1,46 +1,37 @@
 <?php
 
 namespace Thangphu\CarForRent\Repository;
-
-use PDO;
-use Thangphu\CarForRent\Database\DatabaseConnect;
 use Thangphu\CarForRent\Model\UserModel;
 use Thangphu\CarForRent\Request\RegisterRequest;
 
-class UserRepository
+class UserRepository extends DatabaseRepository
 {
-    private PDO $connection;
-    private UserModel $user;
-
-    public function __construct(UserModel $user)
-    {
-        $this->connection = DatabaseConnect::getConnection();
-        $this->user = $user;
-    }
 
     public function findUserByUserName($username)
     {
+        $user = new UserModel();
         $userWasFound = $this->connection->prepare("SELECT * FROM user WHERE username = ? ");
         $userWasFound->execute([$username]);
         if ($row = $userWasFound->fetch()) {
-            $this->user->setId($row['id']);
-            $this->user->setUsername($row['username']);
-            $this->user->setPassword($row['password']);
-            return $this->user;
+            $user->setId($row['id']);
+            $user->setUsername($row['username']);
+            $user->setPassword($row['password']);
+            return $user;
         } else {
             return null;
         }
     }
     public function findUserById($id)
     {
+        $user = new UserModel();
         $userWasFound = $this->connection->prepare("SELECT * FROM user WHERE id = ? ");
         $userWasFound->execute([$id]);
         if ($row = $userWasFound->fetch()) {
-            $this->user->setId($row['id']);
-            $this->user->setUsername($row['username']);
-            $this->user->setPassword($row['password']);
-            $this->user->setRole($row['role']);
-            return $this->user;
+            $user->setId($row['id']);
+            $user->setUsername($row['username']);
+            $user->setPassword($row['password']);
+            $user->setRole($row['role']);
+            return $user;
         } else {
             return null;
         }

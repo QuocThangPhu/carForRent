@@ -6,22 +6,18 @@ use Thangphu\CarForRent\bootstrap\Request;
 use Thangphu\CarForRent\bootstrap\Response;
 use Thangphu\CarForRent\Repository\CarRepository;
 use Thangphu\CarForRent\Request\CarRequest;
-use Thangphu\CarForRent\Response\CarResponse;
 use Thangphu\CarForRent\Service\UploadImageService;
 use Thangphu\CarForRent\varlidator\CreateCarValidator;
 
-class CarController
+class CarController extends BaseController
 {
-    protected CarResponse $carResponse;
-    protected Response $response;
-    protected Request $request;
+    const  SOME_THING_WRONG = 'Somethings is wrong';
     protected CarRequest $carRequest;
     protected CreateCarValidator $carValidator;
     protected CarRepository $carRepository;
     protected UploadImageService $uploadImageService;
 
     public function __construct(
-        CarResponse $carResponse,
         Response $response,
         Request $request,
         CarRequest $carRequest,
@@ -29,9 +25,7 @@ class CarController
         CarRepository $carRepository,
         UploadImageService $uploadImageService
     ) {
-        $this->carResponse = $carResponse;
-        $this->request = $request;
-        $this->response = $response;
+        parent::__construct($request, $response);
         $this->carRequest = $carRequest;
         $this->carValidator = $carValidator;
         $this->carRepository = $carRepository;
@@ -43,8 +37,20 @@ class CarController
         if (!$this->request->isPost()) {
             return $this->response->renderView('createCar');
         }
+        $this->checkValidateCreateCar();
+        $isUploadImage = $this->uploadImageService->upload($this->request->getFile());
+        $this->carRequest->setPicture($isUploadImage);
+        $this->checkCreateCarSuccess();
+        $errorMessage = static::SOME_THING_WRONG;
+        return $this->response->renderView('createCar', [
+            'errors' => $errorMessage
+        ]);
+    }
+
+    private function checkValidateCreateCar()
+    {
         $requestData = $this->request->getBody();
-        $requestData['picture'] = $_FILES['picture']['name'];
+        $requestData['picture'] = $this->request->getFileName();
         $this->carRequest->fromArray($requestData);
         $isCarValid = $this->carValidator->createCarValidator($this->carRequest);
         if (is_array($isCarValid)) {
@@ -52,15 +58,13 @@ class CarController
                 'errors' => $isCarValid
             ]);
         }
-        $isUploadImage = $this->uploadImageService->upload($_FILES['picture']);
-        $this->carRequest->setPicture($isUploadImage);
+    }
+
+    private function checkCreateCarSuccess()
+    {
         $isSuccess = $this->carRepository->createCar($this->carRequest);
         if ($isSuccess) {
             return $this->response->redirect('/');
         }
-        $errorMessage = 'Somethings is wrong';
-        return $this->response->renderView('createCar', [
-            'errors' => $errorMessage
-        ]);
     }
 }

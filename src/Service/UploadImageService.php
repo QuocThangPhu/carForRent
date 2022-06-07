@@ -29,21 +29,21 @@ class UploadImageService
         $filesize = $file["size"];
         $ext = pathinfo($filename, PATHINFO_EXTENSION);
         if (!array_key_exists($ext, $allowed)) {
-            throw new UploadImageException("Error: Please select a valid file format.");
+            throw new UploadImageException("Please select a valid file format.");
         }
         $maxsize = 10 * 1024 * 1024;
 
         if ($filesize > $maxsize) {
-            throw new UploadImageException("Error: File size is larger than the allowed limit.");
+            throw new UploadImageException("File size is larger than the allowed limit.");
         }
         // Validate type of the file
         if (!in_array($filetype, $allowed)) {
-            throw new UploadImageException("Error: Please select a valid file format.");
+            throw new UploadImageException("Please select a valid file format.");
         }
         if (move_uploaded_file($file["tmp_name"], $path . $filename)) {
             return '/upload/' . $filename;
         } else {
-            throw new UploadImageException("Error: There was an error uploading your file.");
+            throw new UploadImageException("There was an error uploading your file.");
         }
     }
 }

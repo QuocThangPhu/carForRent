@@ -4,20 +4,19 @@ namespace Thangphu\CarForRent\Controllers\API;
 
 use Thangphu\CarForRent\bootstrap\Request;
 use Thangphu\CarForRent\bootstrap\Response;
-use Thangphu\CarForRent\Controllers\BaseController;
 use Thangphu\CarForRent\Request\RegisterRequest;
 use Thangphu\CarForRent\Response\UserResponse;
 use Thangphu\CarForRent\Service\RegisterService;
 use Thangphu\CarForRent\Service\TokenService;
 use Thangphu\CarForRent\varlidator\RegisterValidator;
 
-class RegisterApiController extends BaseController
+class RegisterApiController extends BaseApiController
 {
-    protected $registerValidator;
-    protected $registerRequest;
-    protected $registerService;
-    protected $tokenService;
-    protected $userResponse;
+    const SOME_THING_WRONG = 'Somethings is wrong';
+    protected RegisterValidator $registerValidator;
+    protected RegisterRequest $registerRequest;
+    protected RegisterService $registerService;
+    protected TokenService $tokenService;
 
     public function __construct(
         Request $request,
@@ -28,8 +27,7 @@ class RegisterApiController extends BaseController
         RegisterValidator $registerValidator,
         RegisterService $registerService
     ) {
-        parent::__construct($request, $response);
-        $this->userResponse = $userResponse;
+        parent::__construct($request, $response, $userResponse);
         $this->tokenService = $tokenService;
         $this->registerRequest = $registerRequest;
         $this->registerValidator = $registerValidator;
@@ -54,7 +52,7 @@ class RegisterApiController extends BaseController
                         'message' => $errorMessage
                     ], Response::HTTP_OK);
                 }
-                $errorMessage = 'Somethings is wrong';
+                $errorMessage = static::SOME_THING_WRONG;
             }
         } catch (\Exception $exception) {
             $errorMessage = $exception->getMessage();

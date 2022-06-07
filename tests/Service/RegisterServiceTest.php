@@ -12,8 +12,7 @@ class RegisterServiceTest extends TestCase
 {
     public function testCheckPassword()
     {
-        $user = new UserModel();
-        $userRepository = new UserRepository($user);
+        $userRepository = new UserRepository();
         $registerService = new RegisterService($userRepository);
         $result = $registerService->checkPassword('12345678', '12345678');
         $this->assertTrue($result);
@@ -25,8 +24,7 @@ class RegisterServiceTest extends TestCase
 
     public function testCreateUserFalse($param)
     {
-        $user = new UserModel();
-        $userRepository = new UserRepository($user);
+        $userRepository = new UserRepository();
         $registerService = new RegisterService($userRepository);
         $registerRequest = new RegisterRequest();
         $registerRequest->fromArray($param);

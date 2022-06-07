@@ -2,6 +2,8 @@
 
 namespace Thangphu\CarForRent\bootstrap;
 
+use ParagonIE\Sodium\File;
+
 class Request
 {
     /**
@@ -46,6 +48,15 @@ class Request
         return json_decode($data, true);
     }
 
+    public function getFile()
+    {
+        return $_FILES['picture'];
+    }
+
+    public function getFileName()
+    {
+        return $_FILES['picture']['name'];
+    }
 
     /**
      * @return array

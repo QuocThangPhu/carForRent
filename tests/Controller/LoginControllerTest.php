@@ -70,6 +70,11 @@ class LoginControllerTest extends TestCase
 
     public function testLoginWithSuccess()
     {
+        $userReturn = new UserModel();
+        $userReturn->setId(1);
+        $userReturn->setUsername('thang');
+        $userReturn->setPassword('$2a$12$TG.0nLmE8i.KbC3JanS7/.ri0fZ/CO/qHQIs67WLHFnws98GLY0zK');
+        $userReturn->setRole('');
         $requestMock = $this->getMockBuilder(Request::class)->getMock();
         $requestMock->expects($this->once())->method('isPost')->willReturn(true);
         $requestMock->expects($this->once())->method('getBody')->willReturn([
@@ -78,12 +83,7 @@ class LoginControllerTest extends TestCase
         ]);
         $response = new Response();
         $loginServiceMock = $this->getMockBuilder(LoginService::class)->disableOriginalConstructor()->getMock();
-        $loginServiceMock->expects($this->once())->method('login')->willReturn([
-            'id' => '1',
-            'username' => 'thang',
-            'password' => '$2a$12$TG.0nLmE8i.KbC3JanS7/.ri0fZ/CO/qHQIs67WLHFnws98GLY0zK',
-            'role' => ''
-        ]);
+        $loginServiceMock->expects($this->once())->method('login')->willReturn($userReturn);
         $loginRequest = new LoginRequest();
         $loginValidator = new LoginValidator();
         $loginController = new LoginController($loginServiceMock, $loginValidator, $requestMock, $response,  $loginRequest);

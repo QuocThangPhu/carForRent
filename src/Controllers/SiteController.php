@@ -18,7 +18,7 @@ class SiteController
 
     public function home()
     {
-        $carExits = $this->carRepository->selectCar();
-        return $this->response->renderView('home', ['cars' => $carExits]);
+        $listCar = $this->carRepository->selectCar();
+        return $this->response->renderView('home', ['cars' => $listCar]);
     }
 }

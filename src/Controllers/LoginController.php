@@ -11,6 +11,7 @@ use Thangphu\CarForRent\varlidator\LoginValidator;
 
 class LoginController extends BaseController
 {
+    const INVALID = 'Username or password is invalid!';
     private $loginService;
     private $loginValidator;
     private $loginRequest;
@@ -33,21 +34,10 @@ class LoginController extends BaseController
         if (!$this->request->isPost()) {
             return $this->response->renderView('login');
         }
-        $this->loginRequest->fromArray($this->request->getBody());
-        $isLoginFormValid = $this->loginValidator->validateUserLogin($this->loginRequest);
-        if (!empty($isLoginFormValid)) {
-            $message = [
-                'username' => $this->loginRequest->getUsername(),
-                'password' => $this->loginRequest->getPassword(),
-                'errors' => $isLoginFormValid['message']
-            ];
-            return $this->response->renderView('login', $message);
-        }
-        $isLoginSuccess = $this->loginService->login($this->loginRequest);
-        if ($isLoginSuccess) {
-            return $this->response->redirect('/');
-        }
-        $errorMessage = 'Username or password is invalid!';
+        $isLoginFormValid = $this->checkValidateLogin();
+        $this->checkLoginIsValid($isLoginFormValid);
+        $this->checkLoginSuccess();
+        $errorMessage = static::INVALID;
         return $this->response->renderView('login', [
             'username' => $this->loginRequest->getUsername(),
             'password' => $this->loginRequest->getPassword(),
@@ -60,5 +50,33 @@ class LoginController extends BaseController
         unset($_SESSION["user_id"], $_SESSION["username"]);
         View::redirect('/');
         return true;
+    }
+
+    private function checkLoginIsValid($isLoginFormValid): void
+    {
+        if (!empty($isLoginFormValid)) {
+            $message = [
+                'username' => $this->loginRequest->getUsername(),
+                'password' => $this->loginRequest->getPassword(),
+                'errors' => $isLoginFormValid['message']
+            ];
+            $this->response->renderView('login', $message);
+        }
+    }
+
+    private function checkLoginSuccess(): void
+    {
+        $isLoginSuccess = $this->loginService->login($this->loginRequest);
+        if ($isLoginSuccess) {
+            $_SESSION['user_id'] = $isLoginSuccess->getId();
+            $_SESSION['username'] = $isLoginSuccess->getUsername();
+            $this->response->redirect('/');
+        }
+    }
+
+    private function checkValidateLogin(): array
+    {
+        $this->loginRequest->fromArray($this->request->getBody());
+        return $this->loginValidator->validateUserLogin($this->loginRequest);
     }
 }

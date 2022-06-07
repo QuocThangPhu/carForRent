@@ -4,19 +4,16 @@ namespace Thangphu\CarForRent\Controllers\API;
 
 use Thangphu\CarForRent\bootstrap\Request;
 use Thangphu\CarForRent\bootstrap\Response;
-use Thangphu\CarForRent\Controllers\BaseController;
 use Thangphu\CarForRent\Request\LoginRequest;
 use Thangphu\CarForRent\Response\UserResponse;
 use Thangphu\CarForRent\Service\LoginService;
 use Thangphu\CarForRent\Service\TokenService;
 use Thangphu\CarForRent\varlidator\LoginValidator;
 
-class LoginApiController extends BaseController
+class LoginApiController extends BaseApiController
 {
-    protected Request $request;
-    protected Response $response;
+    const INVALID = 'Username or password is invalid!';
     protected LoginService $loginService;
-    protected UserResponse $userResponse;
     protected LoginRequest $loginRequest;
     protected LoginValidator $loginValidator;
     protected TokenService $tokenService;
@@ -30,9 +27,8 @@ class LoginApiController extends BaseController
         LoginValidator $loginValidator,
         TokenService $tokenService,
     ) {
-        parent::__construct($request, $response);
+        parent::__construct($request, $response, $userResponse);
         $this->loginService = $loginService;
-        $this->userResponse = $userResponse;
         $this->loginRequest = $loginRequest;
         $this->loginValidator = $loginValidator;
         $this->tokenService = $tokenService;
@@ -44,9 +40,7 @@ class LoginApiController extends BaseController
             $errorMessage = '';
             if ($this->request->isPost()) {
                 $this->loginRequest->fromArray($this->request->getRequestJsonBody());
-                // validation
                 $this->loginValidator->validateUserLogin($this->loginRequest);
-                // logic
                 $existUser = $this->loginService->login($this->loginRequest);
                 if ($existUser) {
                     $token = $this->tokenService->generate($existUser->getId());
@@ -58,7 +52,7 @@ class LoginApiController extends BaseController
                         'message' => $errorMessage
                     ], Response::HTTP_OK);
                 }
-                $errorMessage = 'Username or password is invalid!';
+                $errorMessage = static::INVALID;
             }
         } catch (\Exception $exception) {
             $errorMessage = $exception->getMessage();

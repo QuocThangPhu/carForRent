@@ -2,7 +2,6 @@
 
 namespace Thangphu\CarForRent\App;
 
-use Thangphu\CarForRent\bootstrap\Application;
 use Thangphu\CarForRent\bootstrap\Response;
 
 class View
@@ -41,9 +40,5 @@ class View
     public static function redirect($url)
     {
         header("Location: $url");
-    }
-
-    public static function renderView(string $string, array $message)
-    {
     }
 }

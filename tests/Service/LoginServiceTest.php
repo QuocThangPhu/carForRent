@@ -2,7 +2,6 @@
 
 namespace Thangphu\Test\Service;
 
-use Dotenv\Exception\ValidationException;
 use PHPUnit\Framework\TestCase;
 use Thangphu\CarForRent\Model\UserModel;
 use Thangphu\CarForRent\Repository\UserRepository;
@@ -22,7 +21,7 @@ class LoginServiceTest extends TestCase
         $user->setPassword($param['password']);
         $userRequest = new LoginRequest();
         $userRequest->fromArray($expected);
-        $userRepositoryMock = $this->getMockBuilder(UserRepository::class)->disableOriginalConstructor()->getMock();
+        $userRepositoryMock = $this->getMockBuilder(UserRepository::class)->getMock();
         $userRepositoryMock->expects($this->once())->method('findUserByUserName')->willReturn($user);
         $loginService = new LoginService($userRepositoryMock);
         $result = $loginService->login($userRequest);
@@ -40,7 +39,7 @@ class LoginServiceTest extends TestCase
         $user->setPassword($param['password']);
         $userRequest = new LoginRequest();
         $userRequest->fromArray($expected);
-        $userRepositoryMock = $this->getMockBuilder(UserRepository::class)->disableOriginalConstructor()->getMock();
+        $userRepositoryMock = $this->getMockBuilder(UserRepository::class)->getMock();
         $userRepositoryMock->expects($this->once())->method('findUserByUserName')->willReturn($user);
         $loginService = new LoginService($userRepositoryMock);
         $result = $loginService->login($userRequest);
@@ -110,7 +109,7 @@ class LoginServiceTest extends TestCase
      */
     public function testCheckTruePassword($param)
     {
-        $userRepositoryMock =$this->getMockBuilder(UserRepository::class)->disableOriginalConstructor()->getMock();
+        $userRepositoryMock =$this->getMockBuilder(UserRepository::class)->getMock();
         $checkPass = new LoginService($userRepositoryMock);
         $result = $checkPass->checkPassword($param['plainPassword'], $param['password']);
         $this->assertTrue($result);
@@ -123,7 +122,7 @@ class LoginServiceTest extends TestCase
      */
     public function testCheckFalsePassword($param)
     {
-        $userRepositoryMock =$this->getMockBuilder(UserRepository::class)->disableOriginalConstructor()->getMock();
+        $userRepositoryMock =$this->getMockBuilder(UserRepository::class)->getMock();
         $checkPass = new LoginService($userRepositoryMock);
         $result = $checkPass->checkPassword($param['plainPassword'], $param['password']);
         $this->assertFalse($result);

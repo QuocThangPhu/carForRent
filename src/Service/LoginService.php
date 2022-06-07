@@ -16,14 +16,12 @@ class LoginService
     }
 
     /**
-     * @param UserModel $userInput
+     * @param LoginRequest $userInput
      */
     public function login(LoginRequest $userInput)
     {
         $existUser = $this->userRepository->findUserByUserName($userInput->getUsername());
         if ($existUser && $this->checkPassword($userInput->getPassword(), $existUser->getPassword())) {
-            $_SESSION['user_id'] = $existUser->getId();
-            $_SESSION['username'] = $existUser->getUsername();
             return $existUser;
         }
 
