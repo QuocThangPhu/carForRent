@@ -53,6 +53,32 @@ class RequestTest extends TestCase
         $this->assertEquals(true, $request->isPost());
     }
 
+    public function testGetFile()
+    {
+        $_FILES['picture'] = [
+            'name' => 'car.jpg',
+            'type' => 'png|jpg'
+        ];
+        $request = new Request();
+        $this->assertEquals($_FILES['picture'], $request->getFile());
+    }
+
+    public function testGetFileName()
+    {
+        $_FILES['picture'] = [
+            'name' => 'car.jpg',
+            'type' => 'png|jpg'
+        ];
+        $request = new Request();
+        $this->assertEquals($_FILES['picture']['name'], $request->getFileName());
+    }
+
+    public function testGetBodyWithMethodGet()
+    {
+        $request = new Request();
+        $this->assertIsArray($request->getBody());
+    }
+
     public function getMethodProvider()
     {
         return [
@@ -62,6 +88,7 @@ class RequestTest extends TestCase
             ['PUT']
         ];
     }
+
 
     public function getPathProvider()
     {
