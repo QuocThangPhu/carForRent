@@ -3,7 +3,7 @@
 namespace Thangphu\Test\bootstrap;
 
 use PHPUnit\Framework\TestCase;
-use Thangphu\CarForRent\bootstrap\Router;
+use Thangphu\CarForRent\Bootstrap\Router;
 use Thangphu\CarForRent\Controllers\LoginController;
 
 class RouterTest extends TestCase

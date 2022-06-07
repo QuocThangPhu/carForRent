@@ -4,7 +4,7 @@ namespace Thangphu\Test\validator;
 
 use PHPUnit\Framework\TestCase;
 use Thangphu\CarForRent\Request\RegisterRequest;
-use Thangphu\CarForRent\varlidator\RegisterValidator;
+use Thangphu\CarForRent\Validator\RegisterValidator;
 
 class RegisterValidatorTest extends TestCase
 {

@@ -2,12 +2,12 @@
 
 namespace Thangphu\CarForRent\Controllers;
 
-use Thangphu\CarForRent\App\View;
-use Thangphu\CarForRent\bootstrap\Request;
-use Thangphu\CarForRent\bootstrap\Response;
+use Thangphu\CarForRent\Bootstrap\Request;
+use Thangphu\CarForRent\Bootstrap\Response;
+use Thangphu\CarForRent\Bootstrap\View;
 use Thangphu\CarForRent\Request\LoginRequest;
 use Thangphu\CarForRent\Service\LoginService;
-use Thangphu\CarForRent\varlidator\LoginValidator;
+use Thangphu\CarForRent\Validator\LoginValidator;
 
 class LoginController extends BaseController
 {

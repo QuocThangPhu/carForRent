@@ -3,12 +3,12 @@
 namespace Thangphu\Test\Controller;
 
 use PHPUnit\Framework\TestCase;
-use Thangphu\CarForRent\bootstrap\Request;
-use Thangphu\CarForRent\bootstrap\Response;
+use Thangphu\CarForRent\Bootstrap\Request;
+use Thangphu\CarForRent\Bootstrap\Response;
 use Thangphu\CarForRent\Controllers\RegisterController;
 use Thangphu\CarForRent\Request\RegisterRequest;
 use Thangphu\CarForRent\Service\RegisterService;
-use Thangphu\CarForRent\varlidator\RegisterValidator;
+use Thangphu\CarForRent\Validator\RegisterValidator;
 
 class RegisterControllerTest extends TestCase
 {

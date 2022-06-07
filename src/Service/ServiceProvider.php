@@ -2,7 +2,7 @@
 
 namespace Thangphu\CarForRent\Service;
 
-use Thangphu\CarForRent\bootstrap\BaseServiceProvider;
+use Thangphu\CarForRent\Bootstrap\BaseServiceProvider;
 use Thangphu\CarForRent\Service\Contracts\LoginServiceInterface;
 
 class ServiceProvider extends BaseServiceProvider

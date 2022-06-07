@@ -1,8 +1,6 @@
 <?php
 
-namespace Thangphu\CarForRent\App;
-
-use Thangphu\CarForRent\bootstrap\Response;
+namespace Thangphu\CarForRent\Bootstrap;
 
 class View
 {
@@ -33,8 +31,8 @@ class View
         $template = $response->getTemplate();
         $data = $response->getData();
 
-        require __DIR__ . "/../views/layouts/main.php";
-        require __DIR__ . "/../views/$template.php";
+        require __DIR__ . "/../Views/layouts/main.php";
+        require __DIR__ . "/../Views/$template.php";
     }
 
     public static function redirect($url)

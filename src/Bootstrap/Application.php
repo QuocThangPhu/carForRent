@@ -1,8 +1,6 @@
 <?php
 
-namespace Thangphu\CarForRent\bootstrap;
-
-use Thangphu\CarForRent\App\View;
+namespace Thangphu\CarForRent\Bootstrap;
 
 class Application
 {

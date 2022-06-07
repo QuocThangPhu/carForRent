@@ -1,12 +1,12 @@
 <?php
 
-use Thangphu\CarForRent\bootstrap\Request;
-use Thangphu\CarForRent\bootstrap\Response;
+use Thangphu\CarForRent\Bootstrap\Request;
+use Thangphu\CarForRent\Bootstrap\Response;
 use Thangphu\CarForRent\Route\RouteManage;
 
 require '../vendor/autoload.php';
 
-use Thangphu\CarForRent\bootstrap\Application;
+use Thangphu\CarForRent\Bootstrap\Application;
 use Thangphu\CarForRent\Database\DatabaseConnect;
 use Thangphu\CarForRent\Service\ServiceProvider;
 

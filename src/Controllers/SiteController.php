@@ -2,7 +2,7 @@
 
 namespace Thangphu\CarForRent\Controllers;
 
-use Thangphu\CarForRent\bootstrap\Response;
+use Thangphu\CarForRent\Bootstrap\Response;
 use Thangphu\CarForRent\Repository\CarRepository;
 
 class SiteController

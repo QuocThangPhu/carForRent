@@ -2,7 +2,7 @@
 
 namespace Thangphu\CarForRent\Route;
 
-use Thangphu\CarForRent\bootstrap\Router;
+use Thangphu\CarForRent\Bootstrap\Router;
 use Thangphu\CarForRent\Controllers\API\RegisterApiController;
 use Thangphu\CarForRent\Controllers\LoginController;
 use Thangphu\CarForRent\Controllers\API\LoginApiController;

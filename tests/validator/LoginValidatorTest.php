@@ -5,7 +5,7 @@ namespace Thangphu\Test\validator;
 use PHPUnit\Framework\TestCase;
 use Thangphu\CarForRent\Exception\ValidateException;
 use Thangphu\CarForRent\Request\LoginRequest;
-use Thangphu\CarForRent\varlidator\LoginValidator;
+use Thangphu\CarForRent\Validator\LoginValidator;
 
 class LoginValidatorTest extends TestCase
 {

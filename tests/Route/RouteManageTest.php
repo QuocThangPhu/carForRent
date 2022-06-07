@@ -3,8 +3,8 @@
 namespace Thangphu\Test\Route;
 
 use PHPUnit\Framework\TestCase;
-use Thangphu\CarForRent\bootstrap\Request;
-use Thangphu\CarForRent\bootstrap\Router;
+use Thangphu\CarForRent\Bootstrap\Request;
+use Thangphu\CarForRent\Bootstrap\Router;
 use Thangphu\CarForRent\Controllers\LoginController;
 use Thangphu\CarForRent\Controllers\SiteController;
 use Thangphu\CarForRent\Route\RouteManage;

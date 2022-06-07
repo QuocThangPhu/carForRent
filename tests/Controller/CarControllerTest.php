@@ -3,13 +3,13 @@
 namespace Thangphu\Test\Controller;
 
 use PHPUnit\Framework\TestCase;
-use Thangphu\CarForRent\bootstrap\Request;
-use Thangphu\CarForRent\bootstrap\Response;
+use Thangphu\CarForRent\Bootstrap\Request;
+use Thangphu\CarForRent\Bootstrap\Response;
 use Thangphu\CarForRent\Controllers\CarController;
 use Thangphu\CarForRent\Repository\CarRepository;
 use Thangphu\CarForRent\Request\CarRequest;
 use Thangphu\CarForRent\Service\UploadImageService;
-use Thangphu\CarForRent\varlidator\CreateCarValidator;
+use Thangphu\CarForRent\Validator\CreateCarValidator;
 
 class CarControllerTest extends TestCase
 {

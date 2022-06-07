@@ -2,8 +2,8 @@
 
 namespace Thangphu\CarForRent\Controllers\API;
 
-use Thangphu\CarForRent\bootstrap\Request;
-use Thangphu\CarForRent\bootstrap\Response;
+use Thangphu\CarForRent\Bootstrap\Request;
+use Thangphu\CarForRent\Bootstrap\Response;
 use Thangphu\CarForRent\Response\UserResponse;
 
 abstract class BaseApiController

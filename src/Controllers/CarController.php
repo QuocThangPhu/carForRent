@@ -2,12 +2,12 @@
 
 namespace Thangphu\CarForRent\Controllers;
 
-use Thangphu\CarForRent\bootstrap\Request;
-use Thangphu\CarForRent\bootstrap\Response;
+use Thangphu\CarForRent\Bootstrap\Request;
+use Thangphu\CarForRent\Bootstrap\Response;
 use Thangphu\CarForRent\Repository\CarRepository;
 use Thangphu\CarForRent\Request\CarRequest;
 use Thangphu\CarForRent\Service\UploadImageService;
-use Thangphu\CarForRent\varlidator\CreateCarValidator;
+use Thangphu\CarForRent\Validator\CreateCarValidator;
 
 class CarController extends BaseController
 {

@@ -3,13 +3,13 @@
 namespace Thangphu\Test\Controller;
 
 use PHPUnit\Framework\TestCase;
-use Thangphu\CarForRent\bootstrap\Request;
-use Thangphu\CarForRent\bootstrap\Response;
+use Thangphu\CarForRent\Bootstrap\Request;
+use Thangphu\CarForRent\Bootstrap\Response;
 use Thangphu\CarForRent\Controllers\LoginController;
 use Thangphu\CarForRent\Model\UserModel;
 use Thangphu\CarForRent\Request\LoginRequest;
 use Thangphu\CarForRent\Service\LoginService;
-use Thangphu\CarForRent\varlidator\LoginValidator;
+use Thangphu\CarForRent\Validator\LoginValidator;
 
 class LoginControllerTest extends TestCase
 {

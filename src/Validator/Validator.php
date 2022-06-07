@@ -1,6 +1,6 @@
 <?php
 
-namespace Thangphu\CarForRent\varlidator;
+namespace Thangphu\CarForRent\Validator;
 
 class Validator
 {

@@ -3,7 +3,7 @@
 namespace Thangphu\Test\Controller;
 
 use PHPUnit\Framework\TestCase;
-use Thangphu\CarForRent\bootstrap\Response;
+use Thangphu\CarForRent\Bootstrap\Response;
 use Thangphu\CarForRent\Controllers\SiteController;
 use Thangphu\CarForRent\Model\CarModel;
 use Thangphu\CarForRent\Repository\CarRepository;

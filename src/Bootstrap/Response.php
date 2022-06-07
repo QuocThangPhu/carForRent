@@ -1,6 +1,6 @@
 <?php
 
-namespace Thangphu\CarForRent\bootstrap;
+namespace Thangphu\CarForRent\Bootstrap;
 
 use Thangphu\CarForRent\Model\UserModel;
 

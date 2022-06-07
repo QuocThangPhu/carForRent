@@ -2,13 +2,13 @@
 
 namespace Thangphu\CarForRent\Controllers\API;
 
-use Thangphu\CarForRent\bootstrap\Request;
-use Thangphu\CarForRent\bootstrap\Response;
+use Thangphu\CarForRent\Bootstrap\Request;
+use Thangphu\CarForRent\Bootstrap\Response;
 use Thangphu\CarForRent\Request\LoginRequest;
 use Thangphu\CarForRent\Response\UserResponse;
 use Thangphu\CarForRent\Service\LoginService;
 use Thangphu\CarForRent\Service\TokenService;
-use Thangphu\CarForRent\varlidator\LoginValidator;
+use Thangphu\CarForRent\Validator\LoginValidator;
 
 class LoginApiController extends BaseApiController
 {

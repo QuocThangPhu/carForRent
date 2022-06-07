@@ -24,8 +24,7 @@ class UploadImageService
 
     private function getFileName($file): string
     {
-        $filename = md5(date('Y-m-d H:i:s:u')) . $file["name"];
-        return $filename;
+        return md5(date('Y-m-d H:i:s:u')) . $file["name"];
     }
 
     private function getURL($path, $fileName)

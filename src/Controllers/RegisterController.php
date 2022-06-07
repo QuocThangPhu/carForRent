@@ -2,11 +2,11 @@
 
 namespace Thangphu\CarForRent\Controllers;
 
-use Thangphu\CarForRent\bootstrap\Request;
-use Thangphu\CarForRent\bootstrap\Response;
+use Thangphu\CarForRent\Bootstrap\Request;
+use Thangphu\CarForRent\Bootstrap\Response;
 use Thangphu\CarForRent\Request\RegisterRequest;
 use Thangphu\CarForRent\Service\RegisterService;
-use Thangphu\CarForRent\varlidator\RegisterValidator;
+use Thangphu\CarForRent\Validator\RegisterValidator;
 
 class RegisterController extends BaseController
 {

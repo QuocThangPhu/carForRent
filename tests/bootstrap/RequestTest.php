@@ -4,7 +4,7 @@ namespace Thangphu\Test\bootstrap;
 
 
 use PHPUnit\Framework\TestCase;
-use Thangphu\CarForRent\bootstrap\Request;
+use Thangphu\CarForRent\Bootstrap\Request;
 
 class RequestTest extends TestCase
 {

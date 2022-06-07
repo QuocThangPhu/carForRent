@@ -3,7 +3,7 @@
 namespace Thangphu\Test\bootstrap;
 
 use PHPUnit\Framework\TestCase;
-use Thangphu\CarForRent\bootstrap\Response;
+use Thangphu\CarForRent\Bootstrap\Response;
 use Thangphu\CarForRent\Model\UserModel;
 
 class ResponseTest extends TestCase
