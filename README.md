@@ -3,7 +3,7 @@
 ## I.About Project 
 1. **Car For Rent** is a website was built to help people who can rent a car for travel, picnic, whatever.
     The people can find the car they want  and rent this car.
-2. The website is written by PHP, and SQL from scratch in 3 weeks với sự hướng dẫn của Mr.Tinh and Mr.Bang. 
+2. The website is written by PHP, and SQL from scratch in 3 weeks with the guidance of Mr.Tinh and Mr.Bang. 
 
 ## II.Getting Started
 
