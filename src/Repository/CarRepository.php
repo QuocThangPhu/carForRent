@@ -12,7 +12,7 @@ class CarRepository extends DatabaseRepository
 {
     public function selectCar(): array
     {
-        $exitCar = $this->connection->prepare("SELECT * FROM car ");
+        $exitCar = $this->connection->prepare("SELECT * FROM car ORDER BY id DESC LIMIT 10");
         $exitCar->execute();
         $rows = $exitCar->fetchAll();
         $cars = [];
