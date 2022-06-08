@@ -2,6 +2,7 @@
 
 namespace Thangphu\CarForRent\Service;
 
+use Aws\S3\S3Client;
 use Thangphu\CarForRent\Exception\UploadFileException;
 use Thangphu\CarForRent\Validator\ImageValidator;
 
@@ -11,27 +12,41 @@ class UploadImageService
 
     public function upload($file): ?string
     {
-        $validatorFile = new ImageValidator();
-        $validatorFile->validateImage($file);
-        if (!move_uploaded_file($file["tmp_name"], $this->getURL($this->getFilePath(), $this->getFileName($file)))) {
+        $imageValidator = new ImageValidator();
+        $imageValidator->validateImage($file);
+        if (!move_uploaded_file($file["tmp_name"], $this->getFileName($file))) {
             throw new UploadFileException("There was an error uploading your file.");
         }
-        move_uploaded_file($file["tmp_name"],$this->getURL($this->getFilePath(), $this->getFileName($file)));
-        return '/upload/' . $this->getFileName($file);
+
+        $filePath = $this->getFileName($file);
+
+        $result = $this->uploadS3Service($filePath);
+        return $result->get('ObjectURL');
     }
 
-    private function getFilePath()
+    private function uploadS3Service($filePath)
     {
-        return __DIR__ . "/../../public/upload/";
+        $bucketName = $_ENV['S3_BUCKET_NAME'];
+        $bucketRegion = $_ENV['S3_BUCKET_REGION'];
+        $s3Client = new S3Client([
+            'version' => 'latest',
+            'region' => $bucketRegion,
+            'credentials' => ['key' => $_ENV['S3_ACCESS_KEY_ID'], 'secret' => $_ENV['S3_SECRET_ACCESS_KEY']]
+        ]);
+        $key = 'upload/' . basename($filePath);
+        $result = $s3Client->putObject([
+            'Bucket' => $bucketName,
+            'Key' => $key,
+            'SourceFile' => $filePath,
+        ]);
+        unlink($filePath);
+        return $result;
     }
 
     private function getFileName($file): string
     {
-        return md5(date('Y-m-d H:i:s:u')) . $file["name"];
-    }
-
-    private function getURL($path, $fileName)
-    {
-        return $path . $fileName;
+        $path = __DIR__ . "/../../public/upload/";
+        $filename = md5(date('Y-m-d H:i:s:u')) . $file["name"];
+        return $path . $filename;
     }
 }

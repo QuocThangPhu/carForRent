@@ -3,7 +3,8 @@
 use Thangphu\CarForRent\Bootstrap\Request;
 use Thangphu\CarForRent\Bootstrap\Response;
 use Thangphu\CarForRent\Route\RouteManage;
-
+error_reporting(E_ALL);
+ini_set('display_errors', '1');
 require '../vendor/autoload.php';
 
 use Thangphu\CarForRent\Bootstrap\Application;
