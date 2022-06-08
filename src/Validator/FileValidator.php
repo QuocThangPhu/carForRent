@@ -24,7 +24,7 @@ abstract class FileValidator extends Validator
         return $this;
     }
 
-    public function required(): self
+    public function required(): static
     {
         if (!isset($this->file) || $this->file["error"] != 0) {
             $this->errors[$this->name] = "File upload does not exist.";

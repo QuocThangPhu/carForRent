@@ -3,6 +3,7 @@
 namespace Thangphu\CarForRent\Service;
 
 use Thangphu\CarForRent\Exception\UploadFileException;
+use Thangphu\CarForRent\Validator\ImageValidator;
 
 class UploadImageService
 {
@@ -10,6 +11,8 @@ class UploadImageService
 
     public function upload($file): ?string
     {
+        $validatorFile = new ImageValidator();
+        $validatorFile->validateImage($file);
         if (!move_uploaded_file($file["tmp_name"], $this->getURL($this->getFilePath(), $this->getFileName($file)))) {
             throw new UploadFileException("There was an error uploading your file.");
         }
@@ -19,7 +22,7 @@ class UploadImageService
 
     private function getFilePath()
     {
-        return __DIR__ . "/../../../public/upload/";
+        return __DIR__ . "/../../public/upload/";
     }
 
     private function getFileName($file): string
